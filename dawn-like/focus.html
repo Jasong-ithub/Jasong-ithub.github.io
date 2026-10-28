@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB">
+<head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Focus indicators</title>
+<style>
+  body { font-family: sans-serif; margin: 0; padding: 40px; background: #fff; color: #121212; }
+  a, summary, select { outline: none; }
+  /* Shopify Dawn: outline 10px away from the control plus a box-shadow ring (all outside a tight screenshot) */
+  .facet summary:focus-visible, .facet select:focus-visible { outline: 2px solid rgba(18,18,18,.5); outline-offset: 10px; box-shadow: 0 0 0 10px #fff, 0 0 2px 12px rgba(18,18,18,.3); }
+  .facet { display: flex; gap: 60px; align-items: center; margin-bottom: 60px; }
+  .facet details { position: relative; }
+  .facet summary { list-style: none; cursor: pointer; }
+  /* Shopify Dawn product card: the link has no outline; the card is framed while it holds focus */
+  .card-wrapper { width: 280px; position: relative; margin-bottom: 60px; }
+  .card { border: 1px solid transparent; padding: 12px; }
+  .card-wrapper:focus-within .card { outline: 2px solid rgba(18,18,18,.5); outline-offset: 3px; box-shadow: 0 0 0 3px #fff, 0 0 5px 4px rgba(18,18,18,.3); }
+  .card .media { height: 220px; background: #d8c8b8; margin-bottom: 70px; }
+  .card h3 { margin: 0; font-size: 16px; }
+  .card h3 a { color: inherit; text-decoration: none; }
+  .card .price { margin-top: 40px; }
+  /* Shopify Dawn footer link: outline 3px away plus a box-shadow ring */
+  .footer-links { list-style: none; padding: 0; display: flex; gap: 40px; }
+  .footer-links a { color: #121212; text-decoration: none; }
+  #late:focus-visible { outline: 2px solid rgba(18,18,18,.5); outline-offset: 3px; box-shadow: 0 0 0 3px #fff, 0 0 5px 4px rgba(18,18,18,.3); }
+  /* the real fault: no indicator at all */
+  .bare { color: #121212; text-decoration: none; }
+</style></head>
+<body><p style="margin:0;padding:8px 16px;background:#fff8c5;color:#1f1f1f;border-bottom:1px solid #8a6d00;font:16px/1.4 Arial,sans-serif">Fictional test shop for accessibility testing. Nothing here is real and nothing can be bought.</p>
+<main>
+  <h1>Focus indicators</h1>
+  <div class="facet">
+    <details id="availability"><summary>Availability (0 selected)</summary><div><label><input type="checkbox"> In stock</label></div></details>
+    <label for="SortBy">Sort by:</label>
+    <select id="SortBy"><option>Featured</option><option>Price, low to high</option></select>
+  </div>
+  <div class="card-wrapper">
+    <div class="card">
+      <div class="media"></div>
+      <h3><a id="CardLink-1" href="#mini-eddy">Mini Eddy</a></h3>
+      <div class="price">$375.00 CAD</div>
+    </div>
+  </div>
+  <p><a id="bare" class="bare" href="#nowhere">Delivery information</a></p>
+  <!-- Shopify Dawn's footer under "You may also like": the products load as Tab passes them and push the
+       footer down after a link was measured (the test moves these links at that moment) -->
+  <div id="spacer-late"></div>
+  <ul class="footer-links"><li><a id="late" href="#bags">Bags</a></li><li><a id="late-bare" class="bare" href="#shoes">Shoes</a></li></ul>
+</main>
+</body>
+</html>

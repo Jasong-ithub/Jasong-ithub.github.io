@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-GB">
+<head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Forms</title>
+<style>body { font-family: sans-serif; margin: 20px; } .send { display: inline-block; background: #121212; color: #fff; padding: 8px 16px; cursor: pointer; }</style></head>
+<body><p style="margin:0;padding:8px 16px;background:#fff8c5;color:#1f1f1f;border-bottom:1px solid #8a6d00;font:16px/1.4 Arial,sans-serif">Fictional test shop for accessibility testing. Nothing here is real and nothing can be bought.</p>
+<main>
+  <h1>Bags</h1>
+  <!-- Shopify Dawn collection filters: no send button; the list updates as soon as a filter or the order changes -->
+  <form id="FacetFiltersForm">
+    <fieldset><legend>Availability</legend><label><input type="checkbox" name="filter.v.availability" value="1"> In stock</label></fieldset>
+    <label for="SortBy">Sort by:</label>
+    <select id="SortBy" name="sort_by"><option value="manual">Featured</option><option value="price-ascending">Price, low to high</option></select>
+  </form>
+  <ul id="products"><li>Mini Eddy</li><li>Studio Bag</li></ul>
+  <h2>Contact us</h2>
+  <!-- the real fault: the send "button" is a span that only a mouse can click -->
+  <form id="contact" action="/thanks" method="post">
+    <label for="name">Your name</label> <input id="name" name="name" required>
+    <label for="email">Email</label> <input id="email" name="email" type="email" required>
+    <span class="send" onclick="document.getElementById('contact').requestSubmit()">Send message</span>
+  </form>
+</main>
+<script>
+  const f = document.getElementById('FacetFiltersForm');
+  f.addEventListener('input', () => { document.getElementById('products').setAttribute('data-updated', String(Date.now())); });
+  f.addEventListener('submit', (e) => e.preventDefault());
+</script>
+</body>
+</html>
