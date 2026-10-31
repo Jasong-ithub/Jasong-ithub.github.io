@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="robots" content="noindex, nofollow">
-<meta name="shop-version" content="13">
+<meta name="shop-version" content="14">
 <title>Payment | Checkout | Larkspindle</title>
 <link rel="stylesheet" href="/benchmark-shop/assets/site.css">
 <link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
@@ -22,7 +22,7 @@
 <div id="card-fields"><div class="field"><label for="card-name" style="color:#b3261e">Name on card</label><input type="text" id="card-name" autocomplete="cc-name"></div><div class="field"><label for="card-number" style="color:#b3261e">Card number</label><input type="text" id="card-number" inputmode="numeric" autocomplete="cc-number"></div></div>
 <div class="field" id="expiry"><label for="exp-month">Expiry date</label><select id="exp-month" autocomplete="cc-exp-month" style="max-width:8em"><option>MM</option><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option></select> <select id="exp-year" autocomplete="cc-exp-year" style="max-width:8em"><option>YYYY</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option></select></div>
 <fieldset id="card-billing"><legend>Card billing address</legend><label class="choice"><input type="checkbox" id="billing-same" checked> Same as the billing address you gave at the delivery step</label></fieldset>
-<div class="field"><label for="cvc">Security code</label><input type="text" id="cvc" inputmode="numeric" autocomplete="cc-csc" style="max-width:8em"><p id="cvc-error" class="error-text" hidden>Security code: invalid</p></div>
+<div class="field"><label for="cvc">Security code</label><input type="text" id="cvc" inputmode="numeric" autocomplete="cc-csc" style="max-width:8em"><p id="cvc-error" class="error-text" role="alert" hidden>Security code: invalid</p></div>
 <button type="submit" class="btn" id="pay-continue">Continue to review</button>
 </form>
 </div></main>

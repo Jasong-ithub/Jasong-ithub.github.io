@@ -30,6 +30,7 @@ img, video { height: auto; }
 .search input { flex: 1; min-width: 0; padding: 9px 12px; border: 2px solid #fff; border-radius: 6px 0 0 6px; font-size: 1rem; }
 .search button { padding: 9px 16px; border: 2px solid #fff; background: var(--clay); color: #fff; border-radius: 0 6px 6px 0; font-size: 1rem; cursor: pointer; }
 .masthead .icon-link { color: #fff; display: inline-flex; align-items: center; gap: 6px; padding: 8px; }
+#checkout-help, #checkout-help:hover { color: #fff; }
 .site-nav { background: var(--forest-2); }
 .site-nav > ul { list-style: none; margin: 0 auto; padding: 0 12px; display: flex; flex-wrap: wrap; max-width: var(--wrap); }
 .site-nav > ul > li { position: relative; display: flex; align-items: center; }

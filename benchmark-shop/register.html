@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="shop-version" content="13">
+<meta name="shop-version" content="14">
 <title>Create an account | Larkspindle</title>
 <link rel="stylesheet" href="/benchmark-shop/assets/site.css">
 <link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
@@ -35,7 +35,7 @@
 <div class="field"><label for="reg-name">Full name</label><input type="text" id="reg-name" autocomplete="name"></div>
 <div class="field"><label for="reg-email">Email address</label><input type="email" id="reg-email" autocomplete="email"></div>
 <div class="field" id="phone-group"><span aria-hidden="true">(</span><input type="text" title="Area code" style="width:5em" inputmode="numeric" autocomplete="tel-area-code"><span aria-hidden="true">)</span> <input type="text" title="Exchange" style="width:5em" inputmode="numeric" autocomplete="tel-local-prefix"> <span aria-hidden="true">-</span> <input type="text" title="Number" style="width:6em" inputmode="numeric" autocomplete="tel-local-suffix"></div>
-<div class="field" id="dob-field"><label for="dob">Date of birth</label><input type="text" id="dob" autocomplete="bday" style="max-width:12em"><p id="dob-err" class="error-text" hidden>Date of birth is not valid</p></div>
+<div class="field" id="dob-field"><label for="dob">Date of birth</label><input type="text" id="dob" autocomplete="bday" style="max-width:12em"><p id="dob-err" class="error-text" role="alert" hidden>Date of birth is not valid</p></div>
 <div class="field"><label for="new-password">Choose a password</label><p class="hint" id="pw-hint">At least 10 characters. You can paste one from a password manager.</p><input type="password" id="new-password" autocomplete="new-password" aria-describedby="pw-hint"> <button type="button" class="btn secondary" id="show-pw" aria-pressed="false">Show password</button></div>
 <div class="field" id="captcha"><img src="/benchmark-shop/media/captcha.png" alt="CAPTCHA" width="240" height="80"><label for="captcha-input">Type the characters you see</label><input type="text" id="captcha-input" autocomplete="off" style="max-width:10em"></div>
 <button type="submit" class="btn">Create account</button></form>
