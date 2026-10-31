@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="robots" content="noindex, nofollow">
-<meta name="shop-version" content="14">
+<meta name="shop-version" content="15">
 <title>Payment | Checkout | Larkspindle</title>
 <link rel="stylesheet" href="/benchmark-shop/assets/site.css">
 <link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
@@ -32,7 +32,7 @@
 <script src="/benchmark-shop/assets/site.js"></script>
 <script>
 document.getElementById('payment-form').addEventListener('submit', function () { var c = document.getElementById('cvc'); if (!/^\d{3}$/.test(c.value)) { document.getElementById('cvc-error').hidden = false; c.setAttribute('aria-describedby', 'cvc-error'); } else { window.location.href = '/benchmark-shop/checkout-review.html'; } });
-setTimeout(function () { document.querySelectorAll('#payment-form input').forEach(function (i) { i.value = ''; }); var m = document.createElement('p'); m.className = 'error-text'; m.textContent = 'Your session has expired. Please start again.'; document.getElementById('payment-form').prepend(m); }, 120000);
+setTimeout(function () { document.querySelectorAll('#payment-form input').forEach(function (i) { i.value = ''; }); var m = document.createElement('p'); m.className = 'error-text'; m.setAttribute('role', 'alert'); m.textContent = 'Your session has expired. Please start again.'; document.getElementById('payment-form').prepend(m); }, 120000);
 </script>
 </body>
 </html>
