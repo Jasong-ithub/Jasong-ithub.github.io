@@ -75,9 +75,17 @@
   window.lsAnnounce = function (msg) {
     if (!status) return;
     status.textContent = '';
-    setTimeout(function () { status.textContent = msg; }, 50);
+    setTimeout(function () { status.textContent = msg; clearIfOver(); }, 50);
     setTimeout(function () { status.textContent = ''; }, 6000);
   };
+  function clearIfOver() {
+    var f = document.activeElement;
+    if (!status || !status.textContent || !f || f === document.body) return;
+    var a = status.getBoundingClientRect(), b = f.getBoundingClientRect();
+    if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) status.textContent = '';
+  }
+  document.addEventListener('focusin', function () { clearIfOver(); window.requestAnimationFrame(clearIfOver); });
+  window.addEventListener('scroll', clearIfOver, { passive: true });
   $$('[data-add]').forEach(function (b) { b.addEventListener('click', function () { window.lsAnnounce(b.getAttribute('data-add') + ' added to your basket'); }); });
   var lastTrigger = null;
   function focusables(el) { return $$('a[href], button:not([disabled]), input, select, textarea, [tabindex="0"]', el).filter(function (x) { return x.offsetParent !== null; }); }
@@ -209,6 +217,20 @@
     $('.next', c).addEventListener('click', function () { show(i + 1); });
     show(0);
   });
+  function fitInWindow(el) {
+    el.style.maxWidth = ''; el.style.minWidth = ''; el.style.boxSizing = ''; el.style.marginLeft = '';
+    if (!el.getClientRects().length) return;
+    var edge = 8, room = document.documentElement.clientWidth - 2 * edge;
+    var r = el.getBoundingClientRect();
+    if (r.width > room) { el.style.boxSizing = 'border-box'; el.style.minWidth = '0'; el.style.maxWidth = room + 'px'; r = el.getBoundingClientRect(); }
+    var over = r.right - (room + edge);
+    if (over > 0) el.style.marginLeft = -Math.min(over, Math.max(0, r.left - edge)) + 'px';
+  }
+  var FIT = '.tooltip, .menu-panel';
+  new MutationObserver(function (list) {
+    list.forEach(function (m) { if (m.target.nodeType === 1 && m.target.matches(FIT)) fitInWindow(m.target); });
+  }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['hidden', 'class'] });
+  window.addEventListener('resize', function () { $$(FIT).forEach(fitInWindow); });
   var tw = $('#timeout-warning');
   if (tw) {
     setTimeout(function () { tw.hidden = false; $('#extend-session').focus(); }, 15 * 60 * 1000);

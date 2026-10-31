@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="shop-version" content="15">
+<meta name="shop-version" content="16">
 <title>Bracken wax jacket | Outerwear | Larkspindle</title>
 <link rel="stylesheet" href="/benchmark-shop/assets/site.css">
 <link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
@@ -47,6 +47,7 @@
 <div id="sizeguide-pop" hidden style="position:fixed;top:10%;left:50%;transform:translateX(-50%);background:#fff;border:2px solid #1f3d36;border-radius:10px;padding:20px;z-index:60;max-width:90vw"><p style="font-weight:700;margin-top:0">Jacket sizes</p><p>S fits chest 92 to 97 cm; M 98 to 103 cm; L 104 to 109 cm.</p><button type="button" class="btn" onclick="document.getElementById('sizeguide-pop').hidden = true">Close</button></div>
 <script src="/benchmark-shop/assets/site.js"></script>
 <script>
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.getElementById('sizeguide-pop').hidden = true; });
 var wb = document.getElementById('wax-btn'), wt = document.getElementById('tip-wax'), wtimer;
 function wshow() { wt.hidden = false; clearTimeout(wtimer); wtimer = setTimeout(function () { wt.hidden = true; }, 1500); }
 wb.addEventListener('mouseenter', wshow); wb.addEventListener('focus', wshow);

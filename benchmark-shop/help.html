@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="shop-version" content="15">
+<meta name="shop-version" content="16">
 <title>Help centre | Larkspindle</title>
 <link rel="stylesheet" href="/benchmark-shop/assets/site.css">
 <link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
@@ -47,6 +47,8 @@
 <div id="status" class="toast" role="status"></div>
 
 <script src="/benchmark-shop/assets/site.js"></script>
-
+<script>
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.getElementById('help-drawer').style.transform = 'translateX(-110%)'; });
+</script>
 </body>
 </html>

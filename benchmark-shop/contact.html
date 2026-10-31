@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="shop-version" content="15">
+<meta name="shop-version" content="16">
 <title>Contact us | Larkspindle</title>
 <link rel="stylesheet" href="/benchmark-shop/assets/site.css">
 <link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
@@ -34,7 +34,7 @@
 <p id="contact-error" class="error-text" role="alert" hidden>There was a problem with your submission.</p>
 <form id="contact-form" onsubmit="return false" class="panel" novalidate>
 <div class="field"><label for="contact-name">Your name</label><input type="text" id="contact-name" autocomplete="name"></div>
-<div class="field"><label for="contact-email">Email address</label><input type="email" id="contact-email" autocomplete="email"></div>
+<div class="field"><label for="contact-email">Email address <span class="req">(required)</span></label><input type="email" id="contact-email" autocomplete="email" required></div>
 <div class="field"><label for="order-ref">Details</label><input type="text" id="order-ref" style="max-width:14em"></div>
 <div class="field"><label for="message">Your message</label><textarea id="message" rows="5"></textarea></div>
 <button type="submit" class="btn">Send message</button></form><div id="contact-success" role="status"></div>
