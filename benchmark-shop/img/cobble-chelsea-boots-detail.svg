@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 560" width="480" height="560">
+<rect width="480" height="560" fill="#f4f0e6"/>
+<defs><pattern id="t" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M0 12 Q6 0 12 12 Q18 24 24 12" fill="none" stroke="#1c1c1c" stroke-width="3" opacity="0.45"/></pattern><clipPath id="c"><path d="M170 120 H280 V340 L370 380 Q400 395 400 425 V450 H150 Q150 420 160 400 Z" fill="#2b2b2b"/>
+<rect x="140" y="450" width="270" height="30" rx="8" fill="#1c1c1c"/><path d="M200 160 L250 170 M200 200 L250 210 M200 240 L250 250 M200 280 L250 290" stroke="#1c1c1c" stroke-width="6"/></clipPath></defs><g transform="translate(240 280) scale(3) translate(-240 -300)"><path d="M170 120 H280 V340 L370 380 Q400 395 400 425 V450 H150 Q150 420 160 400 Z" fill="#2b2b2b"/>
+<rect x="140" y="450" width="270" height="30" rx="8" fill="#1c1c1c"/><path d="M200 160 L250 170 M200 200 L250 210 M200 240 L250 250 M200 280 L250 290" stroke="#1c1c1c" stroke-width="6"/><rect x="0" y="0" width="480" height="560" fill="url(#t)" opacity="0.6" clip-path="url(#c)"/></g>
+</svg>

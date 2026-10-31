@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 560" width="480" height="560">
+<rect width="480" height="560" fill="#f4f0e6"/>
+<defs><pattern id="t" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M0 12 Q6 0 12 12 Q18 24 24 12" fill="none" stroke="#43533a" stroke-width="3" opacity="0.45"/></pattern><clipPath id="c"><path d="M150 120 L210 100 L240 200 L270 100 L330 120 L410 210 L370 250 L340 220 L340 450 L140 450 L140 220 L110 250 L70 210 Z" fill="#5b6e4f"/>
+<path d="M240 200 V450" stroke="#43533a" stroke-width="6"/><circle cx="252" cy="260" r="7" fill="#43533a"/><circle cx="252" cy="320" r="7" fill="#43533a"/><circle cx="252" cy="380" r="7" fill="#43533a"/>
+<rect x="165" y="340" width="55" height="50" rx="6" fill="#43533a" opacity="0.5"/><rect x="265" y="340" width="55" height="50" rx="6" fill="#43533a" opacity="0.5"/></clipPath></defs><g transform="translate(240 280) scale(3) translate(-240 -300)"><path d="M150 120 L210 100 L240 200 L270 100 L330 120 L410 210 L370 250 L340 220 L340 450 L140 450 L140 220 L110 250 L70 210 Z" fill="#5b6e4f"/>
+<path d="M240 200 V450" stroke="#43533a" stroke-width="6"/><circle cx="252" cy="260" r="7" fill="#43533a"/><circle cx="252" cy="320" r="7" fill="#43533a"/><circle cx="252" cy="380" r="7" fill="#43533a"/>
+<rect x="165" y="340" width="55" height="50" rx="6" fill="#43533a" opacity="0.5"/><rect x="265" y="340" width="55" height="50" rx="6" fill="#43533a" opacity="0.5"/><rect x="0" y="0" width="480" height="560" fill="url(#t)" opacity="0.6" clip-path="url(#c)"/></g>
+</svg>

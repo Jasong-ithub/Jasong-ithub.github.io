@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 560" width="480" height="560">
+<rect width="480" height="560" fill="#f4f0e6"/>
+<defs><pattern id="t" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M0 12 Q6 0 12 12 Q18 24 24 12" fill="none" stroke="#a68843" stroke-width="3" opacity="0.45"/></pattern><clipPath id="c"><path d="M170 90 H250 V470 H170 Z" fill="#c7a55a"/><path d="M230 120 H310 V420 H230 Z" fill="#a68843"/>
+<path d="M170 470 V505 M185 470 V505 M200 470 V505 M215 470 V505 M230 470 V505 M245 470 V505" stroke="#c7a55a" stroke-width="4"/></clipPath></defs><g transform="translate(240 280) scale(3) translate(-240 -300)"><path d="M170 90 H250 V470 H170 Z" fill="#c7a55a"/><path d="M230 120 H310 V420 H230 Z" fill="#a68843"/>
+<path d="M170 470 V505 M185 470 V505 M200 470 V505 M215 470 V505 M230 470 V505 M245 470 V505" stroke="#c7a55a" stroke-width="4"/><rect x="0" y="0" width="480" height="560" fill="url(#t)" opacity="0.6" clip-path="url(#c)"/></g>
+</svg>

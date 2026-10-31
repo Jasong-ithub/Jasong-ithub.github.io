@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="shop-version" content="5">
+<title>Your details | Checkout | Larkspindle</title>
+<link rel="stylesheet" href="/benchmark-shop/assets/site.css">
+<link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header"><p class="notice">Fictional test shop for accessibility testing. Nothing here is real and nothing can be bought.</p><div class="masthead"><a class="logo" href="/benchmark-shop/index.html"><img src="/benchmark-shop/img/logo.svg" alt="" width="40" height="40">Larkspindle</a><span style="margin-left:auto">Secure checkout</span><a href="/benchmark-shop/help.html" id="checkout-help">Help with your order</a></div></header>
+<div style="background:#fff;border-bottom:1px solid #b5b0a5"><nav aria-label="Checkout steps" class="wrap"><ol class="steps" style="display:flex;gap:18px;flex-wrap:wrap;list-style:none;padding:12px 0;margin:0"><li><strong aria-current="step">1. Your details</strong></li><li>2. Delivery</li><li>3. Payment</li><li>4. Review</li><li>5. Confirmation</li></ol></nav></div>
+<section class="cookie" id="cookie-banner" aria-label="Cookie choices"><div class="wrap"><p>We use cookies to remember your basket and, if you agree, to count visits. <a href="/benchmark-shop/cookies.html">How we use cookies</a></p><button type="button" class="btn" data-cookie="all">Accept all cookies</button><button type="button" class="btn secondary" data-cookie="essential">Essential cookies only</button></div></section>
+<main id="main" tabindex="-1"><div class="wrap">
+
+<h1>Your details</h1>
+<p id="details-instructions">Fill in your details, then press "Continue to delivery".</p>
+<form id="details-form" onsubmit="return false" class="panel">
+<div id="name-fields"><div class="field"><label for="fname">First name <span class="req">(required)</span></label><input type="text" id="fname" autocomplete="given-name" required></div>
+<div class="field"><label for="lname">Last name <span class="req">(required)</span></label><input type="text" id="lname" autocomplete="family-name" required></div></div>
+<div class="field"><label for="email">Email address <span class="req">(required)</span></label><input type="email" id="email" autocomplete="email" required></div>
+<div class="field"><label for="phone">Phone number</label><input type="tel" id="phone" autocomplete="phone"> <span class="tip-anchor" style="vertical-align:middle"><button type="button" class="tip-btn" id="phone-tip-btn" aria-describedby="tip-phone">?<span class="visually-hidden">Why do we need this?</span></button><span role="tooltip" id="tip-phone" class="tooltip" hidden style="width:320px">The courier may text you a delivery slot. We never use it for marketing.</span></span></div>
+<div class="field"><div style="font-weight:600;margin-bottom:4px">Postcode <span class="req">(required)</span></div><input type="text" id="postcode" autocomplete="postal-code"></div>
+<button type="submit" class="btn" onclick="window.location.href='/benchmark-shop/checkout-delivery.html'">Continue to delivery</button>
+</form>
+<div id="timeout-warning" hidden class="panel" role="alertdialog" aria-labelledby="tw-h"><h2 id="tw-h" style="margin-top:0">Are you still there?</h2><p>Your basket will be cleared in 5 minutes to keep your details safe.</p><button type="button" class="btn" id="extend-session">Give me 20 more minutes</button></div>
+</div></main>
+<footer class="site-footer"><div class="wrap"><p><a href="/benchmark-shop/privacy.html">Privacy</a> &middot; <a href="/benchmark-shop/terms.html">Terms of sale</a> &middot; <a href="/benchmark-shop/accessibility.html">Accessibility</a></p><p>Fictional test shop for accessibility testing. Nothing here is real and nothing can be bought.</p></div></footer>
+<div id="status" class="toast" role="status"></div>
+
+<script src="/benchmark-shop/assets/site.js"></script>
+<script>
+var pb = document.getElementById('phone-tip-btn'), pt = document.getElementById('tip-phone');
+['mouseenter', 'focus'].forEach(function (e) { pb.addEventListener(e, function () { pt.hidden = false; }); });
+['mouseleave', 'blur'].forEach(function (e) { pb.addEventListener(e, function () { pt.hidden = true; }); });
+</script>
+</body>
+</html>
