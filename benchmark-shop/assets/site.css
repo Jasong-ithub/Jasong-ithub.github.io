@@ -60,6 +60,9 @@ main { display: block; padding-bottom: 40px; }
 .card h3 { margin: 0 0 4px; font-size: 1.1rem; }
 .card h3 a { text-decoration: none; }
 .card h3 a:hover { text-decoration: underline; }
+.card .card-name { margin: 0 0 4px; font-weight: 600; }
+.card .card-name a { text-decoration: none; }
+.card .card-name a:hover { text-decoration: underline; }
 .price { font-weight: 700; }
 .price .was { text-decoration: line-through; font-weight: 400; color: var(--muted); margin-right: 8px; }
 .price .now { color: var(--sale); }
