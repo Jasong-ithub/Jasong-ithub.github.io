@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="shop-version" content="16">
+<meta name="shop-version" content="17">
 <title>Sign in | Larkspindle</title>
 <link rel="stylesheet" href="/benchmark-shop/assets/site.css">
 <link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
@@ -31,11 +31,11 @@
 <main id="main" tabindex="-1"><div class="wrap">
 <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/benchmark-shop/index.html">Home</a></li><li><a href="/benchmark-shop/sign-in.html" aria-current="page">Sign in</a></li></ol></nav>
 <h1>Sign in</h1><p>This is a made-up account area. Any details you type stay in this page.</p>
-<div id="signin-errors" class="error-summary" tabindex="-1" hidden><h2 style="margin-top:0;font-size:1.2rem">There is a problem</h2><ul><li><a href="#email">Enter your email address</a></li><li><a href="#password">Enter your password</a></li></ul></div>
+<div id="signin-errors" class="error-summary" tabindex="-1" hidden><h2 style="margin-top:0;font-size:1.2rem">There is a problem</h2><ul><li id="email-sum"><a href="#email">Enter your email address</a></li><li id="password-sum"><a href="#password">Enter your password</a></li><li id="maths-sum"><a href="#maths">Enter the answer to the sum as a number</a></li></ul></div>
 <form id="signin-form" onsubmit="return false" class="panel" novalidate>
 <div class="field"><label for="email">Email address <span class="req">(required)</span></label><p id="email-err" class="error-text" hidden>Enter your email address</p><input type="email" id="email" autocomplete="email" aria-describedby="email-err" required></div>
 <div class="field"><label for="password">Password <span class="req">(required)</span></label><p id="password-err" class="error-text" hidden>Enter your password</p><input type="password" id="password" autocomplete="off" onpaste="return false" aria-describedby="password-err" required></div>
-<div class="field"><label for="maths">What is 7 plus 12?</label><p class="hint" id="maths-hint">Answer this to show you are a person.</p><input type="text" id="maths" inputmode="numeric" aria-describedby="maths-hint" style="max-width:6em"></div>
+<div class="field"><label for="maths">What is 7 plus 12? <span class="req">(required)</span></label><p class="hint" id="maths-hint">Answer this to show you are a person.</p><p id="maths-err" class="error-text" hidden>Enter the answer to the sum as a number</p><input type="text" id="maths" inputmode="numeric" aria-describedby="maths-hint maths-err" required style="max-width:6em"></div>
 <button type="submit" class="btn">Sign in</button></form>
 <p><a href="/benchmark-shop/forgot-password.html">Forgotten your password?</a> &middot; <a href="/benchmark-shop/register.html">Create an account</a></p>
 </div></main>
@@ -51,8 +51,8 @@
 <script src="/benchmark-shop/assets/site.js"></script>
 <script>
 document.getElementById('signin-form').addEventListener('submit', function () {
-  var e = document.getElementById('email'), p = document.getElementById('password'), bad = false;
-  [[e, 'email-err'], [p, 'password-err']].forEach(function (x) { var empty = !x[0].value; document.getElementById(x[1]).hidden = !empty; if (empty) { bad = true; x[0].setAttribute('aria-invalid', 'true'); } else x[0].removeAttribute('aria-invalid'); });
+  var e = document.getElementById('email'), p = document.getElementById('password'), m = document.getElementById('maths'), bad = false;
+  [[e, 'email', !e.value], [p, 'password', !p.value], [m, 'maths', m.value.trim() !== '19']].forEach(function (x) { document.getElementById(x[1] + '-err').hidden = !x[2]; document.getElementById(x[1] + '-sum').hidden = !x[2]; if (x[2]) { bad = true; x[0].setAttribute('aria-invalid', 'true'); } else x[0].removeAttribute('aria-invalid'); });
   var s = document.getElementById('signin-errors'); s.hidden = !bad; if (bad) s.focus(); else window.location.href = '/benchmark-shop/account.html';
 });
 </script>

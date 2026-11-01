@@ -71,21 +71,33 @@
       window.lsAnnounce('Sorted by ' + sel.options[sel.selectedIndex].text.toLowerCase());
     });
   }
-  var status = $('#status');
+  var status = $('#status'), writeTimer = null, clearTimer = null;
+  window.lsStatusTime = 6000;
   window.lsAnnounce = function (msg) {
     if (!status) return;
+    clearTimeout(writeTimer); clearTimeout(clearTimer);
     status.textContent = '';
-    setTimeout(function () { status.textContent = msg; clearIfOver(); }, 50);
-    setTimeout(function () { status.textContent = ''; }, 6000);
+    writeTimer = setTimeout(function () {
+      status.textContent = msg;
+      placeStatus();
+      clearTimer = setTimeout(function () { status.textContent = ''; }, window.lsStatusTime);
+    }, 50);
   };
-  function clearIfOver() {
-    var f = document.activeElement;
-    if (!status || !status.textContent || !f || f === document.body) return;
-    var a = status.getBoundingClientRect(), b = f.getBoundingClientRect();
-    if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) status.textContent = '';
+  function overlap(a, b) {
+    var w = Math.min(a.right, b.right) - Math.max(a.left, b.left), h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+    return w > 0 && h > 0 ? w * h : 0;
   }
-  document.addEventListener('focusin', function () { clearIfOver(); window.requestAnimationFrame(clearIfOver); });
-  window.addEventListener('scroll', clearIfOver, { passive: true });
+  function placeStatus() {
+    var f = document.activeElement;
+    if (!status || !status.textContent || !f || f === document.body || f === document.documentElement) return;
+    var b = f.getBoundingClientRect(), here = overlap(status.getBoundingClientRect(), b);
+    if (!here) return;
+    status.classList.toggle('at-bottom');
+    if (overlap(status.getBoundingClientRect(), b) >= here) status.classList.toggle('at-bottom');
+  }
+  document.addEventListener('focusin', function () { placeStatus(); window.requestAnimationFrame(placeStatus); });
+  window.addEventListener('scroll', placeStatus, { passive: true });
+  window.addEventListener('resize', placeStatus);
   $$('[data-add]').forEach(function (b) { b.addEventListener('click', function () { window.lsAnnounce(b.getAttribute('data-add') + ' added to your basket'); }); });
   var lastTrigger = null;
   function focusables(el) { return $$('a[href], button:not([disabled]), input, select, textarea, [tabindex="0"]', el).filter(function (x) { return x.offsetParent !== null; }); }

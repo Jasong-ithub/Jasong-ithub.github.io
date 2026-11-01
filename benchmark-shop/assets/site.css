@@ -124,7 +124,8 @@ thead th { background: var(--cream); }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
 .site-footer li { margin: 6px 0; }
 .chat-panel .log { border: 1px solid var(--line); border-radius: 6px; padding: 10px; min-height: 100px; margin-bottom: 10px; background: var(--paper); }
-.toast { position: fixed; left: 50%; transform: translateX(-50%); top: 16px; background: var(--forest); color: #fff; padding: 10px 20px; border-radius: 8px; z-index: 70; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); top: 16px; box-sizing: border-box; width: max-content; max-width: calc(100vw - 32px); background: var(--forest); color: #fff; padding: 10px 20px; border-radius: 8px; z-index: 70; }
+.toast.at-bottom { top: auto; bottom: 16px; }
 .toast:empty { display: none; }
 .carousel { position: relative; }
 .carousel .slides { list-style: none; margin: 0; padding: 0; }

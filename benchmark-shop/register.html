@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="shop-version" content="16">
+<meta name="shop-version" content="17">
 <title>Create an account | Larkspindle</title>
 <link rel="stylesheet" href="/benchmark-shop/assets/site.css">
 <link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
@@ -37,8 +37,10 @@
 <div class="field" id="phone-group"><span aria-hidden="true">(</span><input type="text" title="Area code" style="width:5em" inputmode="numeric" autocomplete="tel-area-code"><span aria-hidden="true">)</span> <input type="text" title="Exchange" style="width:5em" inputmode="numeric" autocomplete="tel-local-prefix"> <span aria-hidden="true">-</span> <input type="text" title="Number" style="width:6em" inputmode="numeric" autocomplete="tel-local-suffix"></div>
 <div class="field" id="dob-field"><label for="dob">Date of birth</label><input type="text" id="dob" autocomplete="bday" style="max-width:12em"><p id="dob-err" class="error-text" role="alert" hidden>Date of birth is not valid</p></div>
 <div class="field"><label for="new-password">Choose a password</label><p class="hint" id="pw-hint">At least 10 characters. You can paste one from a password manager.</p><input type="password" id="new-password" autocomplete="new-password" aria-describedby="pw-hint"> <button type="button" class="btn secondary" id="show-pw" aria-pressed="false">Show password</button></div>
-<div class="field" id="captcha"><img src="/benchmark-shop/media/captcha.png" alt="CAPTCHA" width="240" height="80"><label for="captcha-input">Type the characters you see</label><input type="text" id="captcha-input" autocomplete="off" style="max-width:10em"></div>
+<div class="field" id="captcha"><img src="/benchmark-shop/media/captcha.png" alt="CAPTCHA" width="240" height="80"><label for="captcha-input">Type the characters you see <span class="req">(required)</span></label><input type="text" id="captcha-input" autocomplete="off" aria-describedby="captcha-err" required style="max-width:10em"></div>
+<p id="captcha-err" class="error-text" role="alert" hidden>Type the characters from the picture</p>
 <button type="submit" class="btn">Create account</button></form>
+<p id="reg-done" role="status"></p>
 </div></main>
 <footer class="site-footer"><div class="wrap cols">
 <div><h2>Help</h2><ul><li><a href="/benchmark-shop/help.html">Help centre</a></li><li><a href="/benchmark-shop/contact.html">Contact us</a></li><li><button type="button" class="btn secondary" id="chat-launcher" data-dialog="chat-dialog">Chat with us</button></li><li><a href="/benchmark-shop/faq.html">Questions and answers</a></li></ul></div>
@@ -55,6 +57,8 @@ document.getElementById('show-pw').addEventListener('click', function () { var p
 document.getElementById('register-form').addEventListener('submit', function () {
   var e = document.getElementById('reg-email'); e.style.borderColor = /^[^@]+@[^@]+\.[^@]+$/.test(e.value) ? '' : '#d93025';
   var d = document.getElementById('dob'); document.getElementById('dob-err').hidden = /^\d{2}\/\d{2}\/\d{4}$/.test(d.value);
+  var c = document.getElementById('captcha-input'), cOk = c.value.replace(/\s+/g, '').toLowerCase() === 'k7wm4'; document.getElementById('captcha-err').hidden = cOk; if (cOk) c.removeAttribute('aria-invalid'); else c.setAttribute('aria-invalid', 'true');
+  document.getElementById('reg-done').textContent = !e.style.borderColor && document.getElementById('dob-err').hidden && cOk ? 'Your account is created. (Not really: this is a test shop.)' : '';
 });
 </script>
 </body>
