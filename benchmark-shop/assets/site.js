@@ -98,7 +98,56 @@
   document.addEventListener('focusin', function () { placeStatus(); window.requestAnimationFrame(placeStatus); });
   window.addEventListener('scroll', placeStatus, { passive: true });
   window.addEventListener('resize', placeStatus);
-  $$('[data-add]').forEach(function (b) { b.addEventListener('click', function () { window.lsAnnounce(b.getAttribute('data-add') + ' added to your basket'); }); });
+  var BASKET_FIXED = { items: 2, total: 121 }, basketMem = [];
+  var basketAdded = function () { try { var v = window.sessionStorage.getItem('ls-basket'); return v ? JSON.parse(v) : basketMem; } catch (e) { return basketMem; } };
+  var money = function (n) { return '\u00a3' + (Math.round(n * 100) % 100 ? n.toFixed(2) : String(Math.round(n))); };
+  function showBasket() {
+    var list = basketAdded(), n = BASKET_FIXED.items, total = BASKET_FIXED.total;
+    list.forEach(function (it) { n += it.qty; total += it.qty * it.price; });
+    $$('a.icon-link[href$="basket.html"]').forEach(function (a) {
+      var t = a.lastChild;
+      if (t && t.nodeType === 3 && /^Basket, \d+ items?$/.test(t.nodeValue)) t.nodeValue = 'Basket, ' + n + (n === 1 ? ' item' : ' items');
+    });
+    var items = $('#basket-items');
+    if (!items || !list.length) return;
+    var box = $('#basket-added');
+    if (!box) {
+      box = document.createElement('section');
+      box.id = 'basket-added';
+      box.setAttribute('aria-labelledby', 'basket-added-h');
+      box.innerHTML = '<h2 id="basket-added-h">Added on this visit</h2><ul id="basket-added-list"></ul>';
+      items.parentNode.insertBefore(box, items.nextSibling);
+    }
+    var ul = $('#basket-added-list', box);
+    ul.textContent = '';
+    list.forEach(function (it) {
+      var li = document.createElement('li'), a = document.createElement('a');
+      a.href = it.href; a.textContent = it.name;
+      li.appendChild(a);
+      li.appendChild(document.createTextNode((it.size ? ', size ' + it.size : '') + ', quantity ' + it.qty + '. ' + money(it.qty * it.price)));
+      ul.appendChild(li);
+    });
+    var tot = $('#basket-total');
+    if (tot) tot.textContent = 'Total: ' + money(total);
+  }
+  window.lsAddToBasket = function (name, price, size) {
+    var q = $('#qty'), qty = q ? parseInt(q.value, 10) : 1;
+    if (!(qty >= 1)) qty = 1;
+    if (qty > 99) qty = 99;
+    var list = basketAdded().slice();
+    list.push({ name: name, price: Number(price) || 0, size: size || '', qty: qty, href: window.location.pathname });
+    basketMem = list;
+    try { window.sessionStorage.setItem('ls-basket', JSON.stringify(list)); } catch (e) { basketMem = list; }
+    showBasket();
+  };
+  showBasket();
+  $$('[data-add]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var sz = $('input[name=size]:checked');
+      window.lsAddToBasket(b.getAttribute('data-add'), b.getAttribute('data-price'), sz ? sz.value : '');
+      window.lsAnnounce(b.getAttribute('data-add') + ' added to your basket');
+    });
+  });
   var lastTrigger = null;
   function focusables(el) { return $$('a[href], button:not([disabled]), input, select, textarea, [tabindex="0"]', el).filter(function (x) { return x.offsetParent !== null; }); }
   window.lsOpenDialog = function (id, trigger) {
