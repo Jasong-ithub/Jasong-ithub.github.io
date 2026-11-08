@@ -1,9 +1,8 @@
-# PUBLIC TEST SITES COPY of the screen reader workflow (owner decision D349). Made by tools/make-testshop-site.mjs
-# from the tool's own .github/workflows/screenreader.yml: do not edit it here. It runs ONLY on our own made-up test
-# sites (jasong-ithub.github.io): the tool starts it here when every page of a run is on that host, so the minutes
-# are free (a public repository). Client pages never come here (addons/screenreader/lib/remote.js, repoForPages).
-# Each job checks out the tool's PRIVATE repository at run time with a read-only key kept as the secret
-# TOOL_READ_TOKEN, so the tool's code is never published. The tool deletes each run as soon as it has the results.
+# PUBLIC TEST SITES COPY of the tool's screen reader workflow (runs only on our own test sites, addons/screenreader/lib/remote.js repoForPages) (owner decisions D349, D350). Made by
+# tools/make-testshop-site.mjs from the tool's own .github/workflows/screenreader.yml: do not edit it here. Each job checks
+# out the tool's PRIVATE repository at run time with a read-only key kept as the secret TOOL_READ_TOKEN, so the tool's
+# code is never published, and the minutes are free (a public repository). Only our own code and our own made-up
+# test sites are used here: client pages and free audits never come here (they stay on the private repository).
 # Real screen reader test for an audit: NVDA on Windows and VoiceOver on macOS, driven by Guidepup.
 # Started by the full audit through the GitHub API (src/audit.js, addons/screenreader/lib/remote.js, with
 # A11Y_GITHUB_TOKEN), or by hand from the Actions tab ("Screen reader test", "Run workflow"); never on push.

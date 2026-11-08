@@ -1,0 +1,526 @@
+# PUBLIC TEST SITES COPY of the tool's test suite (owner decisions D349, D350). Made by
+# tools/make-testshop-site.mjs from the tool's own .github/workflows/tests.yml: do not edit it here. Each job checks
+# out the tool's PRIVATE repository at run time with a read-only key kept as the secret TOOL_READ_TOKEN, so the tool's
+# code is never published, and the minutes are free (a public repository). Only our own code and our own made-up
+# test sites are used here: client pages and free audits never come here (they stay on the private repository).
+# Runs the project's tests on GitHub.
+#   OWNER DECISION D315 (1 November 2026): a push runs only the two quick jobs (conflicts and docs); every other job
+#   runs weekly, on a pull request or by hand (Actions tab, "Run workflow"), and a newer push cancels an older run.
+#   Run the full set by hand before merging finished work.
+#   Every push, every pull request, every night and on demand (Actions tab, "Run workflow"): two checks and every test
+#   file except test/run-tests.js, in jobs side by side so none waits on another:
+#     listed     every test file in the project is run by this workflow, once (tools/check-tests-listed.mjs), and
+#                the code rules for the round 1 safety findings (tools/check-safety.mjs), with S17's behaviour test
+#                of every runner that loads a live page (test/live-guard-tests.js), about 14 minutes
+#     conflicts  no tracked file holds a leftover merge conflict marker
+#     docs       the documents check (tools/check-docs.mjs): no replaced wording or prices, no em dashes, no missing
+#                paths, no options the code does not accept, no future-dated build records, and the rules tying the
+#                documents to the code (round 1 documents review, 28 October 2026), with its own tests, and the
+#                comparison evidence check (test/compare-tests.js, D225)
+#     quick      the fast checks (lead emails, agencies, standards and law wording, prices, legal details, opt-outs,
+#                languages, the Getting started pack, the hand-over, the Dawn checks, tool parity, AAA and law beyond
+#                WCAG, email views, the remote screen reader route, monitoring bills and statements, the fix recipes
+#                for the interaction gaps, the quality gate and its send paths, the WebAIM email), about 15 minutes
+#     benchmark  the benchmark shop and its answer key (D241, D242), about 20 to 25 minutes
+#     benchmarktools  by hand only: the converters and coverage analysis of the benchmark tool runs (D334 to D340),
+#                under a minute
+#     monitor    monitoring and the add-ons that map and walk a site (designs, cross-page, process, sign-in,
+#                re-audit, documents), about 30 minutes
+#     addons     every other add-on's own tests, and the demo fixes, about 35 minutes
+#     gaps       the gap tests of the content, interaction, keyboard and timing add-ons (28 October 2026)
+#     fixes      the fix engine, with route 2, apply, the add-on fixes and the fixes by rule, about 35 minutes
+#     prelive    the before-live page check, about 15 to 22 minutes
+#     everypage  the full audit on every page, the free audit in two stages, the D296 free audit, the tool comparison's fixes (G1 to G4,
+#                F1 to F4), the council page fixes and the consent dialog fixes, in Chromium and Firefox, about 30 minutes
+#     overlayonoff  the overlay on/off test with our fixes as the third column (D246, D247), about 6 minutes
+#     signedin   signed-in mode, with a full audit behind a sign-in in three browsers, about 45 minutes
+#   Every night, every pull request and on demand: also the full test set (npm test), in its own job beside them.
+# Every test file in the project (any *-tests.js in a test folder) must be run here exactly once: the listed job fails
+# otherwise. Add a new one as a "run: node <file>" step in the job that suits it (or, when another test file already
+# runs it, as a "# run by <parent>: <file>" line, as in the fixes job).
+# Times are those recorded by the agents' reports (27 and 28 October 2026) on a busy 4-core machine (load 17 to 40),
+# and time limits are about twice those. Test websites are local fixtures; nothing here contacts a real site, and no
+# secrets are used (with no Anthropic key, the AI add-ons use their stubs).
+name: Tests
+
+on:
+  # weekly, Sunday 02:17 UTC, and by hand; free here, so November is not left out
+  schedule:
+    - cron: '17 2 * * 0'
+  workflow_dispatch:
+
+# A newer push to the same branch cancels a run still going for an older one (D315)
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  listed:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    # S17's behaviour test runs every live runner on stand-in pages, the full audit in three browsers and every add-on
+    # included: about 14 minutes (40 on a busy machine)
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # needs no packages: Node's own modules and git only
+      - run: node tools/check-tests-listed.mjs
+      # S17's behaviour test needs the packages, Chromium, Firefox and WebKit (the full audit's three browsers)
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      # the code rules for the round 1 safety findings S1 to S15 (docs/review/round1-safety-fixes.txt), and S17 for
+      # the overlay settings request, by its words and by behaviour (round 4 candidate-list review, finding 1)
+      - run: node tools/check-safety.mjs
+      # run by tools/check-safety.mjs: test/live-guard-tests.js
+
+  conflicts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      # a line that is only a conflict marker (<<<<<<<, |||||||, ======= or >>>>>>>) in any tracked file
+      - run: |
+          if git grep -nE '^(<<<<<<<|\|\|\|\|\|\|\||>>>>>>>)( |$)|^=======$'; then
+            echo "Leftover merge conflict markers above: finish the merge in those files."
+            exit 1
+          fi
+          echo "No conflict markers in tracked files."
+
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # the whole history: the date check reads git blame, and the tests run the check on the documents as they
+      # were before the round 1 fixes (commit dfb2a26) to prove each kind of problem is still caught
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # the checks need no packages: Node's own modules, git and bash only
+      - run: node tools/check-docs.mjs
+      # the candidate lists for the owner's one-click approval (round 1 review of the candidate lists)
+      - run: node tools/check-candidates.mjs
+      - run: node test/check-docs-tests.js
+      # the tests below load the tool's own modules (the Upwork test reaches src/report/register.js, which needs exceljs)
+      - run: npm ci
+      # the Upwork proposal draft and the skill (Upwork proposal review, round 1): approved lines word for word, real
+      # character counts, WCAG 2.2 AA, the call to action, banned phrases in the notes too; the old draft from git fails
+      - run: node test/upwork-template-tests.js
+      # the comparison evidence (D225): the summary's numbers worked out again from the archived raw files
+      - run: node test/compare-tests.js
+      - run: node test/testshop-site-tests.js
+
+  quick:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # the quality gate reads the text of PDFs (pdftotext)
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      # the opt-out tests also check the Python agency finder
+      - run: pip install requests beautifulsoup4 openpyxl
+      - run: node test/lead-email-tests.js
+      - run: node test/preflight-tests.js
+      - run: node test/agency-tests.js
+      - run: node test/standard-law-tests.js
+      # the translated client documents: catalogues complete, English unchanged, A4, the "not checked" hold
+      - run: node test/i18n-tests.js
+      - run: node test/legal-details-tests.js
+      - run: node test/pricing-tests.js
+      # the round 1 review fixes: report wording, prices, VAT, Upwork pricing, the law (no browser)
+      - run: node test/report-fixes-tests.js
+      # the client's own list against our audit (D211, D212)
+      - run: node test/client-list-tests.js
+      # every sample's figures worked out again from pricing.js; every sample page fits its sheet (pdftotext)
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: node test/sample-figures-tests.js
+      - run: node test/suppression-tests.js
+      - run: node test/published-compare-tests.js
+      # the AI-crawler robots.txt rule and the opt-out list required before any visit (candidate lists, round 1)
+      - run: node test/finder-safety-tests.js
+      # robots.txt for every host a page load reaches, redirects included, and every stopped request kept (candidate
+      # lists, round 2, findings 25 and 30): the real browser against local servers
+      - run: node test/robots-redirect-tests.js
+      # the published-score site reports: the live-site harness on a local site, the report numbers, and every report
+      # in docs/comparison/published/2026-10-28/site-reports recomputed from its raw data (about 1 minute)
+      - run: node test/site-reports-tests.js
+      - run: node test/onboard-tests.js
+      - run: node test/handover-tests.js
+      - run: node test/lang-tests.js
+      - run: node test/dawn-like-tests.js
+      - run: node test/parity-tests.js
+      - run: node test/aaa-more-tests.js
+      - run: node test/beyond-law-tests.js
+      # the overlay report: a local test site with a stand-in overlay script, real browser runs, and (D248) our fixes on
+      # a copy with an injected fixer (about 10 minutes)
+      - run: node test/overlay-report-tests.js
+      # the overlay evidence faults found on 104 real overlay sites (31 October 2026): shadow-root buttons, hidden skip
+      # links, accessiBe's settings file, Recite Me's own elements, only the supplier's script counts (local pages)
+      - run: node test/overlay-evidence-tests.js
+      - run: node addons/emails/test/views-tests.js
+      - run: node addons/screenreader/test/remote-tests.js
+      # the round 1 safety fixes S2 to S15, and S1: the live checkout is viewed only (D208)
+      - run: node test/safety-fixes-tests.js
+      - run: node test/ai-budget-d277-tests.js
+      # D325 the paid job's AI limit from a recorded payment; D326, D327 the cost review request; D316 the GitHub
+      # minutes guard (no network, no AI)
+      - run: node test/paid-limit-d325-tests.js
+      - run: node test/cost-review-d327-tests.js
+      - run: node test/github-minutes-tests.js
+      - run: node test/live-checkout-tests.js
+      - run: node addons/monitor/test/billing-tests.js
+      - run: node addons/monitor/test/statements-tests.js
+      # no browser and no network
+      - run: node addons/fixes/test/recipes-interaction-tests.js
+      # the quality gate and learning loop (D204): its rules, figures, AI review with a stand-in model, lessons log,
+      # and every send path refusing an un-gated document (no browser, no network; reads PDFs with pdftotext)
+      - run: node test/gate-tests.js
+      - run: node test/gate-send-tests.js
+      # the draft WebAIM invitation email: tool list, wording rules and owner decisions (round 4 review, D215, D239)
+      - run: node test/webaim-email-tests.js
+      # the draft heads of terms for the solicitor: style, numbering, section 8, replaced wording (D249 to D259)
+      - run: node test/heads-of-terms-tests.js
+
+  # the benchmark shop (D241, D242), in its own job since its browser sweeps grew (rounds 12 to 16: reflow, text
+  # spacing, hover, contrast in every state, menus open, every control and form used, timers run on): about 20 to 25
+  # minutes on a busy machine, too long for the quick job's limit. The shop matches its build, every A and AA criterion
+  # and W3C failure has a planted fault or a reason, the answer key points at real elements, no form submits, nothing
+  # gives the answers away, the scorer's numbers and that it cannot be gamed; then in Chromium: real contrast, the
+  # behaviour-dependent faults and twins, and axe-core finding nothing outside the key (no network: a local test server)
+  benchmark:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node test/benchmark-shop-tests.js
+
+  # the converters of the benchmark tool runs (D334 to D336, D340): each tool's output fixture maps to the right
+  # findings and scores, the coverage analysis, hand-test answers, WAVE skipped without its key. By hand only (D315):
+  # the tool runs themselves (node tools/benchmark-tools/run.mjs) are never started here.
+  benchmarktools:
+    # only when started by hand (Actions tab, Run workflow), never on a push, a pull request or the weekly run
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node test/benchmark-tools-tests.js
+
+  monitor:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    # monitor run-tests alone took 17.5 minutes on a busy machine
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Firefox and WebKit too: the monitoring tests re-test pages in every browser
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: node addons/monitor/test/run-tests.js
+      - run: node addons/monitor/test/full-monitoring-tests.js
+      - run: node addons/monitor/test/daily-tests.js
+      - run: node addons/designs/test/run-tests.js
+      - run: node addons/crosspage/test/run-tests.js
+      - run: node addons/process/test/run-tests.js
+      - run: node addons/login/test/run-tests.js
+      - run: node addons/reaudit/test/run-tests.js
+      - run: node addons/documents/test/run-tests.js
+
+  addons:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # the demo fixes tests read the text of the demo report's PDF (pdftotext)
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # the statements tests read and write Word files (the VPAT)
+      - run: pip install python-docx
+      - run: node addons/interaction/test/run-tests.js
+      - run: node addons/media/test/run-tests.js
+      - run: node addons/media/test/batch4-tests.js
+      - run: node addons/media/test/drafts-tests.js
+      - run: node addons/judgement/test/run-tests.js
+      - run: node addons/content/test/run-tests.js
+      - run: node addons/timing/test/run-tests.js
+      - run: node addons/timing/test/batch2-recipes-tests.js
+      - run: node addons/timing/test/batch2-tests.js
+      - run: node addons/visual/test/run-tests.js
+      - run: node addons/visual/test/recipes-tests.js
+      - run: node addons/keyboard/test/run-tests.js
+      - run: node addons/keyboard/test/batch2-tests.js
+      - run: node addons/screenreader/test/run-tests.js
+      - run: node addons/screenreader/test/values-tests.js
+      - run: node addons/statements/test/run-tests.js
+      - run: node addons/beyond/test/run-tests.js
+      - run: node addons/beyond/test/calls-tests.js
+      - run: node addons/cognitive/test/run-tests.js
+      - run: node addons/display/test/run-tests.js
+      - run: node addons/copyjourney/test/run-tests.js
+      - run: node addons/emails/test/run-tests.js
+      - run: node addons/demo/test/run-tests.js
+
+  # the overlay on/off test (D246, D247): a local fixture shop with a stand-in overlay, the overlay on, off (blocked in
+  # our browser only) and our fixes on copies (an injected fixer, no AI), about 6 minutes
+  overlayonoff:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node test/overlay-onoff-tests.js
+
+  gaps:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    # not timed on their own in the reports; the timing gap tests watch each page for 30 seconds and more
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node addons/content/test/gaps-tests.js
+      - run: node addons/content/test/batch3-tests.js
+      - run: node addons/interaction/test/gaps-tests.js
+      - run: node addons/keyboard/test/gaps-tests.js
+      - run: node addons/timing/test/gaps-tests.js
+
+  fixes:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    # 35 minutes on a busy machine, with the four files it runs as their own processes
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      # the add-on fixes build and mend Word, PowerPoint and Excel files with pictures, and rebuild PDFs
+      - run: pip install python-docx python-pptx openpyxl pillow pdfminer.six lxml
+      - run: node addons/fixes/test/run-tests.js
+      # time limits on every AI call and browser step, and the stuck-run report (31 October 2026)
+      - run: node addons/fixes/test/time-limit-tests.js
+      # the spending limit never passed (each call's worst case) and the quality gate's share of it (31 October 2026)
+      - run: node addons/fixes/test/cap-worst-case-tests.js
+      # the focused proof of each fix and the full final check (31 October 2026)
+      - run: node addons/fixes/test/focused-proof-tests.js
+      # proofs side by side, a page that will not load, no second try when declined, prompt caching, excerpts (7 November 2026)
+      - run: node addons/fixes/test/speed-tests.js
+      # run by addons/fixes/test/run-tests.js: addons/fixes/test/route2-tests.js, addons/fixes/test/apply-tests.js, addons/fixes/test/addon-fixes-tests.js, addons/fixes/test/rules-tests.js, addons/fixes/test/remote-tests.js
+
+  prelive:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    # 13 minutes on a quiet machine, 22.5 on a busy one
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: node test/prelive-tests.js
+
+  everypage:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    # the two stages took about 5 minutes on a quiet machine; every page uses stand-ins apart from one real keyboard run
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Firefox and WebKit: the every page tests run the real keyboard add-on in both
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: node test/everypage-tests.js
+      - run: node test/twostage-tests.js
+      # the free audit of D296 and D297 (node src/cli.js free-audit): the page list cut at the GBP 5 unpaid limit (home
+      # and journeys always kept), the gate rule R225, the report's order, the two-stage final check after the fixes and
+      # the cost never passed, with a stand-in shop and stand-in AI answering at its worst case, about 1 minute
+      - run: node test/free-audit-tests.js
+      # the fixes from the tool comparison (G1 to G4, F1 to F4), in Chromium and Firefox, about 5 minutes
+      - run: node test/comparison-fixes-tests.js
+      # the fixes from the manual checks of council pages (cookie panel holding focus, header button found again,
+      # transparent carousel text, a trap inside a shadow root), local fixtures only, Chromium and Firefox, about 3 minutes
+      - run: node test/council-fixes-tests.js
+      # the false results found by hand on the owner's own site (a modal cookie consent dialog holding focus, answered
+      # with Deny by keyboard, never Accept; the contact form behind it), local fixtures only, through the keyboard
+      # check, the form test, the journeys, the lead scan and first look, and the full audit's runs, about 4 minutes
+      - run: node test/consent-modal-tests.js
+      # never Accept on a cookie banner (owner's standing rule): stand-in banners (reject only, accept only, accept with
+      # save or close, OK only, Accept as a DIV, the settings route with categories off or on by default, a settings panel with only
+      # Accept all) through the page preparation, the keyboard chooser, the evidence pictures, the journeys and the
+      # screen reader targets, and safety rule S18 against the old accept fallbacks; local fixtures, about 2 minutes
+      - run: node test/no-accept-tests.js
+
+  signedin:
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    # 45 minutes on a busy machine (most of it the full audit behind the sign-in in three browsers)
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: node test/signed-in/run-tests.js
+
+  full:
+    # by hand or on a pull request only: it repeats the other jobs' tests, so it is left out of the weekly run (D315)
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    # npm test took 45 to 49 minutes on a busy 4-core machine (most of it the broken shop's journey videos and the
+    # full audit)
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm test
