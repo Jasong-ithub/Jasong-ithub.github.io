@@ -1,0 +1,235 @@
+# PUBLIC TEST SITES COPY of the screen reader workflow (owner decision D349). Made by tools/make-testshop-site.mjs
+# from the tool's own .github/workflows/screenreader.yml: do not edit it here. It runs ONLY on our own made-up test
+# sites (jasong-ithub.github.io): the tool starts it here when every page of a run is on that host, so the minutes
+# are free (a public repository). Client pages never come here (addons/screenreader/lib/remote.js, repoForPages).
+# Each job checks out the tool's PRIVATE repository at run time with a read-only key kept as the secret
+# TOOL_READ_TOKEN, so the tool's code is never published. The tool deletes each run as soon as it has the results.
+# Real screen reader test for an audit: NVDA on Windows and VoiceOver on macOS, driven by Guidepup.
+# Started by the full audit through the GitHub API (src/audit.js, addons/screenreader/lib/remote.js, with
+# A11Y_GITHUB_TOKEN), or by hand from the Actions tab ("Screen reader test", "Run workflow"); never on push.
+# What is spoken is compared with what the page should announce (addons/screenreader). See
+# docs/SCREEN-READER-TESTING.txt for how to start it, what it costs in minutes and its limits.
+# Every page: the full audit splits its pages over several runs of this workflow (up to 20 pages a run, 10 by
+# default, so each screen reader job stays inside its 120-minute limit) and starts them in parallel within a set
+# maximum; each run carries its own audit_run_id ("<audit>-part-02-of-05"), and the audit merges their results.
+# The branch it runs from: the full audit starts it on A11Y_GITHUB_REF when set, otherwise on the repository's default
+# branch as the GitHub API reports it (falling back to the branch of the audit's checkout). There is no "main" branch
+# in this repository, so no fixed "main" is ever used. GitHub only lets the API start a workflow_dispatch workflow
+# that is on the default branch, so this file must stay on it.
+# Client data (review finding S11, 28 October 2026): the page addresses are never printed in the run log, every
+# artifact is kept 1 day at most, the full audit deletes its runs (logs and artifacts) through the API as soon as it
+# has the results, and src/handover.js delete removes any left for the client. The audit refuses to start a run when
+# the repository is public (A11Y_SR_ALLOW_PUBLIC=1 overrides, on the owner's say only).
+# The free audit (D330, src/free-audit.js) asks for readers "nvda" only: the Windows job runs, the Mac job is skipped,
+# and the merge job still runs on NVDA's results alone, so a Mac route that is down never stops a free audit. Paid
+# audits and samples ask for both readers.
+# Nothing is ever submitted: every request other than a plain GET is blocked in the browser, and no form on a
+# basket, checkout or payment page, and no pay or order button, is ever used.
+name: Screen reader test
+# The audit finds its run again by this name when the API does not return the run id
+run-name: ${{ inputs.audit_run_id != '' && format('Screen reader test for audit {0}', inputs.audit_run_id) || 'Screen reader test' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: 'Site address (the page tested when no pages list or scan is given)'
+        required: false
+        type: string
+      pages:
+        description: 'Pages to test, separated by spaces or commas (up to max_pages)'
+        required: false
+        type: string
+      scan_run_id:
+        description: 'Or: the run ID of an earlier workflow run whose artifact holds the scan folder'
+        required: false
+        type: string
+      scan_artifact:
+        description: 'Name of that artifact (it must contain designs.json or results.json)'
+        required: false
+        type: string
+      readers:
+        description: 'Which screen readers'
+        required: true
+        default: both
+        type: choice
+        options: [both, nvda, voiceover]
+      max_pages:
+        description: 'Most pages to test in this run, at most 20 (each page takes about 3 to 5 minutes per screen reader; the full audit splits more pages over several runs)'
+        required: true
+        default: '3'
+        type: string
+      audit_run_id:
+        description: 'Set by the full audit: its run id (with the part, when the pages are split over several runs), so it can find this run and check the results are its own'
+        required: false
+        type: string
+      ai:
+        description: 'Let the AI judge the borderline cases (set only by the paid full audit; src/util/ai-switch.js)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  actions: read
+
+# One group per audit part: the parts of an audit run in parallel (the audit itself keeps to its maximum); a run
+# started by hand has a group of its own. (A single shared group would queue the parts one after another, and
+# GitHub keeps only one waiting run per group, cancelling the others.)
+concurrency:
+  group: screenreader-${{ inputs.audit_run_id != '' && inputs.audit_run_id || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - name: Get the scan folder
+        if: inputs.scan_run_id != '' && inputs.scan_artifact != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.scan_artifact }}
+          run-id: ${{ inputs.scan_run_id }}
+          github-token: ${{ github.token }}
+          path: scan
+      - name: Make the list of pages
+        env:
+          SITE_URL: ${{ inputs.site_url }}
+          PAGES: ${{ inputs.pages }}
+          MAX_PAGES: ${{ inputs.max_pages }}
+        run: |
+          node -e '
+            const fs = require("fs"); const path = require("path");
+            // 20 pages a run at most: 20 x 5 minutes + set-up stays inside the 120-minute screen reader jobs
+            const max = Math.max(1, Math.min(20, Number(process.env.MAX_PAGES) || 3));
+            let urls = (process.env.PAGES || "").split(/[\s,]+/).filter((u) => /^https?:\/\//.test(u));
+            const find = (name) => { const out = []; const walk = (d) => { if (!fs.existsSync(d)) return; for (const f of fs.readdirSync(d)) { const p = path.join(d, f); if (fs.statSync(p).isDirectory()) walk(p); else if (f === name) out.push(p); } }; walk("scan"); return out[0]; };
+            if (!urls.length && find("designs.json")) urls = JSON.parse(fs.readFileSync(find("designs.json"), "utf8")).chosen.map((c) => c.url);
+            if (!urls.length && find("results.json")) { const r = JSON.parse(fs.readFileSync(find("results.json"), "utf8")); urls = [r.finalUrl || r.url]; }
+            if (!urls.length && /^https?:\/\//.test(process.env.SITE_URL || "")) urls = [process.env.SITE_URL];
+            urls = [...new Set(urls)].slice(0, max);
+            if (!urls.length) { console.error("No pages: give site_url, pages, or a scan artifact."); process.exit(1); }
+            fs.writeFileSync("pages.txt", urls.join("\n") + "\n");
+            // the addresses are client data: only their number goes in the run log (review finding S11)
+            console.log(`${urls.length} page(s) listed`);
+          '
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sr-pages
+          path: pages.txt
+          retention-days: 1
+
+  nvda:
+    needs: pages
+    if: inputs.readers == 'both' || inputs.readers == 'nvda'
+    runs-on: windows-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/download-artifact@v4
+        with:
+          name: sr-pages
+      - run: npm ci
+      - name: Browser (Chrome is on the runner; Chromium as a fallback and for the expected run)
+        run: npx playwright install chromium
+      - name: Set up NVDA
+        run: |
+          npx @guidepup/setup setup --ci
+          npx @guidepup/setup install nvda
+      - name: Run NVDA
+        env:
+          A11Y_ANTHROPIC_API_KEY: ${{ secrets.A11Y_ANTHROPIC_API_KEY }}
+        run: node addons/screenreader/run.js pages.txt --reader nvda --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenreader-nvda
+          path: screenreader-nvda.json
+          if-no-files-found: warn
+          retention-days: 1
+
+  voiceover:
+    needs: pages
+    if: inputs.readers == 'both' || inputs.readers == 'voiceover'
+    runs-on: macos-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/download-artifact@v4
+        with:
+          name: sr-pages
+      - run: npm ci
+      - name: Browsers (WebKit for VoiceOver, Chromium for the expected run)
+        run: npx playwright install webkit chromium
+      - name: Set up VoiceOver (configures the runner for automation)
+        run: |
+          npx @guidepup/setup setup --ci
+          npx @guidepup/setup install voiceover
+      - name: Run VoiceOver
+        env:
+          A11Y_ANTHROPIC_API_KEY: ${{ secrets.A11Y_ANTHROPIC_API_KEY }}
+        run: node addons/screenreader/run.js pages.txt --reader voiceover --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenreader-voiceover
+          path: screenreader-voiceover.json
+          if-no-files-found: warn
+          retention-days: 1
+
+  merge:
+    needs: [nvda, voiceover]
+    if: always() && (needs.nvda.result == 'success' || needs.voiceover.result == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: screenreader-*
+          merge-multiple: true
+          path: results
+      - name: Merge the results
+        env:
+          AUDIT_RUN_ID: ${{ inputs.audit_run_id }}
+        run: |
+          node addons/screenreader/run.js merge results
+          node -e 'require("fs").writeFileSync("results/run-info.json", JSON.stringify({ audit_run_id: process.env.AUDIT_RUN_ID || "" }))'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenreader
+          path: results/
+          retention-days: 1
