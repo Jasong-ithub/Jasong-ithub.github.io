@@ -6,7 +6,7 @@
 # Runs the project's tests on GitHub.
 #   OWNER DECISION D315 (1 November 2026): a push runs only the two quick jobs (conflicts and docs); every other job
 #   runs weekly, on a pull request or by hand (Actions tab, "Run workflow"), and a newer push cancels an older run.
-#   Run the full set by hand before merging finished work.
+#   Run the full set by hand before merging finished work: in the public test sites repository, where it is free (D350).
 #   Every push, every pull request, every night and on demand (Actions tab, "Run workflow"): two checks and every test
 #   file except test/run-tests.js, in jobs side by side so none waits on another:
 #     listed     every test file in the project is run by this workflow, once (tools/check-tests-listed.mjs), and
@@ -58,7 +58,7 @@ jobs:
   listed:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # S17's behaviour test runs every live runner on stand-in pages, the full audit in three browsers and every add-on
     # included: about 14 minutes (40 on a busy machine)
     timeout-minutes: 90
@@ -84,7 +84,7 @@ jobs:
       # run by tools/check-safety.mjs: test/live-guard-tests.js
 
   conflicts:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -102,7 +102,7 @@ jobs:
           echo "No conflict markers in tracked files."
 
   docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       # the whole history: the date check reads git blame, and the tests run the check on the documents as they
@@ -130,11 +130,14 @@ jobs:
       # the comparison evidence (D225): the summary's numbers worked out again from the archived raw files
       - run: node test/compare-tests.js
       - run: node test/testshop-site-tests.js
+      # our own audit on the benchmark shop (D351): the converter, the missed-faults classifier and the ratchet, and
+      # the committed docs/benchmark/ours/ files checked so a fault our audit found before can never be lost
+      - run: node test/benchmark-ours-tests.js
 
   quick:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -224,7 +227,7 @@ jobs:
   benchmark:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
@@ -247,7 +250,7 @@ jobs:
   benchmarktools:
     # only when started by hand (Actions tab, Run workflow), never on a push, a pull request or the weekly run
     if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
@@ -266,7 +269,7 @@ jobs:
   monitor:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # monitor run-tests alone took 17.5 minutes on a busy machine
     timeout-minutes: 60
     steps:
@@ -296,7 +299,7 @@ jobs:
   addons:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 70
     steps:
       - uses: actions/checkout@v4
@@ -344,7 +347,7 @@ jobs:
   overlayonoff:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -364,7 +367,7 @@ jobs:
   gaps:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # not timed on their own in the reports; the timing gap tests watch each page for 30 seconds and more
     timeout-minutes: 45
     steps:
@@ -389,7 +392,7 @@ jobs:
   fixes:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # 35 minutes on a busy machine, with the four files it runs as their own processes
     timeout-minutes: 110
     steps:
@@ -421,7 +424,7 @@ jobs:
   prelive:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # 13 minutes on a quiet machine, 22.5 on a busy one
     timeout-minutes: 45
     steps:
@@ -443,7 +446,7 @@ jobs:
   everypage:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # the two stages took about 5 minutes on a quiet machine; every page uses stand-ins apart from one real keyboard run
     timeout-minutes: 40
     steps:
@@ -484,7 +487,7 @@ jobs:
   signedin:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # 45 minutes on a busy machine (most of it the full audit behind the sign-in in three browsers)
     timeout-minutes: 90
     steps:
@@ -505,7 +508,7 @@ jobs:
   full:
     # by hand or on a pull request only: it repeats the other jobs' tests, so it is left out of the weekly run (D315)
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # npm test took 45 to 49 minutes on a busy 4-core machine (most of it the broken shop's journey videos and the
     # full audit)
     timeout-minutes: 100

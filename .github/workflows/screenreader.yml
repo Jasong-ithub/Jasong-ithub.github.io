@@ -81,7 +81,7 @@ concurrency:
 
 jobs:
   pages:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
@@ -128,7 +128,7 @@ jobs:
   nvda:
     needs: pages
     if: inputs.readers == 'both' || inputs.readers == 'nvda'
-    runs-on: windows-latest
+    runs-on: windows-2025
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
@@ -166,7 +166,7 @@ jobs:
   voiceover:
     needs: pages
     if: inputs.readers == 'both' || inputs.readers == 'voiceover'
-    runs-on: macos-latest
+    runs-on: macos-15
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
@@ -204,7 +204,7 @@ jobs:
   merge:
     needs: [nvda, voiceover]
     if: always() && (needs.nvda.result == 'success' || needs.voiceover.result == 'success')
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
