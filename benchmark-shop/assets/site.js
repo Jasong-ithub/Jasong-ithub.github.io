@@ -108,6 +108,18 @@
       var t = a.lastChild;
       if (t && t.nodeType === 3 && /^Basket, \d+ items?$/.test(t.nodeValue)) t.nodeValue = 'Basket, ' + n + (n === 1 ? ' item' : ' items');
     });
+    var rev = $('#review-items');
+    if (rev && list.length) {
+      $$('li.review-added', rev).forEach(function (li) { rev.removeChild(li); });
+      list.forEach(function (it) {
+        var li = document.createElement('li');
+        li.className = 'review-added';
+        li.textContent = it.name + (it.size ? ', size ' + it.size : '') + ', quantity ' + it.qty + ': ' + money(it.qty * it.price);
+        rev.appendChild(li);
+      });
+      var rt = $('#review-total');
+      if (rt) rt.textContent = 'Total: ' + money(total);
+    }
     var items = $('#basket-items');
     if (!items || !list.length) return;
     var box = $('#basket-added');

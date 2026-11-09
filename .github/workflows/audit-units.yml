@@ -95,6 +95,11 @@ jobs:
           '
       - name: The part's browser
         run: for i in 1 2 3; do npx playwright install --with-deps ${{ steps.spec.outputs.engine }} && break; if [ "$i" = 3 ]; then exit 1; fi; sleep 20; done
+      # the pinned font set (src/util/fonts.js): the part's text the same size as on the audit machine; the part checks
+      # it before it runs (the pre-flight part "fonts") and says which set it used, and the audit refuses another
+      - name: The pinned font set
+        # (it tries three times itself, and takes a version Ubuntu has replaced from its archive snapshot)
+        run: node tools/font-set.mjs --install
       - name: Run the part's units
         env:
           A11Y_DESKTOP_SIZE: ${{ steps.spec.outputs.desktop }}

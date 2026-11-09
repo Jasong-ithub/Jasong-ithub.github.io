@@ -3,7 +3,8 @@
 # out the tool's PRIVATE repository at run time with a read-only key kept as the secret TOOL_READ_TOKEN, so the tool's
 # code is never published, and the minutes are free (a public repository). Only our own code and our own made-up
 # test sites are used here: client pages and free audits never come here (they stay on the private repository).
-# Real screen reader test for an audit: NVDA on Windows and VoiceOver on macOS, driven by Guidepup.
+# Real screen reader test for an audit: NVDA on Windows and VoiceOver on macOS, driven by Guidepup, and (optional,
+# off by default until proved) TalkBack on an Android emulator on Linux.
 # Started by the full audit through the GitHub API (src/audit.js, addons/screenreader/lib/remote.js, with
 # A11Y_GITHUB_TOKEN), or by hand from the Actions tab ("Screen reader test", "Run workflow"); never on push.
 # What is spoken is compared with what the page should announce (addons/screenreader). See
@@ -64,6 +65,11 @@ on:
         type: string
       ai:
         description: 'Return the borderline cases for the audit machine to judge (set only by the full audit); these machines never call the AI and hold no AI key'
+        required: false
+        default: false
+        type: boolean
+      talkback:
+        description: 'Also run TalkBack (Android phones) on an Android emulator: the optional third reader, off by default until it is proved; the merge job does not wait for it, and its results are not counted until it is proved'
         required: false
         default: false
         type: boolean
@@ -229,6 +235,65 @@ jobs:
         with:
           name: screenreader-voiceover
           path: screenreader-voiceover.json
+          if-no-files-found: warn
+          retention-days: 1
+
+  # TalkBack (Android phones), the optional third reader (owner, 9 November 2026): Chrome on an Android emulator on a
+  # Linux machine with KVM, TalkBack driven through adb and its speech read from its own log (addons/screenreader/lib/
+  # talkback.js). Off unless the "talkback" input is set; the merge job does not wait for it, and until TalkBack is
+  # proved its results stay in their own file and are never counted in what was heard (docs/SCREEN-READER-TESTING.txt).
+  # Linux minutes (multiplier 1): free on the public test sites repository.
+  talkback:
+    needs: pages
+    if: inputs.talkback
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/download-artifact@v4
+        with:
+          name: sr-pages
+      - name: Install packages (no install scripts; up to 3 tries)
+        shell: bash
+        run: for i in 1 2 3; do npm ci --ignore-scripts && exit 0; echo "npm ci failed (try $i of 3)"; sleep 20; done; exit 1
+      - name: Browser (Chromium for the expected run; up to 3 tries)
+        shell: bash
+        run: for i in 1 2 3; do npx playwright install chromium && exit 0; echo "try $i of 3 failed"; sleep 30; done; exit 1
+      - name: Let the Android emulator use KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          ls -l /dev/kvm
+      # A Google Play system image: Chrome is on it, and TalkBack is expected to be (checked before any page opens;
+      # if it is not, TalkBack must be installed from a pinned build of github.com/google/talkback: to be found on the
+      # first real run).
+      # API 34: TalkBack's keys are sent with "input keycombination" (API 33 and later).
+      - name: Run TalkBack
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis_playstore
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          # No AI key here: the borderline cases are judged on the audit machine
+          script: node addons/screenreader/run.js pages.txt --reader talkback --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenreader-talkback
+          path: screenreader-talkback.json
           if-no-files-found: warn
           retention-days: 1
 

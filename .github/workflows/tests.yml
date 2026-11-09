@@ -154,6 +154,8 @@ jobs:
       # S17's behaviour test needs the packages, Chromium, Firefox and WebKit (the full audit's three browsers)
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       # the code rules for the round 1 safety findings S1 to S15 (docs/review/round1-safety-fixes.txt), and S17 for
       # the overlay settings request, by its words and by behaviour (round 4 candidate-list review, finding 1)
       - run: node tools/check-safety.mjs
@@ -218,8 +220,6 @@ jobs:
       # the catalogue of ways to fail WCAG 2.2 A and AA (D373, D377): fails on a wrong or out-of-date catalogue (it runs
       # tools/catalogue/check.mjs, which reports its gaps without failing; the weekly job also checks it against w3.org)
       - run: node test/catalogue-tests.js
-      # the overlay coverage tables, report, stop rule and searcher (D372), on stand-in runs, search and scans
-      - run: node test/overlay-coverage-tests.js
 
   quick:
     needs: changed
@@ -240,6 +240,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       # the quality gate reads the text of PDFs (pdftotext)
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       # the opt-out tests also check the Python agency finder
@@ -248,6 +250,9 @@ jobs:
       - run: node test/governors-tests.js
       - run: node test/gias-download-tests.js
       - run: node test/lead-robots-tests.js
+      # the overlay coverage tables, report, stop rule and searcher (D372), on stand-in runs, search and scans; it starts
+      # Chromium, so it runs here, where the browser is installed (it failed in the docs job, 9 November 2026)
+      - run: node test/overlay-coverage-tests.js
       - run: node test/preflight-tests.js
       - run: node test/agency-tests.js
       - run: node test/standard-law-tests.js
@@ -293,6 +298,8 @@ jobs:
       - run: node test/overlay-evidence-tests.js
       - run: node addons/emails/test/views-tests.js
       - run: node addons/screenreader/test/remote-tests.js
+      # TalkBack, the optional third screen reader (stand-in adb, log and Chrome; off by default until proved)
+      - run: node addons/screenreader/test/talkback-tests.js
       # the round 1 safety fixes S2 to S15, and S1: the live checkout is viewed only (D208)
       - run: node test/safety-fixes-tests.js
       - run: node test/ai-budget-d277-tests.js
@@ -307,6 +314,16 @@ jobs:
       - run: node test/ai-answers-tests.js
       # round 5 of the independent review of the AI route switch (docs/review/ai-route-review-round5.txt)
       - run: node test/ai-route-round5-tests.js
+      # round 6 (docs/review/ai-route-review-round6.txt)
+      - run: node test/ai-route-round6-tests.js
+      # round 7 (docs/review/ai-route-review-round7.txt)
+      - run: node test/ai-route-round7-tests.js
+      # round 8 (docs/review/ai-route-review-round8.txt)
+      - run: node test/ai-route-round8-tests.js
+      # round 9 (docs/review/ai-route-review-round9.txt)
+      - run: node test/ai-route-round9-tests.js
+      # round 10: option B (docs/review/ai-route-review-round10.txt)
+      - run: node test/ai-route-round10-tests.js
       # D325 the paid job's AI limit from a recorded payment; D326, D327 the cost review request; D316 the GitHub
       # minutes guard (no network, no AI)
       - run: node test/paid-limit-d325-tests.js
@@ -354,6 +371,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: node test/benchmark-shop-tests.js
       # learning pass 1 (D351, D359, D360): each miss and false alarm of our own audit on the shop, turned into a rule
       # change and proved on the shop's local pages with its clean twin (docs/benchmark/ours/LEARN-PASS-1.txt), Chromium
@@ -366,14 +385,21 @@ jobs:
 
   # the real-site gate for learned rules (D391, review of learning pass 1): on every page of
   # test/fixtures/realsite-gate/ (common real-site patterns, each correct under W3C's documents) no rule may give a
-  # definite failure, the whole core scan and the content, interaction, timing, media and visual add-ons run; in its
-  # own job (about 50 minutes)
+  # definite failure, the core page tests and the content, interaction, timing, media and visual add-ons run in every
+  # browser run of the full audit
   realsitegate:
     needs: changed
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
     if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
     runs-on: ubuntu-24.04
     timeout-minutes: 120
+    # one job per browser run of the full audit, together every run (R227); each about 50 to 60 minutes
+    strategy:
+      fail-fast: false
+      matrix:
+        run: [chromium, firefox, webkit, webkit-phone, webkit-tablet]
+    env:
+      A11Y_GATE_RUNS: ${{ matrix.run }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -386,7 +412,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium firefox webkit
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: node test/realsite-gate-tests.js
 
   # the converters of the benchmark tool runs (D334 to D336, D340): each tool's output fixture maps to the right
@@ -435,6 +463,8 @@ jobs:
       - run: npm ci
       # Firefox and WebKit too: the monitoring tests re-test pages in every browser
       - run: npx playwright install --with-deps chromium firefox webkit
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: node addons/monitor/test/run-tests.js
       - run: node addons/monitor/test/full-monitoring-tests.js
       - run: node addons/monitor/test/daily-tests.js
@@ -468,8 +498,12 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils ffmpeg
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      # the statements tests read and write Word files (the VPAT)
-      - run: pip install python-docx
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
+      # the statements tests read and write Word files (the VPAT). The tools run Python isolated (python3 -I), which
+      # does not see packages pip puts in the user's own folder on the runner, so the system package is installed
+      # (9 November 2026: "No module named 'docx'" with pip install python-docx), and pip's version, as on our own machines
+      - run: sudo python3 -m pip install --break-system-packages python-docx
       - run: node addons/interaction/test/run-tests.js
       - run: node addons/media/test/run-tests.js
       - run: node addons/media/test/batch4-tests.js
@@ -517,6 +551,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: node test/overlay-onoff-tests.js
 
   gaps:
@@ -539,6 +575,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: node addons/content/test/gaps-tests.js
       - run: node addons/content/test/batch3-tests.js
       - run: node addons/interaction/test/gaps-tests.js
@@ -565,8 +603,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       # the add-on fixes build and mend Word, PowerPoint and Excel files with pictures, and rebuild PDFs
-      - run: pip install python-docx python-pptx openpyxl pillow pdfminer.six lxml
+      # system-wide, for the same reason as the statements job: the tools run Python isolated (python3 -I), which does
+      # not see packages pip puts in the user's own folder (9 November 2026: 8 document fixes failed on GitHub)
+      - run: sudo python3 -m pip install --break-system-packages python-docx python-pptx openpyxl pillow pdfminer.six lxml
       - run: node addons/fixes/test/run-tests.js
       # time limits on every AI call and browser step, and the stuck-run report (31 October 2026)
       - run: node addons/fixes/test/time-limit-tests.js
@@ -599,6 +641,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: node test/prelive-tests.js
 
   everypage:
@@ -622,7 +666,15 @@ jobs:
       - run: npm ci
       # Firefox and WebKit: the every page tests run the real keyboard add-on in both
       - run: npx playwright install --with-deps chromium firefox webkit
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: node test/everypage-tests.js
+      # Firefox and the network's own certificate authority, the page-load record of a unit, each browser's real https
+      # check and the pinned font set (the split audit proof of 9 November 2026), with real browsers on local sites
+      - run: node test/browser-launch-tests.js
+      # the font set's other route, kept proved: every pinned package downloaded from Ubuntu's archive snapshot of the
+      # recording day only, and each font file checked (used when a version has left the archive; review rounds 2 and 3)
+      - run: node tools/font-set.mjs --prove-snapshot
       - run: node test/twostage-tests.js
       # the free audit of D296 and D297 (node src/cli.js free-audit): the page list cut at the GBP 5 unpaid limit (home
       # and journeys always kept), the gate rule R225, the report's order, the two-stage final check after the fixes and
@@ -663,6 +715,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: node test/signed-in/run-tests.js
 
   full:
@@ -688,6 +742,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
+      # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
+      - run: node tools/font-set.mjs --install
       - run: npm test
 
   # the commit is marked tested once its run ends (passed or failed, not cancelled) with the copy check passed, so the
