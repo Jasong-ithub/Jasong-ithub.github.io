@@ -32,6 +32,10 @@ on:
         description: 'Set by the full audit: its run id and the part, so it can find this run and check the results are its own'
         required: false
         type: string
+      tool_sha:
+        description: 'Set by the full audit: the commit of the tool it runs, so every part runs the same code'
+        required: false
+        type: string
       probe:
         description: 'Only the one-minute test job of the funds check (D355)'
         required: false
@@ -60,10 +64,11 @@ jobs:
     # a part is sized to end well inside this (src/audit/split.js PAGES_PER_PART); GitHub's own limit is 6 hours
     timeout-minutes: 300
     steps:
+      # the audit machine's own commit (it checks the part says so in part-info.json)
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.tool_sha || vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           repository: Jasong-ithub/accessibility-full-tool
-          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           token: ${{ secrets.TOOL_READ_TOKEN }}
           persist-credentials: false
       - uses: actions/setup-node@v4
