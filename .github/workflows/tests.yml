@@ -54,6 +54,12 @@ concurrency:
   group: tests-${{ github.ref }}
   cancel-in-progress: true
 
+# Every process of every job is a test run (src/util/test-isolation.js; round 2 of the AI route review, finding 2): it
+# never reaches the real AI records or a real claude command, even in a child of a test file that loads nothing from
+# src. tools/check-tests-listed.mjs fails if this is taken away.
+env:
+  A11Y_UNDER_TEST: '1'
+
 jobs:
   listed:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
@@ -157,6 +163,8 @@ jobs:
       # the opt-out tests also check the Python agency finder
       - run: pip install requests beautifulsoup4 openpyxl
       - run: node test/lead-email-tests.js
+      - run: node test/governors-tests.js
+      - run: node test/gias-download-tests.js
       - run: node test/preflight-tests.js
       - run: node test/agency-tests.js
       - run: node test/standard-law-tests.js
@@ -172,6 +180,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node test/sample-figures-tests.js
       - run: node test/suppression-tests.js
+      # the public sector lead list: generic mailboxes only, lists only under data/leads/, statement links (9 Nov 2026)
+      - run: node test/public-sector-tests.js
       - run: node test/published-compare-tests.js
       # the AI-crawler robots.txt rule and the opt-out list required before any visit (candidate lists, round 1)
       - run: node test/finder-safety-tests.js
@@ -199,6 +209,15 @@ jobs:
       # the round 1 safety fixes S2 to S15, and S1: the live checkout is viewed only (D208)
       - run: node test/safety-fixes-tests.js
       - run: node test/ai-budget-d277-tests.js
+      # D365, D366 the AI route switch: paid audits on the API key; our own tests on the included API credits, then
+      # Claude Code on the subscription (stand-ins only, nothing spent)
+      - run: node test/ai-route-tests.js
+      # round 3 of the AI route review: every entry point names its site (finding 3); the screen reader's borderline
+      # cases judged on the audit machine, never on the GitHub machines (finding 4); media and picture answers saved as
+      # they arrive and reused on a resume (finding 8)
+      - run: node test/ai-site-named-tests.js
+      - run: node addons/screenreader/test/judge-remote-tests.js
+      - run: node test/ai-answers-tests.js
       # D325 the paid job's AI limit from a recorded payment; D326, D327 the cost review request; D316 the GitHub
       # minutes guard (no network, no AI)
       - run: node test/paid-limit-d325-tests.js
@@ -243,6 +262,9 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: node test/benchmark-shop-tests.js
+      # learning pass 1 (D351, D359, D360): each miss and false alarm of our own audit on the shop, turned into a rule
+      # change and proved on the shop's local pages with its clean twin (docs/benchmark/ours/LEARN-PASS-1.txt), Chromium
+      - run: node test/learn-pass1-tests.js
 
   # the converters of the benchmark tool runs (D334 to D336, D340): each tool's output fixture maps to the right
   # findings and scores, the coverage analysis, hand-test answers, WAVE skipped without its key. By hand only (D315):

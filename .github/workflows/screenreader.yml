@@ -63,7 +63,7 @@ on:
         required: false
         type: string
       ai:
-        description: 'Let the AI judge the borderline cases (set only by the paid full audit; src/util/ai-switch.js)'
+        description: 'Return the borderline cases for the audit machine to judge (set only by the full audit); these machines never call the AI and hold no AI key'
         required: false
         default: false
         type: boolean
@@ -152,8 +152,7 @@ jobs:
           npx @guidepup/setup setup --ci
           npx @guidepup/setup install nvda
       - name: Run NVDA
-        env:
-          A11Y_ANTHROPIC_API_KEY: ${{ secrets.A11Y_ANTHROPIC_API_KEY }}
+        # No AI key here (round 3 of the AI route review, finding 4): the borderline cases are judged on the audit machine
         run: node addons/screenreader/run.js pages.txt --reader nvda --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
@@ -189,9 +188,22 @@ jobs:
         run: |
           npx @guidepup/setup setup --ci
           npx @guidepup/setup install voiceover
+      - name: Stop macOS Quick Note opening during the run (hot corners off)
+        # 8 November 2026: on 60 pages VoiceOver's reading stopped at "Quick Note New Quick Note dialog" and the next
+        # steps could not find the web content. The runner's screen is smaller than the browser window, so the mouse
+        # (which follows the VoiceOver cursor) reaches the bottom right corner, whose hot corner opens Quick Note.
+        # Every hot corner is set to no action (1) with no modifier, and the Dock reloaded so it takes effect.
+        run: |
+          for c in tl tr bl br; do
+            defaults write com.apple.dock "wvous-$c-corner" -int 1
+            defaults write com.apple.dock "wvous-$c-modifier" -int 0
+          done
+          killall Dock || true
+          sleep 2
+          for c in tl tr bl br; do echo "hot corner $c: $(defaults read com.apple.dock wvous-$c-corner)"; done
+          system_profiler SPDisplaysDataType | grep -i -E 'resolution|ui looks like' || true
       - name: Run VoiceOver
-        env:
-          A11Y_ANTHROPIC_API_KEY: ${{ secrets.A11Y_ANTHROPIC_API_KEY }}
+        # No AI key here (round 3 of the AI route review, finding 4): the borderline cases are judged on the audit machine
         run: node addons/screenreader/run.js pages.txt --reader voiceover --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
