@@ -1,0 +1,101 @@
+# PUBLIC TEST SITES COPY of the tool's split full audit workflow (runs only our own test sites' parts, src/audit/split.js) (owner decisions D349, D350). Made by
+# tools/make-testshop-site.mjs from the tool's own .github/workflows/audit-units.yml: do not edit it here. Each job checks
+# out the tool's PRIVATE repository at run time with a read-only key kept as the secret TOOL_READ_TOKEN, so the tool's
+# code is never published, and the minutes are free (a public repository). Only our own code and our own made-up
+# test sites are used here: client pages and free audits never come here (they stay on the private repository).
+# One part of a SPLIT full audit (owner decisions D353 and D354; src/audit/split.js). The full audit shares its test
+# units out over GitHub machines, one run of this workflow per part: each browser and view (chromium, firefox,
+# webkit, webkit-phone, webkit-tablet) has its own parts, and its pages are split over several parts, so the parts run
+# at once. Started only by the full audit through the GitHub API (never on push). The part's settings come in the
+# "spec" input (made by src/audit/split.js: the audit's run options and the part's pages, compressed); this machine
+# builds the audit's units with the same code, runs only its part's units (node src/audit.js --part-spec) and uploads
+# their result files as the artifact "audit-part", which the audit machine downloads into the audit folder the moment
+# the run ends, and then deletes the run with its logs and artifacts. The artifact is kept 1 day at most.
+# These machines never call the AI and hold no AI key (D369): the units that call the AI stay on the audit machine.
+# "probe": the one-minute test job the funds check runs on a private repository before a split starts (D355): it
+# proves GitHub is still running jobs (not blocked by the spending limit).
+# Our own test sites run on the PUBLIC test sites repository (its copy of this file is made by
+# tools/make-testshop-site.mjs, free minutes, D349); client audits only on the private repository (D350, D354).
+# Nothing is ever submitted: the units are the audit's own tests, with every guard they have on one machine.
+name: Audit units
+# The audit finds its run again by this name when the API does not return the run id
+run-name: ${{ inputs.audit_run_id != '' && format('Audit units for audit {0}', inputs.audit_run_id) || 'Audit units' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: 'Set by the full audit: the part settings (compressed); not for starting by hand'
+        required: false
+        type: string
+      audit_run_id:
+        description: 'Set by the full audit: its run id and the part, so it can find this run and check the results are its own'
+        required: false
+        type: string
+      probe:
+        description: 'Only the one-minute test job of the funds check (D355)'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+# One group per part: the parts of an audit run at once (the audit keeps to its own maximum)
+concurrency:
+  group: audit-units-${{ inputs.audit_run_id != '' && inputs.audit_run_id || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    if: inputs.probe
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - run: echo "GitHub is running jobs on this repository"
+
+  units:
+    if: ${{ !inputs.probe }}
+    runs-on: ubuntu-24.04
+    # a part is sized to end well inside this (src/audit/split.js PAGES_PER_PART); GitHub's own limit is 6 hours
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Read the part's settings
+        id: spec
+        env:
+          SPEC: ${{ inputs.spec }}
+        run: |
+          printf '%s' "$SPEC" > spec.txt
+          node --input-type=module -e '
+            import { readSpecFile, engineOfSpec } from "./src/audit/split.js";
+            import { appendFileSync } from "node:fs";
+            const s = readSpecFile("spec.txt");
+            const d = s.desktopWindow ? `${s.desktopWindow.width}x${s.desktopWindow.height}` : "";
+            appendFileSync(process.env.GITHUB_OUTPUT, `engine=${engineOfSpec(s)}\ndesktop=${d}\n`);
+            // the page addresses stay out of the log: only the part and its size
+            console.log(`part ${s.part.id}: ${s.part.across ? "across all pages" : `${s.part.pages.length} pages`}, ${s.part.keys.length} units`);
+          '
+      - name: The part's browser
+        run: npx playwright install --with-deps ${{ steps.spec.outputs.engine }}
+      - name: Run the part's units
+        env:
+          A11Y_DESKTOP_SIZE: ${{ steps.spec.outputs.desktop }}
+        run: node src/audit.js --part-spec spec.txt --out part
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit-part
+          path: part/
+          if-no-files-found: warn
+          retention-days: 1
