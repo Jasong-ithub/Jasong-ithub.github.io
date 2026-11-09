@@ -144,9 +144,13 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: sr-pages
-      - name: Install packages (up to 3 tries; 9 November 2026 a download inside npm ci, ffmpeg-static, failed once)
+      # 9 November 2026: npm ci failed on the macOS runner three times running because ffmpeg-static's install script
+      # could not download ffmpeg (HTTP 504). The screen reader jobs need no install script (ffmpeg-static, fsevents and
+      # tesseract.js are the only packages with one, none used here; the browsers and the readers are set up below),
+      # so they are skipped, and npm ci is tried up to 3 times for any other download that fails once
+      - name: Install packages (no install scripts; up to 3 tries)
         shell: bash
-        run: for i in 1 2 3; do npm ci && exit 0; echo "npm ci failed (try $i of 3)"; sleep 20; done; exit 1
+        run: for i in 1 2 3; do npm ci --ignore-scripts && exit 0; echo "npm ci failed (try $i of 3)"; sleep 20; done; exit 1
       - name: Browser (Chrome is on the runner; Chromium as a fallback and for the expected run)
         run: npx playwright install chromium
       - name: Set up NVDA
@@ -183,9 +187,13 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: sr-pages
-      - name: Install packages (up to 3 tries; 9 November 2026 a download inside npm ci, ffmpeg-static, failed once)
+      # 9 November 2026: npm ci failed on the macOS runner three times running because ffmpeg-static's install script
+      # could not download ffmpeg (HTTP 504). The screen reader jobs need no install script (ffmpeg-static, fsevents and
+      # tesseract.js are the only packages with one, none used here; the browsers and the readers are set up below),
+      # so they are skipped, and npm ci is tried up to 3 times for any other download that fails once
+      - name: Install packages (no install scripts; up to 3 tries)
         shell: bash
-        run: for i in 1 2 3; do npm ci && exit 0; echo "npm ci failed (try $i of 3)"; sleep 20; done; exit 1
+        run: for i in 1 2 3; do npm ci --ignore-scripts && exit 0; echo "npm ci failed (try $i of 3)"; sleep 20; done; exit 1
       - name: Browsers (WebKit for VoiceOver, Chromium for the expected run)
         run: npx playwright install webkit chromium
       - name: Set up VoiceOver (configures the runner for automation)
