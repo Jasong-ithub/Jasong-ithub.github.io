@@ -25,8 +25,9 @@
 #                WCAG, email views, the remote screen reader route, monitoring bills and statements, the fix recipes
 #                for the interaction gaps, the quality gate and its send paths, the WebAIM email), about 15 minutes
 #     benchmark  the benchmark shop and its answer key (D241, D242), about 20 to 25 minutes
-#     benchmarktools  by hand only: the converters and coverage analysis of the benchmark tool runs (D334 to D340),
-#                under a minute
+#     benchmarktools  here by hand only (the public copy also on each scheduled run that tests a commit: each new
+#                commit, and weekly, D358): the converters and coverage analysis of the benchmark tool runs (D334 to
+#                D340), under a minute
 #     monitor    monitoring and the add-ons that map and walk a site (designs, cross-page, process, sign-in,
 #                re-audit, documents), about 30 minutes
 #     addons     every other add-on's own tests, and the demo fixes, about 35 minutes
@@ -37,7 +38,8 @@
 #                F1 to F4), the council page fixes and the consent dialog fixes, in Chromium and Firefox, about 30 minutes
 #     overlayonoff  the overlay on/off test with our fixes as the third column (D246, D247), about 6 minutes
 #     signedin   signed-in mode, with a full audit behind a sign-in in three browsers, about 45 minutes
-#   Every night, every pull request and on demand: also the full test set (npm test), in its own job beside them.
+#   On a pull request and on demand: also the full test set (npm test), in its own job beside them (the public copy
+#   also runs it on each scheduled run there that tests a commit: each new commit, and weekly, D358).
 # Every test file in the project (any *-tests.js in a test folder) must be run here exactly once: the listed job fails
 # otherwise. Add a new one as a "run: node <file>" step in the job that suits it (or, when another test file already
 # runs it, as a "# run by <parent>: <file>" line, as in the fixes job).
@@ -54,10 +56,10 @@ on:
     - cron: '17 2 * * 0'
   workflow_dispatch:
 
-# Here a run waits for one still going (never cancels it), and by-hand runs queue apart from scheduled ones; the tool's
+# Here a run waits for one still going (never cancels it), and by-hand, hourly and weekly runs queue apart; the tool's
 # private copy cancels on a newer push (D315)
 concurrency:
-  group: tests-${{ github.ref }}-${{ github.event_name }}
+  group: tests-${{ github.ref }}-${{ github.event_name }}-${{ github.event.schedule }}
   cancel-in-progress: false
 
 # Every process of every job is a test run (src/util/test-isolation.js; round 2 of the AI route review, finding 2): it
@@ -98,13 +100,14 @@ jobs:
           lookup-only: true
       # keeps the schedule on: GitHub switches off a public repository's schedules after 60 days with no activity
       - name: keep the schedule switched on
-        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/tests.yml/enable"
+        run: |
+          gh api -X PUT "repos/${{ github.repository }}/actions/workflows/tests.yml/enable" || echo "::warning::The schedule could not be kept switched on (gh api .../enable failed): GitHub stops it after 60 days with no activity here"
 
   # the workflows here must be the ones tools/make-testshop-site.mjs makes from the tested commit: otherwise a job or
-  # test file added to the tool since the copy was last made would not run here (red until the copy is made again)
+  # test file added to the tool since the copy was last made would not run here; the commit is then not marked tested,
+  # so every hourly run is red until the copy is made again
   copy:
     needs: changed
     if: needs.changed.outputs.run == 'true'
@@ -269,6 +272,9 @@ jobs:
       # robots.txt for every host a page load reaches, redirects included, and every stopped request kept (candidate
       # lists, round 2, findings 25 and 30): the real browser against local servers
       - run: node test/robots-redirect-tests.js
+      # the shared browser opener of live pages (src/util/safe-live-page.js) and the S21 known gaps it fixes: the opt-out
+      # list, both lists, robots.txt and every redirect host first; each tool's real command line against local servers
+      - run: node test/safe-live-page-tests.js
       # the published-score site reports: the live-site harness on a local site, the report numbers, and every report
       # in docs/comparison/published/2026-10-28/site-reports recomputed from its raw data (about 1 minute)
       - run: node test/site-reports-tests.js
@@ -299,6 +305,8 @@ jobs:
       - run: node test/ai-site-named-tests.js
       - run: node addons/screenreader/test/judge-remote-tests.js
       - run: node test/ai-answers-tests.js
+      # round 5 of the independent review of the AI route switch (docs/review/ai-route-review-round5.txt)
+      - run: node test/ai-route-round5-tests.js
       # D325 the paid job's AI limit from a recorded payment; D326, D327 the cost review request; D316 the GitHub
       # minutes guard (no network, no AI)
       - run: node test/paid-limit-d325-tests.js
@@ -356,12 +364,39 @@ jobs:
       # the catalogue against w3.org as it is now (D373): fails when W3C has added or changed a way to fail
       - run: node tools/catalogue/check.mjs --online
 
+  # the real-site gate for learned rules (D391, review of learning pass 1): on every page of
+  # test/fixtures/realsite-gate/ (common real-site patterns, each correct under W3C's documents) no rule may give a
+  # definite failure, the whole core scan and the content, interaction, timing, media and visual add-ons run; in its
+  # own job (about 50 minutes)
+  realsitegate:
+    needs: changed
+    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ needs.changed.outputs.sha }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node test/realsite-gate-tests.js
+
   # the converters of the benchmark tool runs (D334 to D336, D340): each tool's output fixture maps to the right
-  # findings and scores, the coverage analysis, hand-test answers, WAVE skipped without its key. By hand only (D315):
+  # findings and scores, the coverage analysis, hand-test answers, WAVE skipped without its key. Here by hand only (D315;
+  # the public copy also runs it on each scheduled run that tests a commit, D358):
   # the tool runs themselves (node tools/benchmark-tools/run.mjs) are never started here.
   benchmarktools:
     needs: changed
-    # only when started by hand (Actions tab, Run workflow), never on a push, a pull request or the public copy's run after a push
+    # here only when started by hand (Actions tab, Run workflow), never on a push or a pull request; the public copy also
+    # runs it on each scheduled run there that tests a commit (each new commit, and weekly; free, D358)
     if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -632,7 +667,8 @@ jobs:
 
   full:
     needs: changed
-    # by hand or on a pull request only: it repeats the other jobs' tests, so it is left out of the public copy's run after a push (D315)
+    # here by hand or on a pull request only: it repeats the other jobs' tests (D315); the public copy also runs it on
+    # each scheduled run there that tests a commit (each new commit, and weekly; free, D358)
     if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request')
     runs-on: ubuntu-24.04
     # npm test took 45 to 49 minutes on a busy 4-core machine (most of it the broken shop's journey videos and the
@@ -654,10 +690,11 @@ jobs:
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm test
 
-  # the commit is marked tested once its run ends (passed or failed, not cancelled), so the hourly check skips it
+  # the commit is marked tested once its run ends (passed or failed, not cancelled) with the copy check passed, so the
+  # hourly check skips it; a copy left behind keeps every hourly run red until it is made again
   tested:
-    needs: [changed, copy, listed, conflicts, docs, quick, benchmark, benchmarktools, monitor, addons, overlayonoff, gaps, fixes, prelive, everypage, signedin, full]
-    if: ${{ !cancelled() && needs.changed.outputs.run == 'true' }}
+    needs: [changed, copy, listed, conflicts, docs, quick, benchmark, realsitegate, benchmarktools, monitor, addons, overlayonoff, gaps, fixes, prelive, everypage, signedin, full]
+    if: ${{ !cancelled() && needs.changed.outputs.run == 'true' && needs.copy.result == 'success' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:

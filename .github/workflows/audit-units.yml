@@ -61,8 +61,9 @@ jobs:
   units:
     if: ${{ !inputs.probe }}
     runs-on: ubuntu-24.04
-    # a part is sized to end well inside this (src/audit/split.js PAGES_PER_PART); GitHub's own limit is 6 hours
-    timeout-minutes: 300
+    # a part is sized to end well inside this (src/audit/split.js PAGES_PER_PART, ACROSS_MAX_PAGES, JOB_MINUTES_MAX);
+    # GitHub's own limit is 6 hours
+    timeout-minutes: 340
     steps:
       # the audit machine's own commit (it checks the part says so in part-info.json)
       - uses: actions/checkout@v4
@@ -75,13 +76,14 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
+      # tried up to three times: a package download can fail for a moment (HTTP 504 on 9 November 2026)
+      - name: Install the packages
+        run: for i in 1 2 3; do npm ci && break; if [ "$i" = 3 ]; then exit 1; fi; sleep 20; done
+      # read from the event file, never from an env value (GitHub prints a step's env in its log)
       - name: Read the part's settings
         id: spec
-        env:
-          SPEC: ${{ inputs.spec }}
         run: |
-          printf '%s' "$SPEC" > spec.txt
+          node -e 'const fs = require("fs"); fs.writeFileSync("spec.txt", JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, "utf8")).inputs.spec || "")'
           node --input-type=module -e '
             import { readSpecFile, engineOfSpec } from "./src/audit/split.js";
             import { appendFileSync } from "node:fs";
@@ -92,7 +94,7 @@ jobs:
             console.log(`part ${s.part.id}: ${s.part.across ? "across all pages" : `${s.part.pages.length} pages`}, ${s.part.keys.length} units`);
           '
       - name: The part's browser
-        run: npx playwright install --with-deps ${{ steps.spec.outputs.engine }}
+        run: for i in 1 2 3; do npx playwright install --with-deps ${{ steps.spec.outputs.engine }} && break; if [ "$i" = 3 ]; then exit 1; fi; sleep 20; done
       - name: Run the part's units
         env:
           A11Y_DESKTOP_SIZE: ${{ steps.spec.outputs.desktop }}
