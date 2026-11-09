@@ -206,6 +206,8 @@ jobs:
           npx @guidepup/setup setup --ci
           for i in 1 2 3; do npx @guidepup/setup install voiceover && exit 0; echo "try $i of 3 failed"; sleep 30; done; exit 1
       - name: Stop macOS Quick Note opening during the run (hot corners off)
+        # GitHub's own machines only: a self-hosted runner can be a person's own Mac, whose hot corners are theirs
+        if: runner.environment == 'github-hosted'
         # 8 November 2026: on 60 pages VoiceOver's reading stopped at "Quick Note New Quick Note dialog" and the next
         # steps could not find the web content. The runner's screen is smaller than the browser window, so the mouse
         # (which follows the VoiceOver cursor) reaches the bottom right corner, whose hot corner opens Quick Note.
