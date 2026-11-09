@@ -220,6 +220,10 @@ jobs:
       # the catalogue of ways to fail WCAG 2.2 A and AA (D373, D377): fails on a wrong or out-of-date catalogue (it runs
       # tools/catalogue/check.mjs, which reports its gaps without failing; the weekly job also checks it against w3.org)
       - run: node test/catalogue-tests.js
+      # the fix-learning loop (D419): kinds a to e, task briefs, the fix ratchet, and the committed handt record made again
+      - run: node test/fixes-misses-tests.js
+      # real-site learning into the catalogue (D420): matched ways and candidate new ways, the committed record made again
+      - run: node test/catalogue-realsite-tests.js
 
   quick:
     needs: changed
@@ -370,12 +374,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      # (learning pass 1 tests run the keyboard and target size checks in Firefox and Safari too)
+      - run: npx playwright install --with-deps chromium firefox webkit
       # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
       - run: node tools/font-set.mjs --install
       - run: node test/benchmark-shop-tests.js
       # learning pass 1 (D351, D359, D360): each miss and false alarm of our own audit on the shop, turned into a rule
-      # change and proved on the shop's local pages with its clean twin (docs/benchmark/ours/LEARN-PASS-1.txt), Chromium
+      # change and proved on the shop's local pages with its clean twin (docs/benchmark/ours/LEARN-PASS-1.txt), Chromium,
+      # with Firefox and Safari for the keyboard and target size checks
       - run: node test/learn-pass1-tests.js
       # the category of each finding in its context (D377), against the answer key's tiers (one step in Chromium, so it
       # runs here, where Chromium is installed, not on every push)
@@ -389,11 +395,13 @@ jobs:
   # browser run of the full audit
   realsitegate:
     needs: changed
-    # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
+    # not on a push: on a pull request or by hand (Actions tab, Run workflow), D315 and D350; the public copy of the
+    # suite runs it free (D358)
     if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
     runs-on: ubuntu-24.04
     timeout-minutes: 120
-    # one job per browser run of the full audit, together every run (R227); each about 50 to 60 minutes
+    # one job per browser run of the full audit, together every run (R227); each about 50 to 60 minutes, so a run on
+    # this private repository costs about USD 1.50 to 1.80 (5 jobs at about 50 to 60 minutes, USD 0.006 a minute)
     strategy:
       fail-fast: false
       matrix:
@@ -416,6 +424,13 @@ jobs:
       # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
       - run: node tools/font-set.mjs --install
       - run: node test/realsite-gate-tests.js
+      # the results file, saved page by page as the run goes (R228), kept with the run
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: realsite-gate-${{ matrix.run }}
+          path: scans/realsite-gate/
+          if-no-files-found: warn
 
   # the converters of the benchmark tool runs (D334 to D336, D340): each tool's output fixture maps to the right
   # findings and scores, the coverage analysis, hand-test answers, WAVE skipped without its key. Here by hand only (D315;
@@ -554,6 +569,10 @@ jobs:
       # the pinned font set (src/util/fonts.js): text the same size on every machine that runs the browsers
       - run: node tools/font-set.mjs --install
       - run: node test/overlay-onoff-tests.js
+      # a stopped run carried on with --resume: nothing compared or answered before is visited or asked again (R228)
+      - run: node test/overlay-onoff-resume-tests.js
+      # the on/off test's pages (D418): one page of every design and the public journey, on a local Shopify-like stand-in
+      - run: node test/overlay-page-choice-tests.js
 
   gaps:
     needs: changed
@@ -609,6 +628,8 @@ jobs:
       # system-wide, for the same reason as the statements job: the tools run Python isolated (python3 -I), which does
       # not see packages pip puts in the user's own folder (9 November 2026: 8 document fixes failed on GitHub)
       - run: sudo python3 -m pip install --break-system-packages python-docx python-pptx openpyxl pillow pdfminer.six lxml
+      # PDF figure descriptions are drafted from the page as a picture (pdftoppm, poppler; 9 November 2026: 2 failed without it)
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node addons/fixes/test/run-tests.js
       # time limits on every AI call and browser step, and the stuck-run report (31 October 2026)
       - run: node addons/fixes/test/time-limit-tests.js
