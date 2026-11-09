@@ -139,6 +139,12 @@ jobs:
       # our own audit on the benchmark shop (D351): the converter, the missed-faults classifier and the ratchet, and
       # the committed docs/benchmark/ours/ files checked so a fault our audit found before can never be lost
       - run: node test/benchmark-ours-tests.js
+      # the catalogue of ways to fail WCAG 2.2 A and AA (D373, D377): fails on a wrong or out-of-date catalogue, reports
+      # its gaps (no test yet, not planted yet) without failing
+      - run: node tools/catalogue/check.mjs
+      - run: node test/catalogue-tests.js
+      # the category of each finding in its context (D377), against the answer key's tiers
+      - run: node test/category-tests.js
 
   quick:
     # not on a push: the full set runs weekly, on a pull request or by hand (Actions tab, Run workflow), D315
@@ -165,6 +171,7 @@ jobs:
       - run: node test/lead-email-tests.js
       - run: node test/governors-tests.js
       - run: node test/gias-download-tests.js
+      - run: node test/lead-robots-tests.js
       - run: node test/preflight-tests.js
       - run: node test/agency-tests.js
       - run: node test/standard-law-tests.js
