@@ -68,6 +68,10 @@ on:
         required: false
         default: false
         type: boolean
+      overlay_state:
+        description: 'Set by the overlay on/off test (D427): the overlay state the readers hear the pages in, as JSON (off: the overlay blocked; on; or on with one profile switched on through its saved settings)'
+        required: false
+        type: string
       talkback:
         description: 'Also run TalkBack (Android phones) on an Android emulator: the optional third reader, off by default until it is proved; the merge job does not wait for it, and its results are not counted until it is proved'
         required: false
@@ -122,13 +126,21 @@ jobs:
             urls = [...new Set(urls)].slice(0, max);
             if (!urls.length) { console.error("No pages: give site_url, pages, or a scan artifact."); process.exit(1); }
             fs.writeFileSync("pages.txt", urls.join("\n") + "\n");
+            // the overlay state (D427), passed on to each reader beside the pages; read from the event file of the run, not
+            // an environment value, so its settings are not printed in the run log
+            const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, "utf8"));
+            const st = ev && ev.inputs && ev.inputs.overlay_state;
+            if (st) { JSON.parse(st); fs.writeFileSync("overlay-state.json", st); console.log("overlay state given"); }
             // the addresses are client data: only their number goes in the run log (review finding S11)
             console.log(`${urls.length} page(s) listed`);
           '
       - uses: actions/upload-artifact@v4
         with:
           name: sr-pages
-          path: pages.txt
+          path: |
+            pages.txt
+            overlay-state.json
+          if-no-files-found: warn
           retention-days: 1
 
   nvda:
@@ -169,7 +181,7 @@ jobs:
           for i in 1 2 3; do npx @guidepup/setup install nvda && exit 0; echo "try $i of 3 failed"; sleep 30; done; exit 1
       - name: Run NVDA
         # No AI key here (round 3 of the AI route review, finding 4): the borderline cases are judged on the audit machine
-        run: node addons/screenreader/run.js pages.txt --reader nvda --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }}
+        run: node addons/screenreader/run.js pages.txt --reader nvda --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }} ${{ inputs.overlay_state != '' && '--overlay-state overlay-state.json' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -229,7 +241,7 @@ jobs:
           system_profiler SPDisplaysDataType | grep -i -E 'resolution|ui looks like' || true
       - name: Run VoiceOver
         # No AI key here (round 3 of the AI route review, finding 4): the borderline cases are judged on the audit machine
-        run: node addons/screenreader/run.js pages.txt --reader voiceover --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }}
+        run: node addons/screenreader/run.js pages.txt --reader voiceover --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }} ${{ inputs.overlay_state != '' && '--overlay-state overlay-state.json' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -288,7 +300,7 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           # No AI key here: the borderline cases are judged on the audit machine
-          script: node addons/screenreader/run.js pages.txt --reader talkback --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }}
+          script: node addons/screenreader/run.js pages.txt --reader talkback --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }} ${{ inputs.overlay_state != '' && '--overlay-state overlay-state.json' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

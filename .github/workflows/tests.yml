@@ -36,7 +36,8 @@
 #     prelive    the before-live page check, about 15 to 22 minutes
 #     everypage  the full audit on every page, the free audit in two stages, the D296 free audit, the tool comparison's fixes (G1 to G4,
 #                F1 to F4), the council page fixes and the consent dialog fixes, in Chromium and Firefox, about 30 minutes
-#     overlayonoff  the overlay on/off test with our fixes as the third column (D246, D247), about 6 minutes
+#     overlayonoff  the overlay on/off test with our fixes as the third column (D246, D247) and each widget profile
+#                tested like a person (D427), about 15 minutes
 #     signedin   signed-in mode, with a full audit behind a sign-in in three browsers, about 45 minutes
 #   On a pull request and on demand: also the full test set (npm test), in its own job beside them (the public copy
 #   also runs it on each scheduled run there that tests a commit: each new commit, and weekly, D358).
@@ -204,6 +205,8 @@ jobs:
       # the candidate lists for the owner's one-click approval (round 1 review of the candidate lists)
       - run: node tools/check-candidates.mjs
       - run: node test/check-docs-tests.js
+      # the coordination log's times against their commits (git blame: needs this job's whole history)
+      - run: node test/coordination-log-tests.js
       # the check that every test file is run, on altered copies of this workflow (the media test's ffmpeg, 9 November 2026)
       - run: node test/check-tests-listed-tests.js
       # the tests below load the tool's own modules (the Upwork test reaches src/report/register.js, which needs exceljs)
@@ -217,10 +220,12 @@ jobs:
       # our own audit on the benchmark shop (D351): the converter, the missed-faults classifier and the ratchet, and
       # the committed docs/benchmark/ours/ files checked so a fault our audit found before can never be lost
       - run: node test/benchmark-ours-tests.js
+      # every unmatched finding of our audit grouped and judged, never sampled (D428): each in exactly one group
+      - run: node test/benchmark-unmatched-tests.js
       # the catalogue of ways to fail WCAG 2.2 A and AA (D373, D377): fails on a wrong or out-of-date catalogue (it runs
       # tools/catalogue/check.mjs, which reports its gaps without failing; the weekly job also checks it against w3.org)
       - run: node test/catalogue-tests.js
-      # the fix-learning loop (D419): kinds a to e, task briefs, the fix ratchet, and the committed handt record made again
+      # the fix-learning loop (D419): kinds a to e, task briefs, the fix ratchet, and the committed record of the first overlay site made again
       - run: node test/fixes-misses-tests.js
       # real-site learning into the catalogue (D420): matched ways and candidate new ways, the committed record made again
       - run: node test/catalogue-realsite-tests.js
@@ -252,6 +257,7 @@ jobs:
       - run: pip install requests beautifulsoup4 openpyxl
       - run: node test/lead-email-tests.js
       - run: node test/governors-tests.js
+      - run: node test/lead-compare-tests.js
       - run: node test/gias-download-tests.js
       - run: node test/lead-robots-tests.js
       # the overlay coverage tables, report, stop rule and searcher (D372), on stand-in runs, search and scans; it starts
@@ -383,9 +389,15 @@ jobs:
       # change and proved on the shop's local pages with its clean twin (docs/benchmark/ours/LEARN-PASS-1.txt), Chromium,
       # with Firefox and Safari for the keyboard and target size checks
       - run: node test/learn-pass1-tests.js
+      # learning pass 2, group B (forms, checkout and errors; D351, D359, D360, D426): each miss turned into a rule change
+      # and proved on the shop's local pages with a clean page (docs/benchmark/ours/LEARN-PASS-2-GROUP-B.txt), Chromium desktop
+      - run: node test/learn-pass2-group-b-tests.js
       # the category of each finding in its context (D377), against the answer key's tiers (one step in Chromium, so it
       # runs here, where Chromium is installed, not on every push)
       - run: node test/category-tests.js
+      # the target-size re-measuring of the unmatched findings (D428) on small fixture pages, in Chromium with the
+      # pinned fonts: hidden, visible, partly hidden and script-click neighbours
+      - run: node test/benchmark-unmatched-targets-tests.js
       # the catalogue against w3.org as it is now (D373): fails when W3C has added or changed a way to fail
       - run: node tools/catalogue/check.mjs --online
 
@@ -456,6 +468,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: node test/benchmark-tools-tests.js
+      - run: node test/benchmark-scorer-fixes-tests.js
 
   monitor:
     needs: changed
@@ -552,7 +565,7 @@ jobs:
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
     if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
@@ -571,6 +584,8 @@ jobs:
       - run: node test/overlay-onoff-tests.js
       # a stopped run carried on with --resume: nothing compared or answered before is visited or asked again (R228)
       - run: node test/overlay-onoff-resume-tests.js
+      # overlays tested like a person uses them (D427): each widget profile switched on in turn, every state tested
+      - run: node test/overlay-person-tests.js
       # the on/off test's pages (D418): one page of every design and the public journey, on a local Shopify-like stand-in
       - run: node test/overlay-page-choice-tests.js
 
@@ -637,6 +652,9 @@ jobs:
       - run: node addons/fixes/test/cap-worst-case-tests.js
       # the focused proof of each fix and the full final check (31 October 2026)
       - run: node addons/fixes/test/focused-proof-tests.js
+      # the final check on every page and section, the making sequence and the edit and answer journal (review round 2
+      # of the overlay work, findings 1, 3, 4 and 5)
+      - run: node addons/fixes/test/final-check-journal-tests.js
       # proofs side by side, a page that will not load, no second try when declined, prompt caching, excerpts (7 November 2026)
       - run: node addons/fixes/test/speed-tests.js
       # run by addons/fixes/test/run-tests.js: addons/fixes/test/route2-tests.js, addons/fixes/test/apply-tests.js, addons/fixes/test/addon-fixes-tests.js, addons/fixes/test/rules-tests.js, addons/fixes/test/remote-tests.js
@@ -701,6 +719,9 @@ jobs:
       # and journeys always kept), the gate rule R225, the report's order, the two-stage final check after the fixes and
       # the cost never passed, with a stand-in shop and stand-in AI answering at its worst case, about 1 minute
       - run: node test/free-audit-tests.js
+      # the first free audit run end to end (G1, 10 November 2026): its report rendered again from the kept results
+      # and checked for every fault that run showed (R21, R126, R225, the press limit, the barrier reason), seconds
+      - run: node test/g1-free-audit-tests.js
       # the fixes from the tool comparison (G1 to G4, F1 to F4), in Chromium and Firefox, about 5 minutes
       - run: node test/comparison-fixes-tests.js
       # the fixes from the manual checks of council pages (cookie panel holding focus, header button found again,
