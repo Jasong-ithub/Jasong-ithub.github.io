@@ -286,6 +286,9 @@ jobs:
       # (needs the network for GOV.UK's bank holidays and the main domain's DNS), then the full simulated run on fakes
       - run: node test/sending-tests.js
       - run: node test/sending-sim-tests.js
+      # each site's demo on its own sample.delivery sub-domain (D499A, D500A): publish, the login, restart safety, the
+      # day 10 reminder through the gate, the day 14 deletion checked by fetching, paid kept; a stand-in cPanel, no network
+      - run: node test/demo-host-tests.js
       # the public sector lead list: office mailboxes and the contact route, data/leads/ only, lawBasis (D379), the
       # downloader, builder and statement reader with every live-site safeguard (independent review, 9 Nov 2026)
       - run: node test/public-sector-tests.js
