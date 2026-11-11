@@ -322,6 +322,10 @@ jobs:
           target: google_apis_playstore
           arch: x86_64
           profile: pixel_6
+          # 4 processors and 4 GB (the runner's own 4 and 16 GB): with the defaults (2 and the profile's memory) an app
+          # stopped responding and its dialog took TalkBack's focus (run 42998246713, 11 November 2026)
+          cores: 4
+          ram-size: 4096M
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           # a hardware keyboard, as a keyboard user of TalkBack has: without it the on-screen keyboard kept opening
