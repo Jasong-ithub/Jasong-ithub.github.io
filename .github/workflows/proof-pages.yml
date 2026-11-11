@@ -1,0 +1,92 @@
+# PUBLIC TEST SITES COPY of the tool's fix engine proof page test workflow (runs only our own test site's working copies, addons/fixes/lib/proof-remote.js) (owner decisions D349, D350). Made by
+# tools/make-testshop-site.mjs from the tool's own .github/workflows/proof-pages.yml: do not edit it here. Each job checks
+# out the tool's PRIVATE repository at run time with a read-only key kept as the secret TOOL_READ_TOKEN, so the tool's
+# code is never published, and the minutes are free (a public repository). Only our own code and our own made-up
+# test sites are used here: client pages and free audits never come here (they stay on the private repository).
+# One proof page test of the fix engine (addons/fixes/lib/proof-remote.js, --proof-remote github; owner, 11 November
+# 2026). Started only by the fix engine through the GitHub API (never on push), and only for our own test site or the
+# tool's fixtures: the engine refuses anything else, because the public test sites repository's runs can be read by
+# anyone. The "spec" input says which page, on which port, with which sections, the desktop size, the tool's commit and
+# the font set; "site_sha" is the commit of this repository holding the working copy's files (a proof-snap/ branch).
+# This machine checks out the engine's own commit of the tool, installs Chromium and the pinned font set, serves the
+# working copy on the same port and runs the same page test (lib/verify.js defaultScan); the result is the artifact
+# "proof-page", which the engine downloads and saves at once, and then deletes the run with its logs and artifacts.
+# These machines never call the AI and hold no AI key. Nothing is ever submitted: the page test's own guards apply.
+name: Proof page test
+# The engine finds its run again by this name when the API does not return the run id
+run-name: ${{ inputs.proof_id != '' && format('Proof page test {0}', inputs.proof_id) || 'Proof page test' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: 'Set by the fix engine: the page test settings (JSON); not for starting by hand'
+        required: false
+        type: string
+      site_sha:
+        description: 'Set by the fix engine: the commit holding the working copy to test'
+        required: false
+        type: string
+      proof_id:
+        description: 'Set by the fix engine: its id for this page test, so it can find this run'
+        required: false
+        type: string
+      tool_sha:
+        description: 'Set by the fix engine: the commit of the tool it runs, so the page test runs the same code'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  page:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      # the fix engine's own commit (it checks the result says so)
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tool_sha || vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
+          repository: Jasong-ithub/accessibility-full-tool
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # tried up to three times: a package download can fail for a moment
+      - name: Install the packages
+        run: for i in 1 2 3; do npm ci && break; if [ "$i" = 3 ]; then exit 1; fi; sleep 20; done
+      - name: The page test's browser
+        run: for i in 1 2 3; do npx playwright install --with-deps chromium && break; if [ "$i" = 3 ]; then exit 1; fi; sleep 20; done
+      # the pinned font set (src/util/fonts.js): the text the same size as on the engine's machine (it refuses another)
+      - name: The pinned font set
+        run: node tools/font-set.mjs --install
+      # read from the event file, never from an env value (GitHub prints a step's env in its log)
+      - name: Read the page test's settings
+        id: spec
+        run: |
+          node -e 'const fs = require("fs"); const s = JSON.parse(JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, "utf8")).inputs.spec || "{}"); fs.writeFileSync("proof-spec.json", JSON.stringify(s)); fs.appendFileSync(process.env.GITHUB_OUTPUT, `desktop=${/^\d{3,4}x\d{3,4}$/.test(s.desktop || "") ? s.desktop : ""}\n`); console.log(`page ${s.path}, port ${s.port}, ${(s.skipChecks || []).length} sections left out`)'
+      # the working copy: this repository's commit given by the engine (not through actions/checkout, which here checks
+      # out the tool)
+      - name: The working copy
+        env:
+          TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SITE: ${{ inputs.site_sha }}
+        run: |
+          git init -q proof-site
+          git -C proof-site fetch -q --depth 1 "https://x-access-token:${TOKEN}@github.com/${REPO}" "$SITE"
+          git -C proof-site checkout -q FETCH_HEAD
+      - name: The page test
+        env:
+          A11Y_DESKTOP_SIZE: ${{ steps.spec.outputs.desktop }}
+        run: node addons/fixes/lib/proof-remote.js --run proof-spec.json proof-site proof-out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: proof-page
+          path: proof-out/
+          if-no-files-found: warn
+          retention-days: 1
