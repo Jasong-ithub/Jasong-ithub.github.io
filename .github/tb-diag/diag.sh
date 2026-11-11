@@ -33,7 +33,7 @@ mkfifo kbd.fifo
 exec 3>kbd.fifo
 sleep 3
 adb shell getevent -p | grep -E "add device|name:"
-adb shell dumpsys input | grep -A3 "Test USB Keyboard" | head -8
+adb shell dumpsys input | grep -B2 -A6 "Test USB Keyboard" | head -12
 k(){ mark "$1"; echo "$2" >&3; sleep 4; }
 adb shell am start -a android.settings.SETTINGS; sleep 10
 k settings-usb-alt-right "ALT RIGHT"
