@@ -72,6 +72,10 @@ on:
         description: 'Set by the overlay on/off test (D427): the overlay state the readers hear the pages in, as JSON (off: the overlay blocked; on; or on with one profile switched on through its saved settings)'
         required: false
         type: string
+      tool_sha:
+        description: 'Set by the full audit: the commit of the tool its machine runs, so every reader runs the same code (empty: the code of the branch this workflow runs from)'
+        required: false
+        type: string
       talkback:
         description: 'Also run TalkBack (Android phones) on an Android emulator: the optional third reader, off by default until it is proved; the merge job does not wait for it, and its results are not counted until it is proved'
         required: false
@@ -96,8 +100,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.tool_sha || vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           repository: Jasong-ithub/accessibility-full-tool
-          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           token: ${{ secrets.TOOL_READ_TOKEN }}
           persist-credentials: false
       - name: Get the scan folder
@@ -151,8 +155,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.tool_sha || vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           repository: Jasong-ithub/accessibility-full-tool
-          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           token: ${{ secrets.TOOL_READ_TOKEN }}
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -198,8 +202,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.tool_sha || vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           repository: Jasong-ithub/accessibility-full-tool
-          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           token: ${{ secrets.TOOL_READ_TOKEN }}
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -263,8 +267,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.tool_sha || vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           repository: Jasong-ithub/accessibility-full-tool
-          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           token: ${{ secrets.TOOL_READ_TOKEN }}
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -280,15 +284,36 @@ jobs:
       - name: Browser (Chromium for the expected run; up to 3 tries)
         shell: bash
         run: for i in 1 2 3; do npx playwright install chromium && exit 0; echo "try $i of 3 failed"; sleep 30; done; exit 1
+      # TalkBack is not on Google's emulator images, not even the Google Play one (first real run, 11 November 2026),
+      # and Google publishes it only as source: it is built from one pinned commit (lib/talkback-build.sh, which also
+      # sets its log to verbose and skips its first-run tutorial) and kept in the cache by that script, so it is built
+      # once and the same app is used every time
+      - name: TalkBack app from the cache (keyed by its pinned build)
+        id: talkback-app
+        uses: actions/cache@v4
+        with:
+          path: talkback.apk
+          key: talkback-app-${{ hashFiles('addons/screenreader/lib/talkback-build.sh') }}
+      - uses: actions/setup-java@v4
+        if: steps.talkback-app.outputs.cache-hit != 'true'
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        if: steps.talkback-app.outputs.cache-hit != 'true'
+        with:
+          gradle-version: '8.14.3'
+      - name: Build TalkBack from its pinned source
+        if: steps.talkback-app.outputs.cache-hit != 'true'
+        run: bash addons/screenreader/lib/talkback-build.sh talkback.apk
       - name: Let the Android emulator use KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
           ls -l /dev/kvm
-      # A Google Play system image: Chrome is on it, and TalkBack is expected to be (checked before any page opens;
-      # if it is not, TalkBack must be installed from a pinned build of github.com/google/talkback: to be found on the
-      # first real run).
+      # A Google Play system image: Chrome is on it. TalkBack is installed from the build above (it is not on the
+      # image); every part is checked before any page opens (lib/talkback.js checkDevice).
       # API 34: TalkBack's keys are sent with "input keycombination" (API 33 and later).
       - name: Run TalkBack
         uses: reactivecircus/android-emulator-runner@v2
@@ -300,7 +325,9 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           # No AI key here: the borderline cases are judged on the audit machine
-          script: node addons/screenreader/run.js pages.txt --reader talkback --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }} ${{ inputs.overlay_state != '' && '--overlay-state overlay-state.json' || '' }}
+          script: |
+            adb install -r -g talkback.apk
+            node addons/screenreader/run.js pages.txt --reader talkback --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }} ${{ inputs.overlay_state != '' && '--overlay-state overlay-state.json' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -317,8 +344,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ inputs.tool_sha || vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           repository: Jasong-ithub/accessibility-full-tool
-          ref: ${{ vars.TOOL_REF || 'claude/new-session-d0l0jo' }}
           token: ${{ secrets.TOOL_READ_TOKEN }}
           persist-credentials: false
       - uses: actions/setup-node@v4
