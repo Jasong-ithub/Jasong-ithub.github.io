@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="shop-version" content="20">
+<title>Delivery | Checkout | Larkspindle</title>
+<link rel="stylesheet" href="/benchmark-shop/assets/site.css">
+<link rel="icon" href="/benchmark-shop/img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="site-header"><p class="notice">Fictional test shop for accessibility testing. Nothing here is real and nothing can be bought.</p><div class="masthead"><a class="logo" href="/benchmark-shop/index.html"><img src="/benchmark-shop/img/logo.svg" alt="" width="40" height="40">Larkspindle</a><span style="margin-left:auto">Secure checkout</span><a href="/benchmark-shop/help.html" id="checkout-help">Help with your order</a></div></header>
+<div style="background:#fff;border-bottom:1px solid #b5b0a5"><nav aria-label="Checkout steps" class="wrap"><ol class="steps" style="display:flex;gap:18px;flex-wrap:wrap;list-style:none;padding:12px 0;margin:0"><li><a href="/benchmark-shop/checkout-details.html">1. Your details (done)</a></li><li><strong aria-current="step">2. Delivery</strong></li><li>3. Payment</li><li>4. Review</li><li>5. Confirmation</li></ol></nav></div>
+<section class="cookie" id="cookie-banner" aria-label="Cookie choices"><div class="wrap"><p>We use cookies to remember your basket and, if you agree, to count visits. <a href="/benchmark-shop/cookies.html">How we use cookies</a></p><button type="button" class="btn" data-cookie="all">Accept all cookies</button><button type="button" class="btn secondary" data-cookie="essential">Essential cookies only</button></div></section>
+<main id="main" tabindex="-1"><div class="wrap">
+
+<h1>Delivery</h1>
+<form id="delivery-form" onsubmit="return false" class="panel">
+<p style="font-weight:700">How would you like it delivered?</p>
+<div id="delivery-options"><label class="choice"><input type="radio" name="method" value="standard" checked> Standard delivery, 3 to 5 working days, free</label><label class="choice"><input type="radio" name="method" value="next"> Next working day, £6.95</label><label class="choice"><input type="radio" name="method" value="collect" id="opt-collect" onchange="window.open('/benchmark-shop/store-finder.html', 'stores')"> Click and collect from a shop, free</label></div>
+<fieldset id="delivery-date"><legend>Delivery day</legend><label class="choice"><input type="radio" name="day" checked> As soon as possible</label><label class="choice"><input type="radio" name="day"> Saturday</label></fieldset>
+<h2>Delivery address</h2>
+<div id="address-block"><div class="field"><label for="a1">Address line 1</label><input type="text" id="a1" tabindex="2" autocomplete="address-line1"></div><div class="field"><label for="a2">Address line 2</label><input type="text" id="a2" tabindex="4" autocomplete="address-line2"></div><div class="field"><label for="town">Town</label><input type="text" id="town" tabindex="1" autocomplete="address-level2"></div><div class="field"><label for="pc">Postcode</label><input type="text" id="pc" tabindex="3" autocomplete="postal-code"></div></div>
+<h2>Billing address</h2>
+<div id="billing-block"><div class="field"><label for="b1">Address line 1</label><input type="text" id="b1" autocomplete="billing address-line1"></div><div class="field"><label for="btown">Town</label><input type="text" id="btown" autocomplete="billing address-level2"></div><div class="field"><label for="bpc">Postcode</label><input type="text" id="bpc" autocomplete="billing postal-code"></div></div>
+<div class="field"><label for="gift-message">Gift message (optional)</label><textarea id="gift-message" rows="3"></textarea></div>
+<button type="submit" class="btn" onclick="window.location.href='/benchmark-shop/checkout-payment.html'">Continue to payment</button>
+</form>
+</div></main>
+<footer class="site-footer"><div class="wrap"><p><a href="/benchmark-shop/privacy.html">Privacy</a> &middot; <a href="/benchmark-shop/terms.html">Terms of sale</a> &middot; <a href="/benchmark-shop/accessibility.html">Accessibility</a></p><p>Fictional test shop for accessibility testing. Nothing here is real and nothing can be bought.</p></div></footer>
+<div id="status" class="toast" role="status"></div>
+
+<script src="/benchmark-shop/assets/site.js"></script>
+<script>
+document.getElementById('gift-message').addEventListener('keydown', function (e) { if (e.key === 'Tab') { e.preventDefault(); var t = this, s = t.selectionStart; t.value = t.value.slice(0, s) + '\t' + t.value.slice(t.selectionEnd); t.selectionStart = t.selectionEnd = s + 1; } });
+</script>
+</body>
+</html>
