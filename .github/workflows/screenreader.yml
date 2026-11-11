@@ -314,7 +314,8 @@ jobs:
           ls -l /dev/kvm
       # A Google Play system image: Chrome is on it. TalkBack is installed from the build above (it is not on the
       # image); every part is checked before any page opens (lib/talkback.js checkDevice).
-      # API 34: TalkBack's keys are sent with "input keycombination" (API 33 and later).
+      # API 34: TalkBack's keys are typed on a USB keyboard made with Android's uinput command (lib/talkback.js
+      # usbKeyboard; keys injected with adb input never reach TalkBack).
       - name: Run TalkBack
         uses: reactivecircus/android-emulator-runner@v2
         with:
