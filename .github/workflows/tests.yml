@@ -265,6 +265,10 @@ jobs:
       - run: node test/overlay-coverage-tests.js
       - run: node test/preflight-tests.js
       - run: node test/agency-tests.js
+      # the agency finder's refresh step and its Companies House step, on stand-ins (D473)
+      - run: node test/agency-finder-tests.js
+      # US lawsuit leads (D434): matching, the cost refusal, the email check, the call sheet; stand-ins only
+      - run: node test/us-leads-tests.js
       - run: node test/standard-law-tests.js
       # the translated client documents: catalogues complete, English unchanged, A4, the "not checked" hold
       - run: node test/i18n-tests.js
@@ -278,6 +282,10 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node test/sample-figures-tests.js
       - run: node test/suppression-tests.js
+      # our own sending system (D435): every guardrail, limits, DNS, health, inbox, the website under axe-core in Chromium
+      # (needs the network for GOV.UK's bank holidays and the main domain's DNS), then the full simulated run on fakes
+      - run: node test/sending-tests.js
+      - run: node test/sending-sim-tests.js
       # the public sector lead list: office mailboxes and the contact route, data/leads/ only, lawBasis (D379), the
       # downloader, builder and statement reader with every live-site safeguard (independent review, 9 Nov 2026)
       - run: node test/public-sector-tests.js
@@ -351,6 +359,7 @@ jobs:
       # and every send path refusing an un-gated document (no browser, no network; reads PDFs with pdftotext)
       - run: node test/gate-tests.js
       - run: node test/gate-send-tests.js
+      - run: node test/gate-signed-tests.js
       # the draft WebAIM invitation email: tool list, wording rules and owner decisions (round 4 review, D215, D239)
       - run: node test/webaim-email-tests.js
       # the draft heads of terms for the solicitor: style, numbering, section 8, replaced wording (D249 to D259)
@@ -392,6 +401,10 @@ jobs:
       # learning pass 2, group B (forms, checkout and errors; D351, D359, D360, D426): each miss turned into a rule change
       # and proved on the shop's local pages with a clean page (docs/benchmark/ours/LEARN-PASS-2-GROUP-B.txt), Chromium desktop
       - run: node test/learn-pass2-group-b-tests.js
+      # task 2 briefs (11 November 2026): required-colour-only 1.4.1 only, 3.3.2 only for fields with no visible words
+      # (form test and checkout journey), the timing watch leaves out a status message that comes and goes; each with
+      # its clean twin and the planted faults still found, Chromium desktop and the watch's phone pass
+      - run: node test/task2-briefs-tests.js
       # learning pass 2, group A (D351, D359, D360, D426): the keyboard, focus and interaction faults the clean re-audit
       # missed (docs/benchmark/ours/LEARN-PASS-2-GROUP-A.txt), each proved on the shop's local pages with a clean page,
       # Chromium desktop
@@ -629,6 +642,7 @@ jobs:
       - run: node addons/interaction/test/gaps-tests.js
       - run: node addons/keyboard/test/gaps-tests.js
       - run: node addons/timing/test/gaps-tests.js
+      - run: node addons/timing/test/count-tests.js
 
   fixes:
     needs: changed
@@ -749,6 +763,10 @@ jobs:
       # Accept all) through the page preparation, the keyboard chooser, the evidence pictures, the journeys and the
       # screen reader targets, and safety rule S18 against the old accept fallbacks; local fixtures, about 2 minutes
       - run: node test/no-accept-tests.js
+      # D496A settle work (FAULT-027, 143, 150 and their clean twins): pictures read line by line counted as words,
+      # page text hidden while a picture is photographed, a one-press purchase pressed on our own pages, the second
+      # check running the markup rules; local shop copy, Chromium, about 4 minutes
+      - run: node test/settle-d496a-tests.js
 
   signedin:
     needs: changed
