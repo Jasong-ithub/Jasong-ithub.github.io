@@ -325,8 +325,11 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
           # No AI key here: the borderline cases are judged on the audit machine
+          # compiled on the device after install: uncompiled, the built TalkBack spent minutes checking its own code on
+          # the emulator and said nothing (runs of 11 November 2026: about 1,000 bytecodes a second)
           script: |
             adb install -r -g talkback.apk
+            adb shell cmd package compile -m speed -f com.android.talkback
             node addons/screenreader/run.js pages.txt --reader talkback --max-pages 20 --out . ${{ inputs.ai && '--ai' || '' }} ${{ inputs.overlay_state != '' && '--overlay-state overlay-state.json' || '' }}
       - uses: actions/upload-artifact@v4
         if: always()
