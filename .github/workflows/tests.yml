@@ -220,6 +220,9 @@ jobs:
       # our own audit on the benchmark shop (D351): the converter, the missed-faults classifier and the ratchet, and
       # the committed docs/benchmark/ours/ files checked so a fault our audit found before can never be lost
       - run: node test/benchmark-ours-tests.js
+      # D496A: no review-only tier anywhere; every candidate settled as a failure or a pass, and no output (settled
+      # folder, criteria, issue matrix, client report, score, misses report) carries the tier's words
+      - run: node test/no-review-tier-tests.js
       # every unmatched finding of our audit grouped and judged, never sampled (D428): each in exactly one group
       - run: node test/benchmark-unmatched-tests.js
       # the catalogue of ways to fail WCAG 2.2 A and AA (D373, D377): fails on a wrong or out-of-date catalogue (it runs
@@ -227,6 +230,7 @@ jobs:
       - run: node test/catalogue-tests.js
       # the fix-learning loop (D419): kinds a to e, task briefs, the fix ratchet, and the committed record of the first overlay site made again
       - run: node test/fixes-misses-tests.js
+      - run: node test/fixes-starter-tests.js
       # real-site learning into the catalogue (D420): matched ways and candidate new ways, the committed record made again
       - run: node test/catalogue-realsite-tests.js
 
@@ -419,6 +423,12 @@ jobs:
       # learning pass 2, group C (visual, content, structure and consistency; D426 Chrome desktop only): each miss turned
       # into a rule change and proved on the shop's local pages with a clean page (docs/benchmark/ours/LEARN-PASS-2-GROUP-C.txt)
       - run: node test/learn-pass2-group-c-tests.js
+      # learning pass 2 (D351, D359, D360, D426): the clean re-audit's misses (docs/benchmark/ours/LEARN-PASS-2.txt),
+      # each proved on the shop's local pages with a clean page, Chromium desktop
+      - run: node test/learn-pass2-tests.js
+      # D496A: FAULT-048 (script blinking) and FAULT-049 (caption accuracy needs speech to text, checked before the audit),
+      # each on the shop's local page and a clean twin
+      - run: node test/d496a-faults-tests.js
       # the category of each finding in its context (D377), against the answer key's tiers (one step in Chromium, so it
       # runs here, where Chromium is installed, not on every push)
       - run: node test/category-tests.js
