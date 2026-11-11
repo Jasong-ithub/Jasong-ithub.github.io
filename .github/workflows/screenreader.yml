@@ -3,8 +3,8 @@
 # out the tool's PRIVATE repository at run time with a read-only key kept as the secret TOOL_READ_TOKEN, so the tool's
 # code is never published, and the minutes are free (a public repository). Only our own code and our own made-up
 # test sites are used here: client pages and free audits never come here (they stay on the private repository).
-# Real screen reader test for an audit: NVDA on Windows and VoiceOver on macOS, driven by Guidepup, and (optional,
-# off by default until proved) TalkBack on an Android emulator on Linux.
+# Real screen reader test for an audit: NVDA on Windows and VoiceOver on macOS, driven by Guidepup, and TalkBack on an
+# Android emulator on Linux (on in every full audit, D523A, but never holding an audit back).
 # Started by the full audit through the GitHub API (src/audit.js, addons/screenreader/lib/remote.js, with
 # A11Y_GITHUB_TOKEN), or by hand from the Actions tab ("Screen reader test", "Run workflow"); never on push.
 # What is spoken is compared with what the page should announce (addons/screenreader). See
@@ -77,7 +77,7 @@ on:
         required: false
         type: string
       talkback:
-        description: 'Also run TalkBack (Android phones) on an Android emulator: the optional third reader, off by default until it is proved; the merge job does not wait for it, and its results are not counted until it is proved'
+        description: 'Also run TalkBack (Android phones) on an Android emulator: the third reader, set by every full audit (D523A); the merge job does not wait for it, its findings are reported, and a TalkBack failure never holds an audit back'
         required: false
         default: false
         type: boolean
@@ -254,10 +254,11 @@ jobs:
           if-no-files-found: warn
           retention-days: 1
 
-  # TalkBack (Android phones), the optional third reader (owner, 9 November 2026): Chrome on an Android emulator on a
-  # Linux machine with KVM, TalkBack driven through adb and its speech read from its own log (addons/screenreader/lib/
-  # talkback.js). Off unless the "talkback" input is set; the merge job does not wait for it, and until TalkBack is
-  # proved its results stay in their own file and are never counted in what was heard (docs/SCREEN-READER-TESTING.txt).
+  # TalkBack (Android phones), the third reader (owner, D406 and D523A): Chrome on an Android emulator on a Linux
+  # machine with KVM, TalkBack driven through a USB keyboard and its speech read from its own log (addons/screenreader/
+  # lib/talkback.js). Runs when the "talkback" input is set, which every full audit does; the merge job does not wait
+  # for it; its findings are reported, but what it heard never counts in the pages heard in full and a TalkBack failure
+  # never holds an audit back (docs/SCREEN-READER-TESTING.txt).
   # Linux minutes (multiplier 1): free on the public test sites repository.
   talkback:
     needs: pages
