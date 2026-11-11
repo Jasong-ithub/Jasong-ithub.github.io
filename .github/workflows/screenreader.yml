@@ -324,6 +324,9 @@ jobs:
           profile: pixel_6
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          # a hardware keyboard, as a keyboard user of TalkBack has: without it the on-screen keyboard kept opening
+          # and Chrome kept its focus in the address bar (runs of 11 November 2026)
+          pre-emulator-launch-script: echo "hw.keyboard=yes" >> ~/.android/avd/test.avd/config.ini
           # No AI key here: the borderline cases are judged on the audit machine
           # compiled on the device after install: uncompiled, the built TalkBack spent minutes checking its own code on
           # the emulator and said nothing (runs of 11 November 2026: about 1,000 bytecodes a second)
