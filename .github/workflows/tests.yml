@@ -697,6 +697,9 @@ jobs:
       - run: node addons/fixes/test/final-check-journal-tests.js
       # proofs side by side, a page that will not load, no second try when declined, prompt caching, excerpts (7 November 2026)
       - run: node addons/fixes/test/speed-tests.js
+      # the proof page tests on GitHub's free machines (--proof-remote github): only our own test site, saved at once,
+      # runs deleted once read (stand-in GitHub; one real page test on the runner's side)
+      - run: node addons/fixes/test/proof-remote-tests.js
       # run by addons/fixes/test/run-tests.js: addons/fixes/test/route2-tests.js, addons/fixes/test/apply-tests.js, addons/fixes/test/addon-fixes-tests.js, addons/fixes/test/rules-tests.js, addons/fixes/test/remote-tests.js
 
   prelive:
