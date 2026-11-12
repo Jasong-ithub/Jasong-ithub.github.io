@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 560" width="480" height="560">
-<rect width="480" height="560" fill="#f4f0e6"/>
-<defs><pattern id="texture-waxed-cotton" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 8 L8 0 M-2 2 L2 -2 M6 10 L10 6" stroke="#45391f" stroke-width="1.4" opacity="0.6"/></pattern><clipPath id="c"><path d="M150 115 L215 95 L240 130 L265 95 L330 115 L415 240 L380 270 L345 235 L345 470 L135 470 L135 235 L100 270 L65 240 Z" fill="#5a4a2a"/>
-<path d="M240 130 V470" stroke="#45391f" stroke-width="5"/><path d="M215 95 L240 130 L265 95 L250 85 L230 85 Z" fill="#45391f"/>
-<rect x="160" y="330" width="60" height="12" fill="#45391f"/><rect x="260" y="330" width="60" height="12" fill="#45391f"/></clipPath></defs><g transform="translate(240 280) scale(3) translate(-240 -300)"><path d="M150 115 L215 95 L240 130 L265 95 L330 115 L415 240 L380 270 L345 235 L345 470 L135 470 L135 235 L100 270 L65 240 Z" fill="#5a4a2a"/>
-<path d="M240 130 V470" stroke="#45391f" stroke-width="5"/><path d="M215 95 L240 130 L265 95 L250 85 L230 85 Z" fill="#45391f"/>
-<rect x="160" y="330" width="60" height="12" fill="#45391f"/><rect x="260" y="330" width="60" height="12" fill="#45391f"/><g clip-path="url(#c)"><rect x="0" y="0" width="480" height="560" fill="url(#texture-waxed-cotton)" opacity="0.6"/><path d="M150 230 Q220 250 330 225 L330 240 Q220 265 150 245 Z M150 330 Q240 350 330 320 L330 332 Q240 362 150 342 Z" fill="#ffffff" opacity="0.16"/></g></g>
-</svg>

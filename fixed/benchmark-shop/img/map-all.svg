@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" width="480" height="300">
-<rect width="480" height="300" fill="#f1f4ef"/>
-<path d="M380 0 Q350 80 370 150 Q395 220 360 300 H480 V0 Z" fill="#bcd7e6"/><text x="400" y="40" font-family="Arial" font-size="16" fill="#1f3d36">Sea</text>
-<path d="M0 170 Q150 140 340 160" stroke="#e6e0d2" stroke-width="14" fill="none"/>
-<circle cx="90" cy="160" r="14" fill="#b4532a"/><text x="60" y="200" font-family="Arial" font-size="18" fill="#1f1f1f">Harrowby</text>
-<circle cx="345" cy="160" r="14" fill="#b4532a"/><text x="250" y="200" font-family="Arial" font-size="18" fill="#1f1f1f">Kelwick</text>
-</svg>
