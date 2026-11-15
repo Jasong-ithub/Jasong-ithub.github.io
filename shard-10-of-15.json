@@ -85,6 +85,20 @@
    "run": "node test/learn-pass2-group-d-tests.js",
    "startedAt": "2026-11-15T18:44:56.035Z",
    "finishedAt": "2026-11-15T18:45:41.202Z"
+  },
+  "realsitegate[webkit-phone]#6:core:2/3": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 9.32,
+   "planned": 23.33,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "core:2/3",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "core:2/3"
+   },
+   "startedAt": "2026-11-15T18:45:42.388Z",
+   "finishedAt": "2026-11-15T18:55:01.675Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.885Z",
