@@ -20,8 +20,8 @@
    "minutes": 0.4,
    "planned": 0.63,
    "run": "node test/check-safety-crlf-tests.js",
-   "startedAt": "2026-11-15T04:47:16.277Z",
-   "finishedAt": "2026-11-15T04:47:40.357Z",
+   "startedAt": "2026-11-15T08:17:02.416Z",
+   "finishedAt": "2026-11-15T08:17:26.475Z",
    "tail": "$ CI=true GITHUB_ACTIONS=true A11Y_UNDER_TEST=1 node test/check-safety-crlf-tests.js\nFAIL  the LF copy passes every word rule (Safety check: 1 problem (docs/review/round1-safety.txt):)\nFAIL  the CRLF copy passes every word rule, S19's own-context lines included (S19  addons/fixes/lib/rules.js:645  ownContext/ownPage needs a written reason naming our copy, our own files or page, a local fixture, or the client's agreed test account sign-in or test line)\nPASS  the LF and CRLF copies give the same result for every rule\nPASS  LF: S19 fails the context with no reason and the one with a wrong reason, not the correct one (lines 3,4)\nPASS  CRLF: the same S19 faults still fail, and the correct line passes (lines 3,4)\n\n3 passed, 2 failed\n"
   },
   "quick#9": {
