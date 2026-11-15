@@ -1,0 +1,11 @@
+{
+ "shard": 8,
+ "of": 15,
+ "gateCore": 3,
+ "commit": "3a24d9dab917f1401e64b4145c04cfe3f9d03d28",
+ "plannedMinutes": 117,
+ "items": {},
+ "startedAt": "2026-11-15T18:42:57.322Z",
+ "finished": false,
+ "setupMinutes": 1.36
+}
