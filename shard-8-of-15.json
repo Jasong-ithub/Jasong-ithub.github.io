@@ -31,6 +31,15 @@
    "run": "node test/publish-board-tests.js",
    "startedAt": "2026-11-15T20:32:23.312Z",
    "finishedAt": "2026-11-15T20:32:23.714Z"
+  },
+  "docs#17": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 0.05,
+   "run": "node test/testshop-site-tests.js",
+   "startedAt": "2026-11-15T20:32:25.086Z",
+   "finishedAt": "2026-11-15T20:32:26.422Z"
   }
  },
  "startedAt": "2026-11-15T20:16:18.654Z",
