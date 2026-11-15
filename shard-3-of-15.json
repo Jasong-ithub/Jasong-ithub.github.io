@@ -130,6 +130,11 @@
   }
  },
  "startedAt": "2026-11-15T19:59:24.757Z",
- "finished": false,
- "setupMinutes": 1.44
+ "finished": true,
+ "setupMinutes": 1.44,
+ "ok": false,
+ "failed": [
+  "monitor#7"
+ ],
+ "finishedAt": "2026-11-15T21:50:42.503Z"
 }
