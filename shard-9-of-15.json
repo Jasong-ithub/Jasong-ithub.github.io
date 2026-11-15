@@ -175,6 +175,15 @@
    "run": "node addons/fixes/test/cap-worst-case-tests.js",
    "startedAt": "2026-11-15T20:41:29.614Z",
    "finishedAt": "2026-11-15T20:41:30.370Z"
+  },
+  "prelive#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 14.91,
+   "planned": 16.33,
+   "run": "node test/prelive-tests.js",
+   "startedAt": "2026-11-15T20:41:31.345Z",
+   "finishedAt": "2026-11-15T20:56:26.147Z"
   }
  },
  "startedAt": "2026-11-15T18:45:03.997Z",
