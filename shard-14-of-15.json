@@ -40,6 +40,15 @@
    "run": "node test/lead-compare-tests.js",
    "startedAt": "2026-11-15T18:44:21.711Z",
    "finishedAt": "2026-11-15T18:44:29.886Z"
+  },
+  "quick#24": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/business-records-tests.js",
+   "startedAt": "2026-11-15T18:44:31.421Z",
+   "finishedAt": "2026-11-15T18:44:31.485Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.381Z",
