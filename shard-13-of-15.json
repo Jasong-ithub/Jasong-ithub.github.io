@@ -201,6 +201,15 @@
    "run": "node addons/fixes/test/design-gate-tests.js",
    "startedAt": "2026-11-15T06:08:20.513Z",
    "finishedAt": "2026-11-15T06:12:05.103Z"
+  },
+  "fixes#28": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node addons/fixes/test/settle-parity-tests.js",
+   "startedAt": "2026-11-15T06:12:06.353Z",
+   "finishedAt": "2026-11-15T06:12:06.435Z"
   }
  },
  "startedAt": "2026-11-15T04:55:57.170Z",
