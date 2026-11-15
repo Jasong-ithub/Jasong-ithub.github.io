@@ -77,6 +77,20 @@
    "run": "node test/delivery-estimate-tests.js",
    "startedAt": "2026-11-15T04:25:41.780Z",
    "finishedAt": "2026-11-15T04:25:41.875Z"
+  },
+  "realsitegate[firefox]#6:timing": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 96.23,
+   "planned": 100,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "timing",
+   "env": {
+    "A11Y_GATE_RUNS": "firefox",
+    "A11Y_GATE_PART": "timing"
+   },
+   "startedAt": "2026-11-15T04:25:43.014Z",
+   "finishedAt": "2026-11-15T06:01:56.560Z"
   }
  },
  "startedAt": "2026-11-15T04:22:34.049Z",
