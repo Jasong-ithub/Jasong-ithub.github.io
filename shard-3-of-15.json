@@ -58,6 +58,15 @@
    "run": "node test/fx-check-tests.js",
    "startedAt": "2026-11-15T20:04:40.134Z",
    "finishedAt": "2026-11-15T20:04:40.179Z"
+  },
+  "quick#97": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.23,
+   "planned": 2,
+   "run": "node test/check-agents-tests.js",
+   "startedAt": "2026-11-15T20:04:41.207Z",
+   "finishedAt": "2026-11-15T20:04:55.291Z"
   }
  },
  "startedAt": "2026-11-15T19:59:24.757Z",
