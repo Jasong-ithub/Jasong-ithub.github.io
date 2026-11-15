@@ -118,6 +118,15 @@
    "run": "node addons/screenreader/test/values-tests.js",
    "startedAt": "2026-11-15T22:12:47.266Z",
    "finishedAt": "2026-11-15T22:12:59.286Z"
+  },
+  "everypage#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.42,
+   "planned": 0.45,
+   "run": "node test/browser-launch-tests.js",
+   "startedAt": "2026-11-15T22:13:00.597Z",
+   "finishedAt": "2026-11-15T22:13:25.958Z"
   }
  },
  "startedAt": "2026-11-15T20:32:31.277Z",
