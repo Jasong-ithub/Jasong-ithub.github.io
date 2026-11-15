@@ -50,6 +50,15 @@
    "startedAt": "2026-11-15T04:23:54.543Z",
    "finishedAt": "2026-11-15T04:23:58.593Z",
    "tail": "$ CI=true GITHUB_ACTIONS=true A11Y_UNDER_TEST=1 node test/demo-host-tests.js\nFAIL L10: unpaid, the renamed reminder passes, and other items too\nFAIL L10: paid, the renamed reminder is held (view-3mp8gwg3d6)\ndemo-host-tests: 113 passed, 2 failed\n"
+  },
+  "quick#54": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 2,
+   "run": "node test/aaa-more-tests.js",
+   "startedAt": "2026-11-15T04:23:59.750Z",
+   "finishedAt": "2026-11-15T04:24:01.065Z"
   }
  },
  "startedAt": "2026-11-15T04:22:35.285Z",
