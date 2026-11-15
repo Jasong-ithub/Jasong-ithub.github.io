@@ -49,6 +49,15 @@
    "run": "node test/ai-route-round8-tests.js",
    "startedAt": "2026-11-15T04:59:37.370Z",
    "finishedAt": "2026-11-15T04:59:37.982Z"
+  },
+  "quick#88": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node addons/fixes/test/recipes-interaction-tests.js",
+   "startedAt": "2026-11-15T04:59:39.070Z",
+   "finishedAt": "2026-11-15T04:59:39.148Z"
   }
  },
  "startedAt": "2026-11-15T04:57:54.581Z",
