@@ -156,6 +156,15 @@
    "run": "node addons/media/test/run-tests.js",
    "startedAt": "2026-11-15T22:19:29.452Z",
    "finishedAt": "2026-11-15T22:21:40.263Z"
+  },
+  "addons#20": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.32,
+   "planned": 2,
+   "run": "node addons/visual/test/not-tested-tests.js",
+   "startedAt": "2026-11-15T22:21:41.385Z",
+   "finishedAt": "2026-11-15T22:23:00.397Z"
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
