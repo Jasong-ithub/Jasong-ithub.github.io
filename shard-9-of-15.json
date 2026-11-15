@@ -196,6 +196,13 @@
   }
  },
  "startedAt": "2026-11-15T18:45:03.997Z",
- "finished": false,
- "setupMinutes": 1.43
+ "finished": true,
+ "setupMinutes": 1.43,
+ "ok": false,
+ "failed": [
+  "benchmark#6",
+  "realsitegate[webkit-phone]#6:keyboard",
+  "addons#10"
+ ],
+ "finishedAt": "2026-11-15T20:57:10.012Z"
 }
