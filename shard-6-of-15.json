@@ -172,6 +172,15 @@
    "run": "node test/consent-modal-tests.js",
    "startedAt": "2026-11-15T20:51:28.109Z",
    "finishedAt": "2026-11-15T20:54:06.373Z"
+  },
+  "full#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 34.35,
+   "planned": 51.73,
+   "run": "npm test",
+   "startedAt": "2026-11-15T20:54:07.441Z",
+   "finishedAt": "2026-11-15T21:28:28.157Z"
   }
  },
  "startedAt": "2026-11-15T20:10:03.979Z",
