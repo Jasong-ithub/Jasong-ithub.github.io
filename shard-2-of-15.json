@@ -22,6 +22,15 @@
    "run": "node test/fixes-starter-drop-tests.js",
    "startedAt": "2026-11-15T04:23:43.517Z",
    "finishedAt": "2026-11-15T04:23:45.949Z"
+  },
+  "quick#28": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.06,
+   "planned": 0.07,
+   "run": "node test/i18n-tests.js",
+   "startedAt": "2026-11-15T04:23:47.111Z",
+   "finishedAt": "2026-11-15T04:23:50.935Z"
   }
  },
  "startedAt": "2026-11-15T04:22:34.049Z",
