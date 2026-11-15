@@ -68,6 +68,20 @@
    "run": "node test/check-agents-tests.js",
    "startedAt": "2026-11-15T04:18:55.105Z",
    "finishedAt": "2026-11-15T04:19:09.178Z"
+  },
+  "realsitegate[chromium]#6:timing": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 95.8,
+   "planned": 100,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "timing",
+   "env": {
+    "A11Y_GATE_RUNS": "chromium",
+    "A11Y_GATE_PART": "timing"
+   },
+   "startedAt": "2026-11-15T04:19:10.511Z",
+   "finishedAt": "2026-11-15T05:54:58.703Z"
   }
  },
  "startedAt": "2026-11-15T04:14:04.830Z",
