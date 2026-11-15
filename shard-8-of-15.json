@@ -22,6 +22,15 @@
    "run": "node tools/check-safety.mjs",
    "startedAt": "2026-11-15T20:17:36.251Z",
    "finishedAt": "2026-11-15T20:32:22.091Z"
+  },
+  "docs#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/publish-board-tests.js",
+   "startedAt": "2026-11-15T20:32:23.312Z",
+   "finishedAt": "2026-11-15T20:32:23.714Z"
   }
  },
  "startedAt": "2026-11-15T20:16:18.654Z",
