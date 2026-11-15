@@ -164,6 +164,16 @@
    "run": "node addons/visual/test/run-tests.js",
    "startedAt": "2026-11-15T05:22:54.738Z",
    "finishedAt": "2026-11-15T05:26:45.505Z"
+  },
+  "addons#32": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 28.75,
+   "planned": 2,
+   "run": "node addons/demo/test/run-tests.js",
+   "startedAt": "2026-11-15T05:26:46.687Z",
+   "finishedAt": "2026-11-15T05:55:31.418Z",
+   "tail": "PASS  no link to a copy of the pages or the fixed code\nPASS  the PDF text has no code either\n\n== Pages fit the sheet (A4)\nPASS  every page fits one A4 sheet ([])\nPASS  PDF: one A4 sheet per page (7 sheets)\nPASS  the HTML report reads at phone width without sideways scrolling (390px)\n\n== Upwork: full audit pages, USD, Letter, no contact details, no UK law\nPASS  full audit pages, USD and Letter for a US client\nPASS  no contact details anywhere in the Upwork report ()\nPASS  no UK (or any other country's) law\nPASS  the next step: reply on the platform; the full audit is already done, so the price is the fixes\nPASS  Upwork, after a full audit: only the fixes are priced ($398, the quote's, the full audit price $130 already taken off), no offer, the full audit never called free (D388, D206, D209)\nPASS  every page fits one Letter sheet ([])\nPASS  PDF: one Letter sheet per page (7 sheets)\nPASS  the free audit demo's report again under the Upwork brand in USD on Letter: same counts, no contact details or UK law\n\n== Command line\nPASS  without a folder: the usage line\nPASS  without an Anthropic key: stops before anything is saved, and says why (exit 2: The demo fixes run has NOT started: 2 parts it needs are not working (owner rule D273: nothing is run while any part is broken).)\nPASS  the free and the full audit can run it afterwards (--demo-fixes)\n\n79 passed, 1 failed\n"
   }
  },
  "startedAt": "2026-11-15T04:22:48.916Z",
