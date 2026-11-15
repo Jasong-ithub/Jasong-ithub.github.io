@@ -31,6 +31,15 @@
    "run": "node test/uk-server-tests.js",
    "startedAt": "2026-11-15T18:44:36.452Z",
    "finishedAt": "2026-11-15T18:44:37.300Z"
+  },
+  "quick#14": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/gias-download-tests.js",
+   "startedAt": "2026-11-15T18:44:38.532Z",
+   "finishedAt": "2026-11-15T18:44:38.832Z"
   }
  },
  "startedAt": "2026-11-15T18:43:04.313Z",
