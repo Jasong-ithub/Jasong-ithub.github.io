@@ -40,6 +40,15 @@
    "run": "node test/sending-tests.js",
    "startedAt": "2026-11-15T04:23:52.226Z",
    "finishedAt": "2026-11-15T04:23:54.556Z"
+  },
+  "quick#52": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.53,
+   "planned": 2,
+   "run": "node test/dawn-like-tests.js",
+   "startedAt": "2026-11-15T04:23:55.769Z",
+   "finishedAt": "2026-11-15T04:25:27.309Z"
   }
  },
  "startedAt": "2026-11-15T04:22:34.049Z",
