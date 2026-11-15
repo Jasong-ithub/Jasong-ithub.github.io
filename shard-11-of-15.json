@@ -40,6 +40,15 @@
    "run": "node test/lead-batch-cap-tests.js",
    "startedAt": "2026-11-15T20:11:28.476Z",
    "finishedAt": "2026-11-15T20:11:28.569Z"
+  },
+  "quick#40": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 2,
+   "run": "node test/demo-host-tests.js",
+   "startedAt": "2026-11-15T20:11:29.550Z",
+   "finishedAt": "2026-11-15T20:11:31.549Z"
   }
  },
  "startedAt": "2026-11-15T20:09:55.064Z",
