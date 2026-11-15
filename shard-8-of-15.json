@@ -11,8 +11,8 @@
    "minutes": 0,
    "planned": 0.05,
    "run": "node tools/check-imports.mjs",
-   "startedAt": "2026-11-15T04:58:02.778Z",
-   "finishedAt": "2026-11-15T04:58:02.957Z",
+   "startedAt": "2026-11-15T08:19:38.689Z",
+   "finishedAt": "2026-11-15T08:19:38.871Z",
    "tail": "$ CI=true GITHUB_ACTIONS=true A11Y_UNDER_TEST=1 node tools/check-imports.mjs\nModule loading check: 2 problems (ND-A125, Windows):\n  docs/review/tests/H7N8-attacks-2026-11-15.mjs:4  import(`${WT}/node_modules/playwright/index.mjs`) loads a plain path: Windows needs import(pathToFileURL(p).href)\n  docs/review/tests/H7N8-attacks-2026-11-15.mjs:5  import(`${WT}/addons/fixes/lib/design-gate.js`) loads a plain path: Windows needs import(pathToFileURL(p).href)\n"
   },
   "listed#9": {
