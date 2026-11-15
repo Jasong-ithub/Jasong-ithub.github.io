@@ -31,6 +31,15 @@
    "run": "node test/catalogue-realsite-tests.js",
    "startedAt": "2026-11-15T18:59:37.537Z",
    "finishedAt": "2026-11-15T18:59:37.601Z"
+  },
+  "quick#19": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.09,
+   "planned": 0.08,
+   "run": "node test/preflight-tests.js",
+   "startedAt": "2026-11-15T18:59:38.593Z",
+   "finishedAt": "2026-11-15T18:59:43.735Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.322Z",
