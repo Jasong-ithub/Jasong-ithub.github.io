@@ -58,6 +58,15 @@
    "run": "node test/ai-answers-tests.js",
    "startedAt": "2026-11-15T18:44:46.869Z",
    "finishedAt": "2026-11-15T18:44:48.679Z"
+  },
+  "quick#85": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/public-repo-rule-tests.js",
+   "startedAt": "2026-11-15T18:44:50.005Z",
+   "finishedAt": "2026-11-15T18:44:50.231Z"
   }
  },
  "startedAt": "2026-11-15T18:43:06.643Z",
