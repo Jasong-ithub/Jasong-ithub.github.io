@@ -165,6 +165,15 @@
    "run": "node test/overlay-onoff-resume-tests.js",
    "startedAt": "2026-11-15T06:44:50.004Z",
    "finishedAt": "2026-11-15T06:59:34.608Z"
+  },
+  "gaps#8": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.66,
+   "planned": 0.67,
+   "run": "node addons/interaction/test/gaps-tests.js",
+   "startedAt": "2026-11-15T06:59:35.740Z",
+   "finishedAt": "2026-11-15T07:00:15.396Z"
   }
  },
  "startedAt": "2026-11-15T04:22:34.993Z",
