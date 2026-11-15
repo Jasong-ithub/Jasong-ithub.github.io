@@ -22,6 +22,15 @@
    "run": "node test/fixes-misses-tests.js",
    "startedAt": "2026-11-15T04:15:03.779Z",
    "finishedAt": "2026-11-15T04:15:03.994Z"
+  },
+  "quick#36": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.19,
+   "planned": 2,
+   "run": "node test/suppression-tests.js",
+   "startedAt": "2026-11-15T04:15:05.230Z",
+   "finishedAt": "2026-11-15T04:15:16.771Z"
   }
  },
  "startedAt": "2026-11-15T04:14:04.830Z",
