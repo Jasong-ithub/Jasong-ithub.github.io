@@ -22,6 +22,15 @@
    "run": "node test/no-review-tier-tests.js",
    "startedAt": "2026-11-15T20:11:44.308Z",
    "finishedAt": "2026-11-15T20:11:44.789Z"
+  },
+  "quick#22": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.15,
+   "planned": 0.1,
+   "run": "node test/agency-tests.js",
+   "startedAt": "2026-11-15T20:11:45.927Z",
+   "finishedAt": "2026-11-15T20:11:54.998Z"
   }
  },
  "startedAt": "2026-11-15T20:10:03.979Z",
