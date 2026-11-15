@@ -1,0 +1,90 @@
+# PUBLIC TEST SITES COPY: the tool's full test set in shards (owner decisions D349, D350, D521A, D555A). Made by
+# tools/make-testshop-site.mjs (testShardsWorkflow): do not edit it here. Started by hand only. Each job checks out the
+# tool's PRIVATE repository at the commit given, with a read-only key kept as the secret TOOL_READ_TOKEN, so the tool's
+# code is never published, and the minutes are free (a public repository). Only our own code and our own made-up test
+# sites are used here: client pages and free audits never come here. Each shard's results (each item's command, time
+# and, when it failed, the last lines of its log) are pushed as they arrive to the branch test-shards/<commit 8>-K-of-N
+# of this repository. The whole logs are never uploaded here (they are the private tool's test output).
+# Read the results (in a checkout of the tool at that commit):
+#   node tools/test-shards.mjs --status --shards 15 --fetch --results-remote https://github.com/<this repository>
+name: Test shards
+run-name: Test shards ${{ inputs.shards }} of 15 on ${{ inputs.tool_sha }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      tool_sha:
+        description: 'The commit of the tool to test (all 40 characters), so every shard runs the same code'
+        required: true
+        type: string
+      shards:
+        description: 'The shards to run, as a list: [1] for the proof (R228), then [2, 3, ...] for the others'
+        required: false
+        default: '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  shard:
+    runs-on: ubuntu-24.04
+    # GitHub's own limit is 6 hours; a shard is planned at about 2 (node tools/test-shards.mjs --plan)
+    timeout-minutes: 350
+    permissions:
+      contents: write
+    strategy:
+      # every shard runs to its end whatever another does (R227)
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(inputs.shards) }}
+    # a shard started twice for one commit runs once at a time: the second takes the first one's results
+    concurrency:
+      group: test-shards-${{ inputs.tool_sha }}-${{ matrix.shard }}
+      cancel-in-progress: false
+    env:
+      TOOL_SHA: ${{ inputs.tool_sha }}
+      SHARD: ${{ matrix.shard }}
+      SHARDS: 15
+      RESULTS: https://github.com/${{ github.repository }}
+    steps:
+      - name: the commit is given in full and the shard is one of the plan
+        run: |
+          case "$TOOL_SHA" in *[!0-9a-f]*|"") echo "::error::tool_sha must be a commit's 40 characters (0-9, a-f)"; exit 1;; esac
+          [ "${#TOOL_SHA}" = 40 ] || { echo "::error::tool_sha must be a commit's 40 characters"; exit 1; }
+          case "$SHARD" in *[!0-9]*|"") echo "::error::a shard must be a number"; exit 1;; esac
+          [ "$SHARD" -ge 1 ] && [ "$SHARD" -le "$SHARDS" ] || { echo "::error::there is no shard $SHARD of $SHARDS"; exit 1; }
+      - uses: actions/checkout@v4
+        with:
+          repository: Jasong-ithub/accessibility-full-tool
+          ref: ${{ inputs.tool_sha }}
+          token: ${{ secrets.TOOL_READ_TOKEN }}
+          persist-credentials: false
+          # the whole history and every branch: parts the shard checks before it starts (git blame, claude/numbers)
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: the results go to this repository, and an earlier run's results of this shard are taken first
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$TOOL_SHA"
+          # the job's own token, for this repository only (kept outside the checkout, so the tree stays unchanged)
+          git config --global "url.https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.insteadOf" "$RESULTS"
+          out="$HOME/test-shards/${TOOL_SHA:0:8}"
+          branch="test-shards/${TOOL_SHA:0:8}-${SHARD}-of-${SHARDS}"
+          found=0; git ls-remote --exit-code "$RESULTS" "refs/heads/$branch" >/dev/null || found=$?
+          if [ "$found" = 0 ]; then
+            git clone -q -b "$branch" "$RESULTS" "$out"
+            echo "Earlier results of this shard were taken from $branch: only its items that did not pass run again"
+          elif [ "$found" = 2 ]; then
+            echo "No earlier results of this shard on this commit"
+          else
+            echo "::error::the results branches of this repository could not be read, so nothing was started"; exit 1
+          fi
+      # every part is checked and set up by the shard itself before any test starts (R228); nothing is switched off (R227)
+      - name: the shard
+        run: node tools/test-shards.mjs --run --shard "$SHARD" --shards "$SHARDS" --push --results-remote "$RESULTS"
+      # no artifact: the whole logs are the private tool's test output and stay on the machine (review, medium 1); the
+      # results branch carries each item's result and, when it failed, the last lines of its log
