@@ -131,6 +131,12 @@
   }
  },
  "startedAt": "2026-11-15T18:31:44.903Z",
- "finished": false,
- "setupMinutes": 1.7
+ "finished": true,
+ "setupMinutes": 1.7,
+ "ok": false,
+ "failed": [
+  "benchmark#15",
+  "addons#21"
+ ],
+ "finishedAt": "2026-11-15T20:17:18.149Z"
 }
