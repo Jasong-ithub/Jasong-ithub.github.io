@@ -213,6 +213,11 @@
   }
  },
  "startedAt": "2026-11-15T04:22:34.993Z",
- "finished": false,
- "setupMinutes": 1.24
+ "finished": true,
+ "setupMinutes": 1.24,
+ "ok": false,
+ "failed": [
+  "realsitegate[firefox]#6:visual"
+ ],
+ "finishedAt": "2026-11-15T07:08:56.621Z"
 }
