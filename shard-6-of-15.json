@@ -58,6 +58,15 @@
    "run": "node test/robots-redirect-tests.js",
    "startedAt": "2026-11-15T04:24:11.533Z",
    "finishedAt": "2026-11-15T04:24:45.209Z"
+  },
+  "quick#60": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/run-deletions-tests.js",
+   "startedAt": "2026-11-15T04:24:46.248Z",
+   "finishedAt": "2026-11-15T04:24:46.392Z"
   }
  },
  "startedAt": "2026-11-15T04:22:36.381Z",
