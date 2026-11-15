@@ -118,6 +118,16 @@
    "run": "node addons/fixes/test/page-test-fails-tests.js",
    "startedAt": "2026-11-15T05:55:17.957Z",
    "finishedAt": "2026-11-15T05:57:40.437Z"
+  },
+  "fixes#32": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 0.53,
+   "planned": 0.25,
+   "run": "node addons/fixes/test/proof-remote-tests.js",
+   "startedAt": "2026-11-15T05:57:41.627Z",
+   "finishedAt": "2026-11-15T05:58:13.133Z",
+   "tail": "PASS  a page behind the sign-in is tested here (the test account never leaves this machine)\nPASS  a working copy with a page missing the fictional notice is not sent\n\n== the command line and the public repository's copy of the workflow\nPASS  --proof-remote github is read; without it the page tests stay here\nPASS  the public copy checks out the engine's commit of the tool, the working copy from its snapshot branch (checked to hold the commit sent), and tidies the snapshot branches\nPASS  the runner installs Chromium and the font set, runs the page test and keeps its artifact one day\n\n== the runner's tidy step: its own snapshot branch and left-over ones, never another branch\nPASS  deleted: its own branch, one older than 6 hours and a proof-snap/ branch with no time; kept: a recent one (another run may still need it) and every other branch\nsnapshot branches deleted: 2\nPASS  on a real repository: main, proof-snap/aaaaaaaaaaaa-mwhd5j9h-1 left\n\n== the runner's side: the same page test on the same port (one real page test)\npage test of /index.html: 13 issues in 29 seconds\nPASS  the page test ran on the given port and its result carries each issue's section (13 issues, 29 seconds)\n\n== the engine: --proof-remote github end to end with the stand-in, and refused for a client's site\nFAIL  our own shop: the fix is proved with every page test run on the stand-in GitHub (held; {\"used\":true,\"repo\":\"o/r\",\"parallel\":12,\"commit\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"fontSet\":\"fonts-test\",\"remote\":2,\"reused\":0,\"local\":0,\"failedRuns\":0,\"notDeleted\":0,\"minutes\":6,\"charged\":false,\"averageSeconds\":0})\nPASS  every run and every snapshot branch is deleted by the end\nPASS  the journal is kept in the fixes folder\nPASS  a client's site with --proof-remote github (even with our own pages given in the options): the run is refused and nothing is sent (Proof page tests on GitHub refused (D521A): the repository is public and https://client-shop.example/ is not one of our )\n\n1 of 52 proof-remote tests FAILED\n"
   }
  },
  "startedAt": "2026-11-15T04:14:04.830Z",
