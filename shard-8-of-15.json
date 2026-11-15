@@ -4,7 +4,18 @@
  "gateCore": 3,
  "commit": "89086542e1798e2e0b91316ee0ffcb65f9ac457e",
  "plannedMinutes": 118,
- "items": {},
+ "items": {
+  "listed#4": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 0,
+   "planned": 0.05,
+   "run": "node tools/check-imports.mjs",
+   "startedAt": "2026-11-15T04:58:02.778Z",
+   "finishedAt": "2026-11-15T04:58:02.957Z",
+   "tail": "$ CI=true GITHUB_ACTIONS=true A11Y_UNDER_TEST=1 node tools/check-imports.mjs\nModule loading check: 2 problems (ND-A125, Windows):\n  docs/review/tests/H7N8-attacks-2026-11-15.mjs:4  import(`${WT}/node_modules/playwright/index.mjs`) loads a plain path: Windows needs import(pathToFileURL(p).href)\n  docs/review/tests/H7N8-attacks-2026-11-15.mjs:5  import(`${WT}/addons/fixes/lib/design-gate.js`) loads a plain path: Windows needs import(pathToFileURL(p).href)\n"
+  }
+ },
  "startedAt": "2026-11-15T04:56:55.550Z",
  "finished": false,
  "setupMinutes": 1.1
