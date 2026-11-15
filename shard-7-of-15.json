@@ -173,6 +173,16 @@
    "run": "node test/free-audit-tests.js",
    "startedAt": "2026-11-15T20:39:58.949Z",
    "finishedAt": "2026-11-15T20:41:39.254Z"
+  },
+  "signedin#6": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 7.08,
+   "planned": 48.75,
+   "run": "node test/signed-in/run-tests.js",
+   "startedAt": "2026-11-15T20:41:40.347Z",
+   "finishedAt": "2026-11-15T20:48:45.245Z",
+   "tail": "PASS  [+0.0s] the page sent to the sign-in page was loaded again signed in, and both pages were tested\nPASS  [+0.0s] the new session cookie is removed from anything written, as the old one is\nPASS  [+5.9s] the copy rules passed on the first page after signing in (a \"test mode\" notice; our working-copy marker (meta a11y-working-copy))\nPASS  [+1.6s] on our copy the profile form was sent (POST reached our copy)\nPASS  [+0.0s] on our copy signing out is still never pressed\nPASS  [+33.8s] on our copy the process add-on runs its form tests (nothing recorded as not run)\nPASS  [+5.0s] copy rules not met (no test-mode or copy marker): the session sends nothing (The page shows no test-mode marker and no copy marker.)\nFAIL  [+2.7s] the full audit finished (exit 2): r sent a lead email it starts as an empty list (D407), made by the owner's set-up, never by a run.\n2. speech to text (Whisper, on this machine) for the caption checks is not set up here (A11Y_WHISPER_CMD and A11Y_WHISPER_MODEL are not both set), so the caption checks could not run.\n   To fix: Build Whisper once on this machine (docs/WHISPER-SETUP.txt, one command: bash tools/whisper-setup.sh), then set A11Y_WHISPER_CMD=/opt/whisper.cpp/build/bin/whisper-cli and A11Y_WHISPER_MODEL=/opt/whisper.cpp/models/ggml-small.bin where the audit is started.\n\nFix each one, then run the same command again.\n\nFAIL  [+0.0s] the full audit's AI parts ran, on the stand-in claude command only (0 requests; no AI key in its environment)\nError: ENOENT: no such file or directory, scandir '/tmp/a11y-signed-in-test-AtEc1a/audit'\n    at async readdir (node:internal/fs/promises:955:18)\n    at async file:///home/runner/work/Jasong-ithub.github.io/Jasong-ithub.github.io/test/signed-in/run-tests.js:207:28 {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'scandir',\n  path: '/tmp/a11y-signed-in-test-AtEc1a/audit'\n}\n\n3 FAILED (424s)\n"
   }
  },
  "startedAt": "2026-11-15T18:46:55.824Z",
