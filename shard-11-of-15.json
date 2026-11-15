@@ -49,6 +49,15 @@
    "run": "node test/demo-host-tests.js",
    "startedAt": "2026-11-15T20:11:29.550Z",
    "finishedAt": "2026-11-15T20:11:31.549Z"
+  },
+  "quick#55": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 2,
+   "run": "node test/aaa-more-tests.js",
+   "startedAt": "2026-11-15T20:11:32.609Z",
+   "finishedAt": "2026-11-15T20:11:33.661Z"
   }
  },
  "startedAt": "2026-11-15T20:09:55.064Z",
