@@ -118,6 +118,20 @@
    },
    "startedAt": "2026-11-15T20:50:31.213Z",
    "finishedAt": "2026-11-15T21:02:22.045Z"
+  },
+  "realsitegate[webkit-phone]#6:process": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 9.38,
+   "planned": 10,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "process",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "process"
+   },
+   "startedAt": "2026-11-15T21:02:23.805Z",
+   "finishedAt": "2026-11-15T21:11:46.769Z"
   }
  },
  "startedAt": "2026-11-15T20:09:48.323Z",
