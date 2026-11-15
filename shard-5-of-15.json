@@ -126,6 +126,15 @@
    "run": "node addons/timing/test/count-tests.js",
    "startedAt": "2026-11-15T21:59:51.475Z",
    "finishedAt": "2026-11-15T22:00:23.819Z"
+  },
+  "everypage#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.67,
+   "planned": 1.52,
+   "run": "node test/free-audit-tests.js",
+   "startedAt": "2026-11-15T22:00:25.100Z",
+   "finishedAt": "2026-11-15T22:02:05.187Z"
   }
  },
  "startedAt": "2026-11-15T20:17:42.908Z",
