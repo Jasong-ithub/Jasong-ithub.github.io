@@ -146,6 +146,20 @@
    },
    "startedAt": "2026-11-15T05:32:48.393Z",
    "finishedAt": "2026-11-15T05:37:32.340Z"
+  },
+  "realsitegate[chromium]#6:visual": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 18.95,
+   "planned": 20,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "visual",
+   "env": {
+    "A11Y_GATE_RUNS": "chromium",
+    "A11Y_GATE_PART": "visual"
+   },
+   "startedAt": "2026-11-15T05:37:33.641Z",
+   "finishedAt": "2026-11-15T05:56:30.450Z"
   }
  },
  "startedAt": "2026-11-15T04:55:57.170Z",
