@@ -135,6 +135,15 @@
    "run": "node addons/fixes/test/design-gate-eyes-tests.js",
    "startedAt": "2026-11-15T06:23:01.455Z",
    "finishedAt": "2026-11-15T06:39:23.245Z"
+  },
+  "everypage#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 4,
+   "planned": 1.52,
+   "run": "node test/free-audit-tests.js",
+   "startedAt": "2026-11-15T06:39:24.519Z",
+   "finishedAt": "2026-11-15T06:43:24.407Z"
   }
  },
  "startedAt": "2026-11-15T04:22:37.476Z",
