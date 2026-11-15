@@ -33,6 +33,15 @@
    "run": "node test/testshop-site-tests.js",
    "startedAt": "2026-11-15T05:16:28.355Z",
    "finishedAt": "2026-11-15T05:16:30.317Z"
+  },
+  "docs#20": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/realsite-gate-measure-tests.js",
+   "startedAt": "2026-11-15T05:16:31.602Z",
+   "finishedAt": "2026-11-15T05:16:31.702Z"
   }
  },
  "startedAt": "2026-11-15T04:56:55.550Z",
