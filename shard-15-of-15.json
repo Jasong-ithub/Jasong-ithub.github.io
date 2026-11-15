@@ -76,6 +76,20 @@
    "run": "node test/learn-pass2-group-d-tests.js",
    "startedAt": "2026-11-15T04:25:02.837Z",
    "finishedAt": "2026-11-15T04:25:48.250Z"
+  },
+  "realsitegate[firefox]#6:core:2/3": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 10.38,
+   "planned": 23.33,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "core:2/3",
+   "env": {
+    "A11Y_GATE_RUNS": "firefox",
+    "A11Y_GATE_PART": "core:2/3"
+   },
+   "startedAt": "2026-11-15T04:25:49.477Z",
+   "finishedAt": "2026-11-15T04:36:12.231Z"
   }
  },
  "startedAt": "2026-11-15T04:22:48.916Z",
