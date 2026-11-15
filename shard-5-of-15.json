@@ -90,6 +90,15 @@
    },
    "startedAt": "2026-11-15T20:21:38.875Z",
    "finishedAt": "2026-11-15T21:57:38.327Z"
+  },
+  "monitor#9": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.71,
+   "planned": 2,
+   "run": "node addons/monitor/test/health-tests.js",
+   "startedAt": "2026-11-15T21:57:39.595Z",
+   "finishedAt": "2026-11-15T21:59:22.256Z"
   }
  },
  "startedAt": "2026-11-15T20:17:42.908Z",
