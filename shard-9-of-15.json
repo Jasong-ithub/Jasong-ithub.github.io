@@ -31,6 +31,15 @@
    "run": "node test/benchmark-unmatched-tests.js",
    "startedAt": "2026-11-15T20:11:01.057Z",
    "finishedAt": "2026-11-15T20:11:06.101Z"
+  },
+  "quick#26": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 2,
+   "run": "node test/us-case-list-tests.js",
+   "startedAt": "2026-11-15T20:11:07.310Z",
+   "finishedAt": "2026-11-15T20:11:09.350Z"
   }
  },
  "startedAt": "2026-11-15T20:09:48.323Z",
