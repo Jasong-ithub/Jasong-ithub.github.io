@@ -118,6 +118,15 @@
    "run": "node test/browser-launch-tests.js",
    "startedAt": "2026-11-15T20:25:07.652Z",
    "finishedAt": "2026-11-15T20:25:28.355Z"
+  },
+  "everypage#14": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.04,
+   "planned": 2,
+   "run": "node test/free-audit-reprint-tests.js",
+   "startedAt": "2026-11-15T20:25:29.390Z",
+   "finishedAt": "2026-11-15T20:25:31.836Z"
   }
  },
  "startedAt": "2026-11-15T18:43:05.500Z",
