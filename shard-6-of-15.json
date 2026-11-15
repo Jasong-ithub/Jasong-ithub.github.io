@@ -145,6 +145,15 @@
    "run": "node addons/fixes/test/focused-proof-tests.js",
    "startedAt": "2026-11-15T20:34:25.257Z",
    "finishedAt": "2026-11-15T20:34:40.046Z"
+  },
+  "fixes#12": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.11,
+   "planned": 1.18,
+   "run": "node addons/fixes/test/final-check-journal-tests.js",
+   "startedAt": "2026-11-15T20:34:41.454Z",
+   "finishedAt": "2026-11-15T20:35:48.121Z"
   }
  },
  "startedAt": "2026-11-15T19:55:24.189Z",
