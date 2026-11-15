@@ -31,6 +31,15 @@
    "run": "node test/legal-details-tests.js",
    "startedAt": "2026-11-15T18:44:10.938Z",
    "finishedAt": "2026-11-15T18:44:11.934Z"
+  },
+  "quick#36": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 2,
+   "run": "node test/sample-figures-tests.js",
+   "startedAt": "2026-11-15T18:44:13.168Z",
+   "finishedAt": "2026-11-15T18:44:14.992Z"
   }
  },
  "startedAt": "2026-11-15T18:42:56.784Z",
