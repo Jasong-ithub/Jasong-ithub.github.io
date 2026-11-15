@@ -31,6 +31,15 @@
    "run": "node test/legal-details-tests.js",
    "startedAt": "2026-11-15T20:19:15.156Z",
    "finishedAt": "2026-11-15T20:19:16.021Z"
+  },
+  "quick#39": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.71,
+   "planned": 2,
+   "run": "node test/sending-sim-tests.js",
+   "startedAt": "2026-11-15T20:19:17.071Z",
+   "finishedAt": "2026-11-15T20:20:59.725Z"
   }
  },
  "startedAt": "2026-11-15T20:17:42.908Z",
