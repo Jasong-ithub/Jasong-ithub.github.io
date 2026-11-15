@@ -22,6 +22,15 @@
    "run": "node test/upwork-template-tests.js",
    "startedAt": "2026-11-15T20:11:17.031Z",
    "finishedAt": "2026-11-15T20:11:22.669Z"
+  },
+  "docs#26": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.06,
+   "planned": 0.08,
+   "run": "node test/fixes-starter-tests.js",
+   "startedAt": "2026-11-15T20:11:23.757Z",
+   "finishedAt": "2026-11-15T20:11:27.457Z"
   }
  },
  "startedAt": "2026-11-15T20:09:55.064Z",
