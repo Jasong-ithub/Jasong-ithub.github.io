@@ -76,6 +76,20 @@
    "run": "node test/task2-briefs-tests.js",
    "startedAt": "2026-11-15T19:57:00.884Z",
    "finishedAt": "2026-11-15T19:59:53.089Z"
+  },
+  "realsitegate[webkit-phone]#6:interaction": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 7.69,
+   "planned": 10,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "interaction",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "interaction"
+   },
+   "startedAt": "2026-11-15T19:59:54.909Z",
+   "finishedAt": "2026-11-15T20:07:36.081Z"
   }
  },
  "startedAt": "2026-11-15T19:55:24.189Z",
