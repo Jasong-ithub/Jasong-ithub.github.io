@@ -148,6 +148,15 @@
    },
    "startedAt": "2026-11-15T05:40:43.331Z",
    "finishedAt": "2026-11-15T05:45:40.101Z"
+  },
+  "addons#15": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node addons/timing/test/batch2-recipes-tests.js",
+   "startedAt": "2026-11-15T05:45:41.445Z",
+   "finishedAt": "2026-11-15T05:45:41.554Z"
   }
  },
  "startedAt": "2026-11-15T04:56:55.550Z",
