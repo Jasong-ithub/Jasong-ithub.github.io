@@ -40,6 +40,15 @@
    "run": "node test/testshop-site-tests.js",
    "startedAt": "2026-11-15T20:32:25.086Z",
    "finishedAt": "2026-11-15T20:32:26.422Z"
+  },
+  "quick#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.1,
+   "planned": 0.1,
+   "run": "node test/lead-compare-tests.js",
+   "startedAt": "2026-11-15T20:32:27.602Z",
+   "finishedAt": "2026-11-15T20:32:33.623Z"
   }
  },
  "startedAt": "2026-11-15T20:16:18.654Z",
