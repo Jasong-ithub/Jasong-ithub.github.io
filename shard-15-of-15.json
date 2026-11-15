@@ -22,6 +22,15 @@
    "run": "node tools/check-key-register.mjs",
    "startedAt": "2026-11-15T18:44:35.303Z",
    "finishedAt": "2026-11-15T18:44:35.421Z"
+  },
+  "quick#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/uk-server-tests.js",
+   "startedAt": "2026-11-15T18:44:36.452Z",
+   "finishedAt": "2026-11-15T18:44:37.300Z"
   }
  },
  "startedAt": "2026-11-15T18:43:04.313Z",
