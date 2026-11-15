@@ -40,6 +40,15 @@
    "run": "node test/lang-tests.js",
    "startedAt": "2026-11-15T18:44:39.738Z",
    "finishedAt": "2026-11-15T18:48:00.837Z"
+  },
+  "quick#67": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.11,
+   "planned": 2,
+   "run": "node test/ai-route-tests.js",
+   "startedAt": "2026-11-15T18:48:01.878Z",
+   "finishedAt": "2026-11-15T18:48:08.591Z"
   }
  },
  "startedAt": "2026-11-15T18:43:03.166Z",
