@@ -99,6 +99,15 @@
    },
    "startedAt": "2026-11-15T18:44:39.504Z",
    "finishedAt": "2026-11-15T20:21:07.410Z"
+  },
+  "addons#22": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.4,
+   "planned": 2,
+   "run": "node addons/keyboard/test/batch2-tests.js",
+   "startedAt": "2026-11-15T20:21:08.645Z",
+   "finishedAt": "2026-11-15T20:22:32.691Z"
   }
  },
  "startedAt": "2026-11-15T18:42:56.784Z",
