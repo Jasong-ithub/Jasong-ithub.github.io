@@ -4,7 +4,17 @@
  "gateCore": 3,
  "commit": "3a24d9dab917f1401e64b4145c04cfe3f9d03d28",
  "plannedMinutes": 117,
- "items": {},
+ "items": {
+  "conflicts#2": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 0.05,
+   "run": "if git grep -nE '^(<<<<<<<|\\|\\|\\|\\|\\|\\|\\||>>>>>>>)( |$)|^=======$'; then\n  echo \"Leftover merge conflict markers above: finish the merge in those files.\"\n  exit 1\nfi\necho \"No conflict markers in tracked files.\"",
+   "startedAt": "2026-11-15T18:48:33.802Z",
+   "finishedAt": "2026-11-15T18:48:33.898Z"
+  }
+ },
  "startedAt": "2026-11-15T18:46:55.824Z",
  "finished": false,
  "setupMinutes": 1.62
