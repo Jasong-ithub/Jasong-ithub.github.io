@@ -168,6 +168,12 @@
   }
  },
  "startedAt": "2026-11-15T20:25:53.905Z",
- "finished": false,
- "setupMinutes": 1.6
+ "finished": true,
+ "setupMinutes": 1.6,
+ "ok": false,
+ "failed": [
+  "realsitegate[firefox]#6:keyboard",
+  "signedin#6"
+ ],
+ "finishedAt": "2026-11-15T22:27:13.153Z"
 }
