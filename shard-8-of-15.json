@@ -85,6 +85,15 @@
    "run": "node test/ai-route-round5-tests.js",
    "startedAt": "2026-11-15T20:32:40.414Z",
    "finishedAt": "2026-11-15T20:32:41.087Z"
+  },
+  "quick#86": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 3.73,
+   "planned": 2,
+   "run": "node test/live-checkout-tests.js",
+   "startedAt": "2026-11-15T20:32:42.310Z",
+   "finishedAt": "2026-11-15T20:36:25.827Z"
   }
  },
  "startedAt": "2026-11-15T20:16:18.654Z",
