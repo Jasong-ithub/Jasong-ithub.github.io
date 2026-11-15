@@ -128,6 +128,15 @@
    },
    "startedAt": "2026-11-15T20:12:01.825Z",
    "finishedAt": "2026-11-15T20:32:40.020Z"
+  },
+  "monitor#8": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 0.05,
+   "run": "node addons/monitor/test/daily-tests.js",
+   "startedAt": "2026-11-15T20:32:40.994Z",
+   "finishedAt": "2026-11-15T20:32:42.622Z"
   }
  },
  "startedAt": "2026-11-15T18:46:55.824Z",
