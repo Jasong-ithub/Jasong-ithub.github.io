@@ -85,6 +85,15 @@
    "run": "node test/run-approved-tests.js",
    "startedAt": "2026-11-15T18:54:26.422Z",
    "finishedAt": "2026-11-15T18:54:30.292Z"
+  },
+  "benchmark#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 10.34,
+   "planned": 2,
+   "run": "node test/learn-pass2-tests.js",
+   "startedAt": "2026-11-15T18:54:31.498Z",
+   "finishedAt": "2026-11-15T19:04:52.025Z"
   }
  },
  "startedAt": "2026-11-15T18:42:58.102Z",
