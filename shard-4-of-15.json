@@ -88,6 +88,21 @@
    "startedAt": "2026-11-15T04:24:07.009Z",
    "finishedAt": "2026-11-15T04:24:07.054Z",
    "tail": "PASS  \"How to read this\" covers decisions up to D266\nPASS  no \"OWNER TO DECIDE\" left (D266 settled the last one, the old O15)\nPASS  owner point O15 removed and the owner list ends at O14\nPASS  charities are no longer limited to charitable companies (D266)\nPASS  \"charities\" always says incorporated or unincorporated (found: )\nPASS  section 1 DECIDED excludes unincorporated charities (D266)\nPASS  section 1 DECIDED includes CIOs and other incorporated charities, checked by registration number (D266)\nPASS  the order-page identifier check covers incorporated charities and keeps unincorporated ones out\nPASS  section 2's record holds an incorporated charity's registration number\nPASS  Q3 covers incorporated charities and keeps every unincorporated charity out\nPASS  Q1 names incorporated charities in the client list (D266)\nPASS  Q5 names incorporated charities in the client list (D266)\nPASS  Q19 names incorporated charities in the client list (D266)\nPASS  section 6 DECIDED records D269: incorporated charities pay the same as schools, half, no introductory offer\nPASS  \"How to read this\" names D269\nPASS  section 6: Full audit, first page of each design: charities 5 / 7 / 6, half the standard 10 / 14 / 12 (pricing.js)\nPASS  section 6: Full audit, every other page sharing a design: charities 1.50 / 2 / 1.75, half the standard 3 / 4 / 3.50 (pricing.js)\nPASS  section 6: Fixes, per page, less the audit price: charities 9 / 12 / 10, half the standard 18 / 24 / 20 (pricing.js)\nPASS  section 6: Minimum, full audit: charities 49 / 65 / 55, half the standard 98 / 130 / 110 (pricing.js)\nPASS  section 6: Minimum, fixes: charities 149 / 199 / 169, half the standard 298 / 398 / 338 (pricing.js)\nPASS  section 6: Monitoring, per month: charities 9.50 / 12.50 / 11, half the standard 19 / 25 / 22 (pricing.js)\nPASS  section 6: Monitoring, per new or changed page: charities 2.50 / 3.50 / 3, half the standard 5 / 7 / 6 (pricing.js)\nPASS  owner point O8 covers incorporated charities too\n1 failed, 57 passed\n"
+  },
+  "realsitegate[webkit-phone]#6:timing": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 96.2,
+   "planned": 100,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "timing",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "timing"
+   },
+   "startedAt": "2026-11-15T04:24:08.224Z",
+   "finishedAt": "2026-11-15T06:00:20.241Z",
+   "tail": "PASS  saas-product-overview.html: no definite failure (none)\nPASS  separate-letters.html: no definite failure (none)\nPASS  serial-chapter-page.html: no definite failure (none)\nPASS  shop-forms.html: no definite failure (none)\nPASS  shop-widgets.html: no definite failure (none)\nPASS  sign-in-with-provider.html: no definite failure (none)\nPASS  sign-up-captcha.html: no definite failure (none)\nPASS  single-page-link-list.html: no definite failure (none)\nPASS  slick-carousel.html: no definite failure (none)\nPASS  software-product-section.html: no definite failure (none)\nPASS  stats-row.html: no definite failure (none)\nPASS  swiper-carousel.html: no definite failure (none)\nPASS  tabindex-forms.html: no definite failure (none)\nPASS  target-size-exceptions.html: no definite failure (none)\nPASS  testimonials.html: no definite failure (none)\nPASS  ticker-carousel.html: no definite failure (none)\nPASS  title-article-prefix.html: no definite failure (none)\nPASS  title-index-page.html: no definite failure (none)\nPASS  title-products-listing.html: no definite failure (none)\nPASS  urgency-beside-live.html: no definite failure (none)\nReal-site gate (D391): FAILS for its part timing only (results: /tmp/realsite-gate-test-7129.json). 61 pages in webkit-phone; definite failures 1; pages that could not be tested in full 0.\n  FALSE ALARM live-data.html: tm-moving-after-action (2.2.2, webkit-phone timing) on the page: Content (\"Example Auctions Lot 42: Victorian...\") keeps moving for more than 5 seconds once it is scrolled into view (after scrolling down 1 screen), with no pa\n\n1 FAILED\n"
   }
  },
  "startedAt": "2026-11-15T04:22:35.285Z",
