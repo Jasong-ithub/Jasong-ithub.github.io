@@ -123,6 +123,21 @@
    },
    "startedAt": "2026-11-15T19:37:14.256Z",
    "finishedAt": "2026-11-15T19:46:34.548Z"
+  },
+  "realsitegate[webkit-phone]#6:keyboard": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 49.74,
+   "planned": 15,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "keyboard",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "keyboard"
+   },
+   "startedAt": "2026-11-15T19:46:35.720Z",
+   "finishedAt": "2026-11-15T20:36:20.388Z",
+   "tail": "PASS  saas-product-overview.html: no definite failure (none)\nPASS  separate-letters.html: no definite failure (none)\nPASS  serial-chapter-page.html: no definite failure (none)\nPASS  shop-forms.html: no definite failure (none)\nPASS  shop-widgets.html: no definite failure (none)\nPASS  sign-in-with-provider.html: no definite failure (none)\nPASS  sign-up-captcha.html: no definite failure (none)\nPASS  single-page-link-list.html: no definite failure (none)\nPASS  slick-carousel.html: no definite failure (none)\nPASS  software-product-section.html: no definite failure (none)\nPASS  stats-row.html: no definite failure (none)\nPASS  swiper-carousel.html: no definite failure (none)\nPASS  tabindex-forms.html: no definite failure (none)\nPASS  target-size-exceptions.html: no definite failure (none)\nPASS  testimonials.html: no definite failure (none)\nPASS  ticker-carousel.html: no definite failure (none)\nPASS  title-article-prefix.html: no definite failure (none)\nPASS  title-index-page.html: no definite failure (none)\nPASS  title-products-listing.html: no definite failure (none)\nPASS  urgency-beside-live.html: no definite failure (none)\nReal-site gate (D391): FAILS for its part keyboard only (results: /tmp/realsite-gate-test-44605.json). 61 pages in webkit-phone; definite failures 1; pages that could not be tested in full 0.\n  FALSE ALARM colour-notice.html: kb-char-key-shortcut (2.1.4, webkit-phone keyboard) on the page: Single character keys act as shortcuts with nothing focused: \"p\" showed something new, \"G\" showed something new, \"X\" showed something new, \"]\" showed something \n\n1 FAILED\n"
   }
  },
  "startedAt": "2026-11-15T18:45:03.997Z",
