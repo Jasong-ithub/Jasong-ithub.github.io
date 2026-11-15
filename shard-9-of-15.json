@@ -184,6 +184,15 @@
    "run": "node test/prelive-tests.js",
    "startedAt": "2026-11-15T20:41:31.345Z",
    "finishedAt": "2026-11-15T20:56:26.147Z"
+  },
+  "everypage#6": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.7,
+   "planned": 0.87,
+   "run": "node test/everypage-tests.js",
+   "startedAt": "2026-11-15T20:56:27.130Z",
+   "finishedAt": "2026-11-15T20:57:08.901Z"
   }
  },
  "startedAt": "2026-11-15T18:45:03.997Z",
