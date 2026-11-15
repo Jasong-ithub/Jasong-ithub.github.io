@@ -14,6 +14,15 @@
    "startedAt": "2026-11-15T04:58:05.847Z",
    "finishedAt": "2026-11-15T04:58:06.683Z",
    "tail": "PASS  code written into a string: fails, naming the file and line\nPASS  '--import', join(...): fails, naming the file and line\nPASS  --import=${path}: fails, naming the file and line\nPASS  --import=C:\\path: fails, naming the file and line\nPASS  import ( with a space: fails, naming the file and line\nPASS  a plain default after || (review round 1): fails, naming the file and line\nPASS  a plain path after ??: fails, naming the file and line\nPASS  a ternary inside code written into a string (review round 1): fails, naming the file and line\nPASS  a built string ending in .href: fails, naming the file and line\nPASS  allowed form 1 passes\nPASS  allowed form 2 passes\nPASS  allowed form 3 passes\nPASS  allowed form 4 passes\nPASS  allowed form 5 passes\nPASS  allowed form 6 passes\nPASS  allowed form 7 passes\nPASS  allowed form 8 passes\nPASS  allowed form 9 passes\nPASS  allowed form 10 passes\nPASS  packages are not read\nPASS  a module loads from its file:// address\nPASS  a plain absolute path: loaded on linux (what the check guards against)\n\n31 passed, 1 failed\n"
+  },
+  "docs#17": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/benchmark-ours-tests.js",
+   "startedAt": "2026-11-15T04:58:07.766Z",
+   "finishedAt": "2026-11-15T04:58:08.085Z"
   }
  },
  "startedAt": "2026-11-15T04:56:38.253Z",
