@@ -206,6 +206,13 @@
   }
  },
  "startedAt": "2026-11-15T04:22:48.916Z",
- "finished": false,
- "setupMinutes": 1.48
+ "finished": true,
+ "setupMinutes": 1.48,
+ "ok": false,
+ "failed": [
+  "addons#32",
+  "overlayonoff#6",
+  "fixes#12"
+ ],
+ "finishedAt": "2026-11-15T06:06:15.130Z"
 }
