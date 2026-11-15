@@ -13,6 +13,15 @@
    "run": "node test/merge-order-tests.js",
    "startedAt": "2026-11-15T20:21:17.722Z",
    "finishedAt": "2026-11-15T20:21:18.271Z"
+  },
+  "docs#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.46,
+   "planned": 0.63,
+   "run": "node test/check-safety-crlf-tests.js",
+   "startedAt": "2026-11-15T20:21:19.545Z",
+   "finishedAt": "2026-11-15T20:21:47.316Z"
   }
  },
  "startedAt": "2026-11-15T20:20:04.424Z",
