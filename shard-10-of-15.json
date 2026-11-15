@@ -31,6 +31,15 @@
    "run": "node test/fixes-misses-tests.js",
    "startedAt": "2026-11-15T18:44:14.436Z",
    "finishedAt": "2026-11-15T18:44:14.635Z"
+  },
+  "quick#25": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 2,
+   "run": "node test/us-leads-tests.js",
+   "startedAt": "2026-11-15T18:44:15.688Z",
+   "finishedAt": "2026-11-15T18:44:16.703Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.885Z",
