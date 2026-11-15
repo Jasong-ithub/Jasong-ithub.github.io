@@ -197,6 +197,14 @@
   }
  },
  "startedAt": "2026-11-15T04:56:55.550Z",
- "finished": false,
- "setupMinutes": 1.1
+ "finished": true,
+ "setupMinutes": 1.1,
+ "ok": false,
+ "failed": [
+  "listed#4",
+  "listed#9",
+  "benchmark#9",
+  "fixes#8"
+ ],
+ "finishedAt": "2026-11-15T07:41:05.378Z"
 }
