@@ -13,6 +13,15 @@
    "run": "node tools/check-imports.mjs",
    "startedAt": "2026-11-15T18:44:37.830Z",
    "finishedAt": "2026-11-15T18:44:37.953Z"
+  },
+  "docs#22": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/no-review-tier-tests.js",
+   "startedAt": "2026-11-15T18:44:39.109Z",
+   "finishedAt": "2026-11-15T18:44:39.484Z"
   }
  },
  "startedAt": "2026-11-15T18:43:06.643Z",
