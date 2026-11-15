@@ -13,6 +13,15 @@
    "run": "node tools/check-tests-listed.mjs",
    "startedAt": "2026-11-15T18:44:43.943Z",
    "finishedAt": "2026-11-15T18:44:43.981Z"
+  },
+  "docs#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.11,
+   "planned": 0.18,
+   "run": "node test/coordination-log-tests.js",
+   "startedAt": "2026-11-15T18:44:45.055Z",
+   "finishedAt": "2026-11-15T18:44:51.821Z"
   }
  },
  "startedAt": "2026-11-15T18:43:07.320Z",
