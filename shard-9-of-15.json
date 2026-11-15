@@ -185,6 +185,15 @@
    "run": "node addons/fixes/test/wp-child-tests.js",
    "startedAt": "2026-11-15T06:47:37.215Z",
    "finishedAt": "2026-11-15T06:47:37.892Z"
+  },
+  "fixes#31": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.79,
+   "planned": 0.5,
+   "run": "node addons/fixes/test/theme-update-tests.js",
+   "startedAt": "2026-11-15T06:47:38.999Z",
+   "finishedAt": "2026-11-15T06:49:26.465Z"
   }
  },
  "startedAt": "2026-11-15T04:56:38.253Z",
