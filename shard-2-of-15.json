@@ -40,6 +40,15 @@
    "run": "node test/sample-figures-tests.js",
    "startedAt": "2026-11-15T20:05:00.756Z",
    "finishedAt": "2026-11-15T20:05:02.323Z"
+  },
+  "quick#51": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.17,
+   "planned": 2,
+   "run": "node test/handover-tests.js",
+   "startedAt": "2026-11-15T20:05:03.835Z",
+   "finishedAt": "2026-11-15T20:05:14.033Z"
   }
  },
  "startedAt": "2026-11-15T20:03:14.358Z",
