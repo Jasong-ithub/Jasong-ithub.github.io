@@ -182,6 +182,15 @@
    "run": "node addons/crosspage/test/run-tests.js",
    "startedAt": "2026-11-15T21:34:53.870Z",
    "finishedAt": "2026-11-15T21:35:42.808Z"
+  },
+  "addons#19": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node addons/visual/test/recipes-tests.js",
+   "startedAt": "2026-11-15T21:35:43.873Z",
+   "finishedAt": "2026-11-15T21:35:43.952Z"
   }
  },
  "startedAt": "2026-11-15T20:09:51.723Z",
