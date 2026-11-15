@@ -49,6 +49,15 @@
    "run": "node test/lead-compare-tests.js",
    "startedAt": "2026-11-15T20:32:27.602Z",
    "finishedAt": "2026-11-15T20:32:33.623Z"
+  },
+  "quick#20": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/request-limit-tests.js",
+   "startedAt": "2026-11-15T20:32:34.767Z",
+   "finishedAt": "2026-11-15T20:32:35.379Z"
   }
  },
  "startedAt": "2026-11-15T20:16:18.654Z",
