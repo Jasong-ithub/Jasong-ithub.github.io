@@ -181,6 +181,15 @@
    "run": "node addons/demo/test/run-tests.js",
    "startedAt": "2026-11-15T20:23:04.881Z",
    "finishedAt": "2026-11-15T20:26:08.682Z"
+  },
+  "everypage#18": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 18.6,
+   "planned": 19.35,
+   "run": "node test/no-accept-tests.js",
+   "startedAt": "2026-11-15T20:26:09.884Z",
+   "finishedAt": "2026-11-15T20:44:45.739Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.885Z",
