@@ -4,7 +4,17 @@
  "gateCore": 3,
  "commit": "21aade9b5c53e6d5786173967143f136927924e0",
  "plannedMinutes": 116,
- "items": {},
+ "items": {
+  "docs#4": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.11,
+   "planned": 0.13,
+   "run": "node tools/check-docs.mjs",
+   "startedAt": "2026-11-15T20:11:36.508Z",
+   "finishedAt": "2026-11-15T20:11:43.008Z"
+  }
+ },
  "startedAt": "2026-11-15T20:10:03.979Z",
  "finished": false,
  "setupMinutes": 1.51
