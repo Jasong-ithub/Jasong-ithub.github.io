@@ -23,6 +23,15 @@
    "run": "node test/benchmark-ours-tests.js",
    "startedAt": "2026-11-15T04:58:07.766Z",
    "finishedAt": "2026-11-15T04:58:08.085Z"
+  },
+  "docs#22": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.08,
+   "planned": 0.17,
+   "run": "node test/benchmark-unmatched-tests.js",
+   "startedAt": "2026-11-15T04:58:09.190Z",
+   "finishedAt": "2026-11-15T04:58:13.711Z"
   }
  },
  "startedAt": "2026-11-15T04:56:38.253Z",
