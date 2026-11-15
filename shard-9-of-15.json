@@ -32,6 +32,15 @@
    "run": "node test/benchmark-unmatched-tests.js",
    "startedAt": "2026-11-15T04:58:09.190Z",
    "finishedAt": "2026-11-15T04:58:13.711Z"
+  },
+  "quick#27": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/standard-law-tests.js",
+   "startedAt": "2026-11-15T04:58:14.775Z",
+   "finishedAt": "2026-11-15T04:58:15.429Z"
   }
  },
  "startedAt": "2026-11-15T04:56:38.253Z",
