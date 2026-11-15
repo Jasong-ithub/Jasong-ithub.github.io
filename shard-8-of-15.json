@@ -24,6 +24,15 @@
    "startedAt": "2026-11-15T04:58:04.139Z",
    "finishedAt": "2026-11-15T05:16:26.895Z",
    "tail": "$ CI=true GITHUB_ACTIONS=true A11Y_UNDER_TEST=1 node tools/check-safety.mjs\nSafety check: 2 problems (docs/review/round1-safety.txt):\n  S19  addons/fixes/lib/rules.js:645  ownContext/ownPage needs a written reason naming our copy, our own files or page, a local fixture, or the client's agreed test account sign-in or test line\n  S17  test/live-guard-tests.js  on/off our fixes: the fix engine was given the OFF run's findings, not the ON run's (OFF axe:button-name .search-icon, axe:image-alt img; given axe:button-name .search-icon, axe:image-alt img, form-error-none #f; ON only axe:button-name .uwy-hide)\n"
+  },
+  "docs#16": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 0.05,
+   "run": "node test/testshop-site-tests.js",
+   "startedAt": "2026-11-15T05:16:28.355Z",
+   "finishedAt": "2026-11-15T05:16:30.317Z"
   }
  },
  "startedAt": "2026-11-15T04:56:55.550Z",
