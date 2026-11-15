@@ -13,6 +13,15 @@
    "run": "node tools/check-keys.mjs --ci",
    "startedAt": "2026-11-15T20:24:41.042Z",
    "finishedAt": "2026-11-15T20:24:54.033Z"
+  },
+  "quick#12": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/governors-tests.js",
+   "startedAt": "2026-11-15T20:24:55.243Z",
+   "finishedAt": "2026-11-15T20:24:55.795Z"
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
