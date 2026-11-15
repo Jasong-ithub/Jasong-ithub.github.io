@@ -104,6 +104,20 @@
    "run": "node test/benchmark-unmatched-targets-tests.js",
    "startedAt": "2026-11-15T05:02:38.758Z",
    "finishedAt": "2026-11-15T05:02:41.634Z"
+  },
+  "realsitegate[chromium]#6:core:3/3": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 22.49,
+   "planned": 23.33,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "core:3/3",
+   "env": {
+    "A11Y_GATE_RUNS": "chromium",
+    "A11Y_GATE_PART": "core:3/3"
+   },
+   "startedAt": "2026-11-15T05:02:42.823Z",
+   "finishedAt": "2026-11-15T05:25:12.064Z"
   }
  },
  "startedAt": "2026-11-15T04:55:57.170Z",
