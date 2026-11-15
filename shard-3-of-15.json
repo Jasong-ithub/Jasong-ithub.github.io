@@ -67,6 +67,15 @@
    "run": "node test/check-agents-tests.js",
    "startedAt": "2026-11-15T18:48:10.785Z",
    "finishedAt": "2026-11-15T18:48:24.909Z"
+  },
+  "benchmark#17": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.09,
+   "planned": 2,
+   "run": "node tools/catalogue/check.mjs --online",
+   "startedAt": "2026-11-15T18:48:25.914Z",
+   "finishedAt": "2026-11-15T18:48:31.111Z"
   }
  },
  "startedAt": "2026-11-15T18:43:03.166Z",
