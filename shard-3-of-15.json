@@ -109,6 +109,15 @@
    "run": "node addons/documents/test/run-tests.js",
    "startedAt": "2026-11-15T21:41:58.334Z",
    "finishedAt": "2026-11-15T21:41:59.407Z"
+  },
+  "addons#23": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 4.15,
+   "planned": 2,
+   "run": "node addons/screenreader/test/run-tests.js",
+   "startedAt": "2026-11-15T21:42:00.437Z",
+   "finishedAt": "2026-11-15T21:46:09.415Z"
   }
  },
  "startedAt": "2026-11-15T19:59:24.757Z",
