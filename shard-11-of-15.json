@@ -142,6 +142,20 @@
    },
    "startedAt": "2026-11-15T05:25:38.889Z",
    "finishedAt": "2026-11-15T05:30:29.377Z"
+  },
+  "realsitegate[webkit-tablet]#6:core:2/3": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 9.55,
+   "planned": 23.33,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "core:2/3",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-tablet",
+    "A11Y_GATE_PART": "core:2/3"
+   },
+   "startedAt": "2026-11-15T05:30:30.526Z",
+   "finishedAt": "2026-11-15T05:40:03.392Z"
   }
  },
  "startedAt": "2026-11-15T04:22:33.930Z",
