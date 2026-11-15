@@ -22,6 +22,15 @@
    "run": "node test/benchmark-routes-tests.js",
    "startedAt": "2026-11-15T04:23:55.489Z",
    "finishedAt": "2026-11-15T04:23:55.836Z"
+  },
+  "quick#29": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 0.05,
+   "run": "node test/legal-details-tests.js",
+   "startedAt": "2026-11-15T04:23:57.177Z",
+   "finishedAt": "2026-11-15T04:23:58.270Z"
   }
  },
  "startedAt": "2026-11-15T04:22:37.476Z",
