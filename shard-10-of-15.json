@@ -172,6 +172,15 @@
    "run": "node addons/fixes/test/cap-worst-case-tests.js",
    "startedAt": "2026-11-15T22:03:52.741Z",
    "finishedAt": "2026-11-15T22:03:53.646Z"
+  },
+  "everypage#15": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 18.85,
+   "planned": 19.35,
+   "run": "node test/no-accept-tests.js",
+   "startedAt": "2026-11-15T22:03:54.843Z",
+   "finishedAt": "2026-11-15T22:22:46.125Z"
   }
  },
  "startedAt": "2026-11-15T20:20:04.424Z",
