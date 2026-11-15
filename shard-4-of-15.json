@@ -31,6 +31,15 @@
    "run": "node test/catalogue-tests.js",
    "startedAt": "2026-11-15T04:23:45.948Z",
    "finishedAt": "2026-11-15T04:23:49.861Z"
+  },
+  "quick#18": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 0.05,
+   "run": "node test/overlay-coverage-tests.js",
+   "startedAt": "2026-11-15T04:23:51.062Z",
+   "finishedAt": "2026-11-15T04:23:53.148Z"
   }
  },
  "startedAt": "2026-11-15T04:22:35.285Z",
