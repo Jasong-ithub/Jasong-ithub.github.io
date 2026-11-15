@@ -67,6 +67,15 @@
    "run": "node test/backup-tests.js",
    "startedAt": "2026-11-15T18:33:45.892Z",
    "finishedAt": "2026-11-15T18:33:45.951Z"
+  },
+  "quick#95": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.2,
+   "planned": 2,
+   "run": "node test/key-scan-tests.js",
+   "startedAt": "2026-11-15T18:33:47.002Z",
+   "finishedAt": "2026-11-15T18:33:59.291Z"
   }
  },
  "startedAt": "2026-11-15T18:31:44.903Z",
