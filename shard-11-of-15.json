@@ -146,6 +146,15 @@
    },
    "startedAt": "2026-11-15T19:34:21.151Z",
    "finishedAt": "2026-11-15T19:43:38.450Z"
+  },
+  "addons#11": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node addons/media/test/drafts-tests.js",
+   "startedAt": "2026-11-15T19:43:39.627Z",
+   "finishedAt": "2026-11-15T19:43:40.224Z"
   }
  },
  "startedAt": "2026-11-15T18:43:06.643Z",
