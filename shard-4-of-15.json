@@ -109,6 +109,15 @@
    "run": "node test/benchmark-scorer-fixes-tests.js",
    "startedAt": "2026-11-15T22:12:42.545Z",
    "finishedAt": "2026-11-15T22:12:45.941Z"
+  },
+  "addons#24": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.2,
+   "planned": 2,
+   "run": "node addons/screenreader/test/values-tests.js",
+   "startedAt": "2026-11-15T22:12:47.266Z",
+   "finishedAt": "2026-11-15T22:12:59.286Z"
   }
  },
  "startedAt": "2026-11-15T20:32:31.277Z",
