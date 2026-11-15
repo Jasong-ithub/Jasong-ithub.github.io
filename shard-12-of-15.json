@@ -186,6 +186,11 @@
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
- "finished": false,
- "setupMinutes": 1.24
+ "finished": true,
+ "setupMinutes": 1.24,
+ "ok": false,
+ "failed": [
+  "realsitegate[chromium]#6:core:2/3"
+ ],
+ "finishedAt": "2026-11-15T22:35:48.350Z"
 }
