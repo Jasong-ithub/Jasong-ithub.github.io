@@ -67,6 +67,15 @@
    "run": "node test/paid-limit-d325-tests.js",
    "startedAt": "2026-11-15T18:53:19.917Z",
    "finishedAt": "2026-11-15T18:53:19.965Z"
+  },
+  "quick#92": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/gate-signed-tests.js",
+   "startedAt": "2026-11-15T18:53:21.151Z",
+   "finishedAt": "2026-11-15T18:53:21.568Z"
   }
  },
  "startedAt": "2026-11-15T18:45:03.997Z",
