@@ -13,6 +13,15 @@
    "run": "node test/coordination-log-tests.js",
    "startedAt": "2026-11-15T04:56:57.245Z",
    "finishedAt": "2026-11-15T04:57:04.817Z"
+  },
+  "docs#19": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/realsite-gate-resume-tests.js",
+   "startedAt": "2026-11-15T04:57:06.025Z",
+   "finishedAt": "2026-11-15T04:57:06.700Z"
   }
  },
  "startedAt": "2026-11-15T04:55:57.170Z",
