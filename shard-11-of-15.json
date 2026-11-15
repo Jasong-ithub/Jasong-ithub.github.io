@@ -173,6 +173,15 @@
    "run": "node addons/login/test/run-tests.js",
    "startedAt": "2026-11-15T21:12:21.929Z",
    "finishedAt": "2026-11-15T21:12:56.661Z"
+  },
+  "addons#11": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node addons/media/test/drafts-tests.js",
+   "startedAt": "2026-11-15T21:12:57.693Z",
+   "finishedAt": "2026-11-15T21:12:58.288Z"
   }
  },
  "startedAt": "2026-11-15T20:09:55.064Z",
