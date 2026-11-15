@@ -22,6 +22,15 @@
    "run": "node test/publish-board-tests.js",
    "startedAt": "2026-11-15T18:59:35.991Z",
    "finishedAt": "2026-11-15T18:59:36.564Z"
+  },
+  "docs#28": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 0.05,
+   "run": "node test/catalogue-realsite-tests.js",
+   "startedAt": "2026-11-15T18:59:37.537Z",
+   "finishedAt": "2026-11-15T18:59:37.601Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.322Z",
