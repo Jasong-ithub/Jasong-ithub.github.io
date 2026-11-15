@@ -183,6 +183,15 @@
    "run": "node addons/display/test/run-tests.js",
    "startedAt": "2026-11-15T19:55:43.918Z",
    "finishedAt": "2026-11-15T19:56:01.345Z"
+  },
+  "overlayonoff#6": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 6.94,
+   "planned": 7.4,
+   "run": "node test/overlay-onoff-tests.js",
+   "startedAt": "2026-11-15T19:56:02.603Z",
+   "finishedAt": "2026-11-15T20:02:58.787Z"
   }
  },
  "startedAt": "2026-11-15T18:43:04.313Z",
