@@ -76,6 +76,20 @@
    "run": "node test/learn-pass2-group-a-tests.js",
    "startedAt": "2026-11-15T20:32:22.506Z",
    "finishedAt": "2026-11-15T20:44:57.450Z"
+  },
+  "realsitegate[chromium]#6:process": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 9.21,
+   "planned": 10,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "process",
+   "env": {
+    "A11Y_GATE_RUNS": "chromium",
+    "A11Y_GATE_PART": "process"
+   },
+   "startedAt": "2026-11-15T20:44:58.474Z",
+   "finishedAt": "2026-11-15T20:54:11.346Z"
   }
  },
  "startedAt": "2026-11-15T20:30:32.935Z",
