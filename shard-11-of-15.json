@@ -191,6 +191,15 @@
    "run": "node tools/font-set.mjs --prove-snapshot",
    "startedAt": "2026-11-15T19:47:15.581Z",
    "finishedAt": "2026-11-15T19:48:06.294Z"
+  },
+  "everypage#15": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.51,
+   "planned": 2.25,
+   "run": "node test/comparison-fixes-tests.js",
+   "startedAt": "2026-11-15T19:48:07.490Z",
+   "finishedAt": "2026-11-15T19:50:38.226Z"
   }
  },
  "startedAt": "2026-11-15T18:43:06.643Z",
