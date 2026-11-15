@@ -195,6 +195,12 @@
   }
  },
  "startedAt": "2026-11-15T20:09:48.323Z",
- "finished": false,
- "setupMinutes": 1.13
+ "finished": true,
+ "setupMinutes": 1.13,
+ "ok": false,
+ "failed": [
+  "benchmark#6",
+  "addons#10"
+ ],
+ "finishedAt": "2026-11-15T22:22:26.169Z"
 }
