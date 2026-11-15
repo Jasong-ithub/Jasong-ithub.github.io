@@ -60,6 +60,15 @@
    "run": "node test/request-limit-tests.js",
    "startedAt": "2026-11-15T05:16:44.662Z",
    "finishedAt": "2026-11-15T05:16:45.726Z"
+  },
+  "quick#42": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.13,
+   "planned": 2,
+   "run": "node test/public-sector-tests.js",
+   "startedAt": "2026-11-15T05:16:46.952Z",
+   "finishedAt": "2026-11-15T05:16:54.504Z"
   }
  },
  "startedAt": "2026-11-15T04:56:55.550Z",
