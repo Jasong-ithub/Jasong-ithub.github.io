@@ -40,6 +40,15 @@
    "run": "node test/us-case-list-tests.js",
    "startedAt": "2026-11-15T20:11:07.310Z",
    "finishedAt": "2026-11-15T20:11:09.350Z"
+  },
+  "quick#28": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/standard-law-tests.js",
+   "startedAt": "2026-11-15T20:11:10.848Z",
+   "finishedAt": "2026-11-15T20:11:11.611Z"
   }
  },
  "startedAt": "2026-11-15T20:09:48.323Z",
