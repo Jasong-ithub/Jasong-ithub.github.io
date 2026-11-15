@@ -4,7 +4,17 @@
  "gateCore": 3,
  "commit": "3a24d9dab917f1401e64b4145c04cfe3f9d03d28",
  "plannedMinutes": 117,
- "items": {},
+ "items": {
+  "quick#17": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 0.05,
+   "run": "node test/lead-batch-cap-tests.js",
+   "startedAt": "2026-11-15T19:56:19.909Z",
+   "finishedAt": "2026-11-15T19:56:20.012Z"
+  }
+ },
  "startedAt": "2026-11-15T19:55:24.189Z",
  "finished": false,
  "setupMinutes": 0.91
