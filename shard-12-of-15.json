@@ -31,6 +31,15 @@
    "run": "node test/lead-robots-tests.js",
    "startedAt": "2026-11-15T18:44:58.174Z",
    "finishedAt": "2026-11-15T18:45:02.257Z"
+  },
+  "quick#18": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 0.05,
+   "run": "node test/overlay-coverage-tests.js",
+   "startedAt": "2026-11-15T18:45:03.527Z",
+   "finishedAt": "2026-11-15T18:45:05.172Z"
   }
  },
  "startedAt": "2026-11-15T18:43:03.725Z",
