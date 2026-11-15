@@ -196,7 +196,7 @@
  },
  "startedAt": "2026-11-15T04:45:41.941Z",
  "finished": true,
- "setupMinutes": 1.53,
+ "setupMinutes": 1.3,
  "ok": false,
  "failed": [
   "docs#12",
