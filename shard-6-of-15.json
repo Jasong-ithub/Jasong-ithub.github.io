@@ -136,6 +136,15 @@
    "run": "node addons/copyjourney/test/run-tests.js",
    "startedAt": "2026-11-15T20:32:56.449Z",
    "finishedAt": "2026-11-15T20:34:23.927Z"
+  },
+  "fixes#11": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.25,
+   "planned": 0.27,
+   "run": "node addons/fixes/test/focused-proof-tests.js",
+   "startedAt": "2026-11-15T20:34:25.257Z",
+   "finishedAt": "2026-11-15T20:34:40.046Z"
   }
  },
  "startedAt": "2026-11-15T19:55:24.189Z",
