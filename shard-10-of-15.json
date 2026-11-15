@@ -195,6 +195,12 @@
   }
  },
  "startedAt": "2026-11-15T04:45:41.941Z",
- "finished": false,
- "setupMinutes": 1.53
+ "finished": true,
+ "setupMinutes": 1.53,
+ "ok": false,
+ "failed": [
+  "docs#12",
+  "everypage#15"
+ ],
+ "finishedAt": "2026-11-15T07:08:45.078Z"
 }
