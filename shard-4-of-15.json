@@ -121,6 +121,15 @@
    "run": "node addons/beyond/test/calls-tests.js",
    "startedAt": "2026-11-15T06:00:40.799Z",
    "finishedAt": "2026-11-15T06:01:48.173Z"
+  },
+  "fixes#18": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node addons/fixes/test/fresh-copy-tests.js",
+   "startedAt": "2026-11-15T06:01:49.269Z",
+   "finishedAt": "2026-11-15T06:01:49.314Z"
   }
  },
  "startedAt": "2026-11-15T04:22:35.285Z",
