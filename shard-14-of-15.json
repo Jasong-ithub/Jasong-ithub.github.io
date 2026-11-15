@@ -22,6 +22,15 @@
    "run": "node test/merge-order-tests.js",
    "startedAt": "2026-11-15T18:44:18.931Z",
    "finishedAt": "2026-11-15T18:44:19.427Z"
+  },
+  "quick#11": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 0.05,
+   "run": "node test/example-report-tests.js",
+   "startedAt": "2026-11-15T18:44:20.502Z",
+   "finishedAt": "2026-11-15T18:44:20.637Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.381Z",
