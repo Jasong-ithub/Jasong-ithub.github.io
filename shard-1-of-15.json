@@ -40,6 +40,15 @@
    "run": "A11Y_GATE_AI=off node test/payment-pack-tests.js",
    "startedAt": "2026-11-15T18:32:47.620Z",
    "finishedAt": "2026-11-15T18:32:48.461Z"
+  },
+  "quick#65": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/models-tests.js",
+   "startedAt": "2026-11-15T18:32:49.736Z",
+   "finishedAt": "2026-11-15T18:32:50.049Z"
   }
  },
  "startedAt": "2026-11-15T18:31:34.328Z",
