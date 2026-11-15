@@ -163,6 +163,15 @@
    "run": "node addons/interaction/test/run-tests.js",
    "startedAt": "2026-11-15T20:18:20.514Z",
    "finishedAt": "2026-11-15T20:19:16.075Z"
+  },
+  "addons#17": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 3.78,
+   "planned": 2,
+   "run": "node addons/visual/test/run-tests.js",
+   "startedAt": "2026-11-15T20:19:17.191Z",
+   "finishedAt": "2026-11-15T20:23:03.751Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.885Z",
