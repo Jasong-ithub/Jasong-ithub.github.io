@@ -183,6 +183,15 @@
    "run": "node addons/crosspage/test/run-tests.js",
    "startedAt": "2026-11-15T06:06:03.471Z",
    "finishedAt": "2026-11-15T06:06:53.266Z"
+  },
+  "addons#22": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.41,
+   "planned": 2,
+   "run": "node addons/keyboard/test/batch2-tests.js",
+   "startedAt": "2026-11-15T06:06:54.511Z",
+   "finishedAt": "2026-11-15T06:08:19.286Z"
   }
  },
  "startedAt": "2026-11-15T04:55:57.170Z",
