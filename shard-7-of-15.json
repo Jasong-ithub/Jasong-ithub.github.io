@@ -110,6 +110,15 @@
    },
    "startedAt": "2026-11-15T21:50:54.731Z",
    "finishedAt": "2026-11-15T22:11:28.191Z"
+  },
+  "addons#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.26,
+   "planned": 2,
+   "run": "node addons/content/test/run-tests.js",
+   "startedAt": "2026-11-15T22:11:29.414Z",
+   "finishedAt": "2026-11-15T22:12:45.025Z"
   }
  },
  "startedAt": "2026-11-15T20:25:53.905Z",
