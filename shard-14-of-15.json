@@ -174,6 +174,15 @@
    "run": "node addons/timing/test/batch2-tests.js",
    "startedAt": "2026-11-15T20:53:16.615Z",
    "finishedAt": "2026-11-15T21:01:20.732Z"
+  },
+  "addons#31": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.1,
+   "planned": 2,
+   "run": "node addons/emails/test/run-tests.js",
+   "startedAt": "2026-11-15T21:01:21.772Z",
+   "finishedAt": "2026-11-15T21:01:27.497Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.381Z",
