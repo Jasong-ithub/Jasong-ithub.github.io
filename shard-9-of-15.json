@@ -132,6 +132,20 @@
    },
    "startedAt": "2026-11-15T21:02:23.805Z",
    "finishedAt": "2026-11-15T21:11:46.769Z"
+  },
+  "realsitegate[webkit-phone]#6:keyboard": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 49.86,
+   "planned": 15,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "keyboard",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "keyboard"
+   },
+   "startedAt": "2026-11-15T21:11:47.743Z",
+   "finishedAt": "2026-11-15T22:01:39.070Z"
   }
  },
  "startedAt": "2026-11-15T20:09:48.323Z",
