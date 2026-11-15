@@ -22,6 +22,15 @@
    "run": "node test/compare-tests.js",
    "startedAt": "2026-11-15T20:33:45.897Z",
    "finishedAt": "2026-11-15T20:33:46.509Z"
+  },
+  "docs#24": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.07,
+   "planned": 0.1,
+   "run": "node test/catalogue-tests.js",
+   "startedAt": "2026-11-15T20:33:47.785Z",
+   "finishedAt": "2026-11-15T20:33:52.283Z"
   }
  },
  "startedAt": "2026-11-15T20:32:31.277Z",
