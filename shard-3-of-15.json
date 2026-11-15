@@ -76,6 +76,20 @@
    "run": "node tools/catalogue/check.mjs --online",
    "startedAt": "2026-11-15T18:48:25.914Z",
    "finishedAt": "2026-11-15T18:48:31.111Z"
+  },
+  "realsitegate[webkit]#6:timing": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 96.84,
+   "planned": 100,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "timing",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit",
+    "A11Y_GATE_PART": "timing"
+   },
+   "startedAt": "2026-11-15T18:48:32.114Z",
+   "finishedAt": "2026-11-15T20:25:22.740Z"
   }
  },
  "startedAt": "2026-11-15T18:43:03.166Z",
