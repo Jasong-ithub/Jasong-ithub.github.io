@@ -67,6 +67,15 @@
    "run": "node test/gate-signed-tests.js",
    "startedAt": "2026-11-15T04:30:34.149Z",
    "finishedAt": "2026-11-15T04:30:34.592Z"
+  },
+  "benchmark#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 10.04,
+   "planned": 2,
+   "run": "node test/learn-pass2-tests.js",
+   "startedAt": "2026-11-15T04:30:35.672Z",
+   "finishedAt": "2026-11-15T04:40:37.806Z"
   }
  },
  "startedAt": "2026-11-15T04:22:34.993Z",
