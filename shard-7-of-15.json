@@ -31,6 +31,15 @@
    "run": "node test/client-approvals-tests.js",
    "startedAt": "2026-11-15T20:27:34.351Z",
    "finishedAt": "2026-11-15T20:27:34.947Z"
+  },
+  "quick#57": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 7.19,
+   "planned": 2,
+   "run": "node test/overlay-report-tests.js",
+   "startedAt": "2026-11-15T20:27:36.207Z",
+   "finishedAt": "2026-11-15T20:34:47.548Z"
   }
  },
  "startedAt": "2026-11-15T20:25:53.905Z",
