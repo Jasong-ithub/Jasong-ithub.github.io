@@ -166,6 +166,15 @@
    "run": "node addons/issues/test/run-tests.js",
    "startedAt": "2026-11-15T20:38:44.086Z",
    "finishedAt": "2026-11-15T20:41:28.571Z"
+  },
+  "fixes#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node addons/fixes/test/cap-worst-case-tests.js",
+   "startedAt": "2026-11-15T20:41:29.614Z",
+   "finishedAt": "2026-11-15T20:41:30.370Z"
   }
  },
  "startedAt": "2026-11-15T18:45:03.997Z",
