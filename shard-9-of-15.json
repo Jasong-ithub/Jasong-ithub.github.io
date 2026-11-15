@@ -40,6 +40,15 @@
    "run": "node test/us-case-list-tests.js",
    "startedAt": "2026-11-15T18:46:46.093Z",
    "finishedAt": "2026-11-15T18:46:47.825Z"
+  },
+  "quick#47": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.15,
+   "planned": 2,
+   "run": "node test/safe-live-page-tests.js",
+   "startedAt": "2026-11-15T18:46:48.951Z",
+   "finishedAt": "2026-11-15T18:48:57.686Z"
   }
  },
  "startedAt": "2026-11-15T18:45:03.997Z",
