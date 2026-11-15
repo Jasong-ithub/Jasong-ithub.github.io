@@ -49,6 +49,15 @@
    "run": "node test/standard-law-tests.js",
    "startedAt": "2026-11-15T20:11:10.848Z",
    "finishedAt": "2026-11-15T20:11:11.611Z"
+  },
+  "quick#47": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.24,
+   "planned": 2,
+   "run": "node test/safe-live-page-tests.js",
+   "startedAt": "2026-11-15T20:11:13.038Z",
+   "finishedAt": "2026-11-15T20:13:27.604Z"
   }
  },
  "startedAt": "2026-11-15T20:09:48.323Z",
