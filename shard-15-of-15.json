@@ -100,6 +100,20 @@
    },
    "startedAt": "2026-11-15T18:47:55.049Z",
    "finishedAt": "2026-11-15T18:58:02.515Z"
+  },
+  "realsitegate[firefox]#6:interaction": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 7.75,
+   "planned": 10,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "interaction",
+   "env": {
+    "A11Y_GATE_RUNS": "firefox",
+    "A11Y_GATE_PART": "interaction"
+   },
+   "startedAt": "2026-11-15T18:58:03.803Z",
+   "finishedAt": "2026-11-15T19:05:48.854Z"
   }
  },
  "startedAt": "2026-11-15T18:43:04.313Z",
