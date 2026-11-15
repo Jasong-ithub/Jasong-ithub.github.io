@@ -31,6 +31,15 @@
    "run": "node test/published-compare-tests.js",
    "startedAt": "2026-11-15T04:59:25.086Z",
    "finishedAt": "2026-11-15T04:59:26.668Z"
+  },
+  "quick#58": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.14,
+   "planned": 2,
+   "run": "node addons/emails/test/views-tests.js",
+   "startedAt": "2026-11-15T04:59:27.690Z",
+   "finishedAt": "2026-11-15T04:59:36.227Z"
   }
  },
  "startedAt": "2026-11-15T04:57:54.581Z",
