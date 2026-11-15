@@ -113,6 +113,20 @@
    },
    "startedAt": "2026-11-15T20:36:10.242Z",
    "finishedAt": "2026-11-15T20:48:40.578Z"
+  },
+  "realsitegate[webkit]#6:interaction": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 7.68,
+   "planned": 10,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "interaction",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit",
+    "A11Y_GATE_PART": "interaction"
+   },
+   "startedAt": "2026-11-15T20:48:41.735Z",
+   "finishedAt": "2026-11-15T20:56:22.239Z"
   }
  },
  "startedAt": "2026-11-15T20:09:55.064Z",
