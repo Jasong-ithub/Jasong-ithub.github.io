@@ -31,6 +31,15 @@
    "run": "node test/report-fixes-tests.js",
    "startedAt": "2026-11-15T18:44:40.583Z",
    "finishedAt": "2026-11-15T18:44:41.541Z"
+  },
+  "quick#40": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 2,
+   "run": "node test/demo-host-tests.js",
+   "startedAt": "2026-11-15T18:44:42.714Z",
+   "finishedAt": "2026-11-15T18:44:43.626Z"
   }
  },
  "startedAt": "2026-11-15T18:43:06.643Z",
