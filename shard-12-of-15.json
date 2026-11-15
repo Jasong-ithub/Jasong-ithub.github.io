@@ -123,6 +123,20 @@
    },
    "startedAt": "2026-11-15T19:13:51.746Z",
    "finishedAt": "2026-11-15T19:25:54.481Z"
+  },
+  "realsitegate[webkit]#6:process": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 9.32,
+   "planned": 10,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "process",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit",
+    "A11Y_GATE_PART": "process"
+   },
+   "startedAt": "2026-11-15T19:25:55.799Z",
+   "finishedAt": "2026-11-15T19:35:14.757Z"
   }
  },
  "startedAt": "2026-11-15T18:43:03.725Z",
