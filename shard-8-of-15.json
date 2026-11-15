@@ -76,6 +76,15 @@
    "run": "node test/live-checkout-tests.js",
    "startedAt": "2026-11-15T18:59:51.427Z",
    "finishedAt": "2026-11-15T19:03:40.367Z"
+  },
+  "quick#101": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/quick-local-tests.js",
+   "startedAt": "2026-11-15T19:03:41.420Z",
+   "finishedAt": "2026-11-15T19:03:41.792Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.322Z",
