@@ -67,6 +67,15 @@
    "run": "node test/public-repo-rule-tests.js",
    "startedAt": "2026-11-15T18:44:50.005Z",
    "finishedAt": "2026-11-15T18:44:50.231Z"
+  },
+  "quick#100": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/heads-of-terms-tests.js",
+   "startedAt": "2026-11-15T18:44:51.360Z",
+   "finishedAt": "2026-11-15T18:44:51.400Z"
   }
  },
  "startedAt": "2026-11-15T18:43:06.643Z",
