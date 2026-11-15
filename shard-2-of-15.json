@@ -13,6 +13,15 @@
    "run": "node test/check-docs-tests.js",
    "startedAt": "2026-11-15T20:04:38.745Z",
    "finishedAt": "2026-11-15T20:04:48.933Z"
+  },
+  "docs#27": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.06,
+   "planned": 0.05,
+   "run": "node test/fixes-starter-drop-tests.js",
+   "startedAt": "2026-11-15T20:04:50.120Z",
+   "finishedAt": "2026-11-15T20:04:53.843Z"
   }
  },
  "startedAt": "2026-11-15T20:03:14.358Z",
