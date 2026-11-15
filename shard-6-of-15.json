@@ -154,6 +154,15 @@
    "run": "node addons/fixes/test/final-check-journal-tests.js",
    "startedAt": "2026-11-15T20:34:41.454Z",
    "finishedAt": "2026-11-15T20:35:48.121Z"
+  },
+  "everypage#17": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.6,
+   "planned": 2.47,
+   "run": "node test/consent-modal-tests.js",
+   "startedAt": "2026-11-15T20:35:49.383Z",
+   "finishedAt": "2026-11-15T20:38:25.108Z"
   }
  },
  "startedAt": "2026-11-15T19:55:24.189Z",
