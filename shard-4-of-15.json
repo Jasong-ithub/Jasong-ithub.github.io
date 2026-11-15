@@ -139,6 +139,11 @@
   }
  },
  "startedAt": "2026-11-15T20:32:31.277Z",
- "finished": false,
- "setupMinutes": 1.2
+ "finished": true,
+ "setupMinutes": 1.2,
+ "ok": false,
+ "failed": [
+  "realsitegate[webkit-phone]#6:timing"
+ ],
+ "finishedAt": "2026-11-15T22:15:10.494Z"
 }
