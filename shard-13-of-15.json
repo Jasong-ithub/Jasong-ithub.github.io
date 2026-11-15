@@ -50,6 +50,15 @@
    "run": "node test/pricing-tests.js",
    "startedAt": "2026-11-15T05:02:16.941Z",
    "finishedAt": "2026-11-15T05:02:18.302Z"
+  },
+  "quick#33": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/client-list-tests.js",
+   "startedAt": "2026-11-15T05:02:19.393Z",
+   "finishedAt": "2026-11-15T05:02:19.888Z"
   }
  },
  "startedAt": "2026-11-15T04:55:57.170Z",
