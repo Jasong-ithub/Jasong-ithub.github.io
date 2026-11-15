@@ -22,6 +22,15 @@
    "run": "node test/preflight-tests.js",
    "startedAt": "2026-11-15T04:57:18.101Z",
    "finishedAt": "2026-11-15T04:57:23.317Z"
+  },
+  "quick#38": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.51,
+   "planned": 2,
+   "run": "node test/sending-sim-tests.js",
+   "startedAt": "2026-11-15T04:57:24.428Z",
+   "finishedAt": "2026-11-15T04:59:54.744Z"
   }
  },
  "startedAt": "2026-11-15T04:55:59.437Z",
