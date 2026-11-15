@@ -22,6 +22,15 @@
    "run": "node test/example-report-tests.js",
    "startedAt": "2026-11-15T20:31:52.308Z",
    "finishedAt": "2026-11-15T20:31:52.445Z"
+  },
+  "quick#24": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/business-records-tests.js",
+   "startedAt": "2026-11-15T20:31:53.469Z",
+   "finishedAt": "2026-11-15T20:31:53.532Z"
   }
  },
  "startedAt": "2026-11-15T20:30:32.935Z",
