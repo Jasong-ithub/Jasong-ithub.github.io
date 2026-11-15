@@ -127,6 +127,15 @@
    "run": "node addons/timing/test/batch2-recipes-tests.js",
    "startedAt": "2026-11-15T20:32:55.018Z",
    "finishedAt": "2026-11-15T20:32:55.093Z"
+  },
+  "addons#30": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.46,
+   "planned": 2,
+   "run": "node addons/copyjourney/test/run-tests.js",
+   "startedAt": "2026-11-15T20:32:56.449Z",
+   "finishedAt": "2026-11-15T20:34:23.927Z"
   }
  },
  "startedAt": "2026-11-15T19:55:24.189Z",
