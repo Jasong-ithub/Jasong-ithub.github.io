@@ -4,7 +4,17 @@
  "gateCore": 3,
  "commit": "3a24d9dab917f1401e64b4145c04cfe3f9d03d28",
  "plannedMinutes": 117,
- "items": {},
+ "items": {
+  "docs#17": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 0.05,
+   "run": "node test/testshop-site-tests.js",
+   "startedAt": "2026-11-15T18:44:21.884Z",
+   "finishedAt": "2026-11-15T18:44:23.229Z"
+  }
+ },
  "startedAt": "2026-11-15T18:43:03.166Z",
  "finished": false,
  "setupMinutes": 1.29
