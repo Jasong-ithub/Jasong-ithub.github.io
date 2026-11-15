@@ -165,6 +165,15 @@
    "run": "node test/ocr-close-race-tests.js",
    "startedAt": "2026-11-15T22:03:58.073Z",
    "finishedAt": "2026-11-15T22:04:04.266Z"
+  },
+  "addons#33": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.77,
+   "planned": 2,
+   "run": "node addons/issues/test/run-tests.js",
+   "startedAt": "2026-11-15T22:04:05.372Z",
+   "finishedAt": "2026-11-15T22:06:51.284Z"
   }
  },
  "startedAt": "2026-11-15T20:09:48.323Z",
