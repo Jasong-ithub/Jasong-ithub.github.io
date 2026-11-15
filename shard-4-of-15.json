@@ -127,6 +127,15 @@
    "run": "node test/browser-launch-tests.js",
    "startedAt": "2026-11-15T22:13:00.597Z",
    "finishedAt": "2026-11-15T22:13:25.958Z"
+  },
+  "everypage#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.7,
+   "planned": 1.68,
+   "run": "node test/council-fixes-tests.js",
+   "startedAt": "2026-11-15T22:13:27.322Z",
+   "finishedAt": "2026-11-15T22:15:09.161Z"
   }
  },
  "startedAt": "2026-11-15T20:32:31.277Z",
