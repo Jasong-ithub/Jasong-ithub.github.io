@@ -118,6 +118,15 @@
    "run": "node test/overlay-page-choice-tests.js",
    "startedAt": "2026-11-15T20:15:44.555Z",
    "finishedAt": "2026-11-15T20:15:46.366Z"
+  },
+  "fixes#15": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.22,
+   "planned": 0.25,
+   "run": "node addons/fixes/test/proof-remote-tests.js",
+   "startedAt": "2026-11-15T20:15:47.732Z",
+   "finishedAt": "2026-11-15T20:16:01.229Z"
   }
  },
  "startedAt": "2026-11-15T18:31:34.328Z",
