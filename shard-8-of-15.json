@@ -120,6 +120,20 @@
    },
    "startedAt": "2026-11-15T05:20:02.251Z",
    "finishedAt": "2026-11-15T05:32:53.290Z"
+  },
+  "realsitegate[webkit-tablet]#6:interaction": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 7.79,
+   "planned": 10,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "interaction",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-tablet",
+    "A11Y_GATE_PART": "interaction"
+   },
+   "startedAt": "2026-11-15T05:32:54.570Z",
+   "finishedAt": "2026-11-15T05:40:42.149Z"
   }
  },
  "startedAt": "2026-11-15T04:56:55.550Z",
