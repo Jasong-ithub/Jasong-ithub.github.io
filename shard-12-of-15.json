@@ -58,6 +58,15 @@
    "run": "node test/github-minutes-tests.js",
    "startedAt": "2026-11-15T20:25:08.248Z",
    "finishedAt": "2026-11-15T20:25:08.318Z"
+  },
+  "quick#94": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/incident-affected-tests.js",
+   "startedAt": "2026-11-15T20:25:09.452Z",
+   "finishedAt": "2026-11-15T20:25:09.646Z"
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
