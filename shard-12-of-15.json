@@ -165,6 +165,15 @@
    "run": "node addons/visual/test/not-tested-tests.js",
    "startedAt": "2026-11-15T22:21:41.385Z",
    "finishedAt": "2026-11-15T22:23:00.397Z"
+  },
+  "overlayonoff#8": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 10.24,
+   "planned": 2,
+   "run": "node test/overlay-person-tests.js",
+   "startedAt": "2026-11-15T22:23:01.466Z",
+   "finishedAt": "2026-11-15T22:33:16.144Z"
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
