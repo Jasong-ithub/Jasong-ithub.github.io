@@ -164,6 +164,15 @@
    "run": "node addons/keyboard/test/gaps-tests.js",
    "startedAt": "2026-11-15T20:34:48.345Z",
    "finishedAt": "2026-11-15T20:39:57.838Z"
+  },
+  "everypage#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.67,
+   "planned": 1.52,
+   "run": "node test/free-audit-tests.js",
+   "startedAt": "2026-11-15T20:39:58.949Z",
+   "finishedAt": "2026-11-15T20:41:39.254Z"
   }
  },
  "startedAt": "2026-11-15T18:46:55.824Z",
