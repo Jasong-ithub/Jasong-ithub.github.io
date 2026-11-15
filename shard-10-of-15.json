@@ -41,6 +41,15 @@
    "run": "node test/us-case-list-tests.js",
    "startedAt": "2026-11-15T04:47:43.129Z",
    "finishedAt": "2026-11-15T04:47:44.804Z"
+  },
+  "quick#47": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 2,
+   "run": "node test/site-reports-tests.js",
+   "startedAt": "2026-11-15T04:47:45.832Z",
+   "finishedAt": "2026-11-15T04:47:46.813Z"
   }
  },
  "startedAt": "2026-11-15T04:45:41.941Z",
