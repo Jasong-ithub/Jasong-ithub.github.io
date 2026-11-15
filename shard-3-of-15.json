@@ -118,6 +118,15 @@
    "run": "node addons/screenreader/test/run-tests.js",
    "startedAt": "2026-11-15T21:42:00.437Z",
    "finishedAt": "2026-11-15T21:46:09.415Z"
+  },
+  "everypage#16": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 4.5,
+   "planned": 2,
+   "run": "node test/settle-d496a-tests.js",
+   "startedAt": "2026-11-15T21:46:11.311Z",
+   "finishedAt": "2026-11-15T21:50:41.421Z"
   }
  },
  "startedAt": "2026-11-15T19:59:24.757Z",
