@@ -49,6 +49,15 @@
    "run": "node test/ai-budget-d277-tests.js",
    "startedAt": "2026-11-15T20:25:07.009Z",
    "finishedAt": "2026-11-15T20:25:07.071Z"
+  },
+  "quick#79": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/github-minutes-tests.js",
+   "startedAt": "2026-11-15T20:25:08.248Z",
+   "finishedAt": "2026-11-15T20:25:08.318Z"
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
