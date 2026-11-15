@@ -118,6 +118,15 @@
    "run": "node addons/crosspage/test/run-tests.js",
    "startedAt": "2026-11-15T20:22:29.551Z",
    "finishedAt": "2026-11-15T20:23:18.495Z"
+  },
+  "addons#24": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.2,
+   "planned": 2,
+   "run": "node addons/screenreader/test/values-tests.js",
+   "startedAt": "2026-11-15T20:23:19.702Z",
+   "finishedAt": "2026-11-15T20:23:31.456Z"
   }
  },
  "startedAt": "2026-11-15T18:43:07.320Z",
