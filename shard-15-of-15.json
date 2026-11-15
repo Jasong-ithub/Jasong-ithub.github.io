@@ -194,6 +194,15 @@
    "startedAt": "2026-11-15T06:05:21.621Z",
    "finishedAt": "2026-11-15T06:06:11.970Z",
    "tail": "PASS  the final check counts a new A or AA problem of a lesser tier (a warning), and not advice\n\n== a fix's proof fails on ANY new WCAG A or AA problem, named (lib/verify.js isNewProblem)\nPASS  the proof fails and tells the fixer each new problem by name (3 new)\nPASS  advice (best practice) and items waiting for a person do not fail a proof\nPASS  isNewProblem: A or AA of any tier but info; AAA and info never\n\n== the fixer is told the three causes (lib/fixer.js, lib/recipes.js)\nPASS  the rules every fix is made under name each cause of the live run's 41 new problems\nPASS  the list recipe and the keyboard recipe say the same\n\n== the engine: a fix proved by a focused test, then held by the full final check (lib/engine.js)\nFAIL  a keyboard fix: proved by a focused test, with the full test before and the full final check (0, 8 sections left out per test; status held)\nFAIL  a fix that breaks the phone layout passes its focused proof, and the full final check holds it back, naming the new problem (held: Held by the design kept gate: the look could not be compared on screen: https://shop.example/ could not be shown at 1280 px wide after the change; https://shop.example/ could not be shown at 390 px wide after the change)\nPASS  the held-back change is undone in the working copy\nFAIL  a fix whose page's full final test times out is unverified, never fixed, and the totals say so (held: Held by the design kept gate: the look could not be compared on screen: https://shop.example/ could not be shown at 1280 px wide after the change; https://shop.example/ could not be shown at 390 px wide after the change)\n\n== the real page test leaves out only what it is asked to (src/scan.js)\nPASS  a full page test runs every slow section\nPASS  a focused one leaves out the slow sections asked for, and only those (a quick section such as axe cannot be left out)\nPASS  each finding knows its section, and the section is never saved with it\nPASS  everything the quick sections find in a full test, the focused test finds too (10 findings)\n\n3 failed, 26 passed\n"
+  },
+  "fixes#23": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node addons/fixes/test/final-pass-tests.js",
+   "startedAt": "2026-11-15T06:06:13.186Z",
+   "finishedAt": "2026-11-15T06:06:13.879Z"
   }
  },
  "startedAt": "2026-11-15T04:22:48.916Z",
