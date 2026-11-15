@@ -96,6 +96,20 @@
    "startedAt": "2026-11-15T20:59:55.583Z",
    "finishedAt": "2026-11-15T21:50:53.521Z",
    "tail": "PASS  shop-forms.html: no definite failure (none)\nFAIL  shop-widgets.html: no definite failure (kb-no-visible-focus-opened 2.4.7 #acts-2 > button:nth-of-type(3))\nPASS  sign-in-with-provider.html: no definite failure (none)\nPASS  sign-up-captcha.html: no definite failure (none)\nPASS  single-page-link-list.html: no definite failure (none)\nPASS  slick-carousel.html: no definite failure (none)\nPASS  software-product-section.html: no definite failure (none)\nPASS  stats-row.html: no definite failure (none)\nPASS  swiper-carousel.html: no definite failure (none)\nPASS  tabindex-forms.html: no definite failure (none)\nPASS  target-size-exceptions.html: no definite failure (none)\nPASS  testimonials.html: no definite failure (none)\nPASS  ticker-carousel.html: no definite failure (none)\nPASS  title-article-prefix.html: no definite failure (none)\nPASS  title-index-page.html: no definite failure (none)\nPASS  title-products-listing.html: no definite failure (none)\nPASS  urgency-beside-live.html: no definite failure (none)\nReal-site gate (D391): FAILS for its part keyboard only (results: /tmp/realsite-gate-test-17983.json). 61 pages in firefox; definite failures 4; pages that could not be tested in full 0.\n  FALSE ALARM account-actions.html: kb-no-visible-focus-opened (2.4.7, firefox keyboard) on #confirm-delete > button:nth-of-type(2): \"Yes, delete my account\" in the dialog opened by \"Delete my account\" shows no visible change when it has keyboard focus\n  FALSE ALARM countdown-split.html: kb-char-key-shortcut (2.1.4, firefox keyboard) on the page: Single character keys act as shortcuts with nothing focused: \"Y\" changed the page\n  FALSE ALARM menu-button-shop.html: kb-no-visible-focus-opened (2.4.7, firefox keyboard) on #site-menu > ul > li:nth-of-type(3) > a: \"Privacy\" in the panel opened by \"Menu\" shows no visible change when it has keyboard focus\n  FALSE ALARM shop-widgets.html: kb-no-visible-focus-opened (2.4.7, firefox keyboard) on #acts-2 > button:nth-of-type(3): \"Move Leather gloves down\" in the panel opened by \"More actions for Leather gloves\" shows no visible change when it has keyboard focus\n\n4 FAILED\n"
+  },
+  "realsitegate[webkit-phone]#6:visual": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 20.56,
+   "planned": 20,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "visual",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "visual"
+   },
+   "startedAt": "2026-11-15T21:50:54.731Z",
+   "finishedAt": "2026-11-15T22:11:28.191Z"
   }
  },
  "startedAt": "2026-11-15T20:25:53.905Z",
