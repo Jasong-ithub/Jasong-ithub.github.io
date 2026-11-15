@@ -210,6 +210,15 @@
    "run": "node addons/fixes/test/press-guard-tests.js",
    "startedAt": "2026-11-15T05:56:28.066Z",
    "finishedAt": "2026-11-15T05:58:48.856Z"
+  },
+  "everypage#12": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.53,
+   "planned": 2.25,
+   "run": "node test/comparison-fixes-tests.js",
+   "startedAt": "2026-11-15T05:58:50.021Z",
+   "finishedAt": "2026-11-15T06:01:22.079Z"
   }
  },
  "startedAt": "2026-11-15T04:22:33.930Z",
