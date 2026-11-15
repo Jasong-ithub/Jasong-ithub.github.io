@@ -95,6 +95,15 @@
    "run": "node test/key-scan-tests.js",
    "startedAt": "2026-11-15T05:02:26.083Z",
    "finishedAt": "2026-11-15T05:02:37.309Z"
+  },
+  "benchmark#16": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.05,
+   "planned": 2,
+   "run": "node test/benchmark-unmatched-targets-tests.js",
+   "startedAt": "2026-11-15T05:02:38.758Z",
+   "finishedAt": "2026-11-15T05:02:41.634Z"
   }
  },
  "startedAt": "2026-11-15T04:55:57.170Z",
