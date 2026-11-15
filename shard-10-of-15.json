@@ -40,6 +40,15 @@
    "run": "node test/us-leads-tests.js",
    "startedAt": "2026-11-15T20:21:50.437Z",
    "finishedAt": "2026-11-15T20:21:51.875Z"
+  },
+  "quick#46": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.56,
+   "planned": 2,
+   "run": "node test/robots-redirect-tests.js",
+   "startedAt": "2026-11-15T20:21:53.124Z",
+   "finishedAt": "2026-11-15T20:22:26.468Z"
   }
  },
  "startedAt": "2026-11-15T20:20:04.424Z",
