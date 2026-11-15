@@ -68,6 +68,16 @@
    "run": "node test/ai-answers-tests.js",
    "startedAt": "2026-11-15T04:24:02.256Z",
    "finishedAt": "2026-11-15T04:24:04.124Z"
+  },
+  "quick#84": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/public-repo-rule-tests.js",
+   "startedAt": "2026-11-15T04:24:05.261Z",
+   "finishedAt": "2026-11-15T04:24:05.790Z",
+   "tail": "PASS  origin https://github.com/acme/tool.git: github ({\"kind\":\"github\",\"repo\":\"acme/tool\",\"repos\":[\"acme/tool\"]})\nPASS  origin git@github.com:acme/tool.git: github ({\"kind\":\"github\",\"repo\":\"acme/tool\",\"repos\":[\"acme/tool\"]})\nPASS  origin ssh://git@github.com/acme/tool: github ({\"kind\":\"github\",\"repo\":\"acme/tool\",\"repos\":[\"acme/tool\"]})\nPASS  origin github.example:acme/tool.git: other ({\"kind\":\"other\",\"url\":\"github.example:acme/tool.git\"})\nPASS  origin https://gitlab.example/acme/tool.git: other ({\"kind\":\"other\",\"url\":\"https://gitlab.example/acme/tool.git\"})\nPASS  no origin: not known (so refused unless every address is ours)\nPASS  a client's address to a public GitHub repository: refused\nPASS  a client's address where the visibility is not known: refused\nPASS  a client's address to the private repository: allowed\nPASS  a client's address to another host: refused (its visibility is not known)\nPASS  a folder on this machine (nothing leaves it): allowed\nPASS  a pushurl apart from the fetch address is the one checked ({\"kind\":\"github\",\"repo\":\"acme/public\",\"repos\":[\"acme/public\"]})\nPASS  several push addresses, one on GitHub and one here: not known, so refused\nPASS  an address in capitals is still found and refused\nPASS  only the lines the push adds count: a client address already there and our own page added is allowed\nPASS  a client address anywhere in an added line is refused\n3. The inventory: every path that sends to GitHub asks the shared rule\nFAIL  every file that sends to GitHub asks publicRepoRefusal or is listed with its reason (not: tools/test-shards.mjs, tools/uk-server.mjs)\nPASS  the four known senders are still found by the search (src/audit/split.js, src/fixes-learn/starter.js, src/util/own-test-sites.js, addons/fixes/lib/proof-remote.js, addons/fixes/lib/remote/shopify-theme.js, addons/screenreader/lib/remote.js, tools/next-number.mjs, tools/test-shards.mjs, tools/uk-server.mjs)\nPASS  every listed exception still matches (a stale one is removed)\nPASS  A11Y_SR_ALLOW_PUBLIC is read nowhere (still named in: none)\nPASS  the search finds a workflow start, a git push (as arguments or one string), a gist, a contents or git data write, gh release and gh api, and not an array push\n\n32 passed, 1 failed\n"
   }
  },
  "startedAt": "2026-11-15T04:22:35.285Z",
