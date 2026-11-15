@@ -155,6 +155,15 @@
    "run": "node addons/fixes/test/time-limit-tests.js",
    "startedAt": "2026-11-15T06:55:46.530Z",
    "finishedAt": "2026-11-15T06:56:06.516Z"
+  },
+  "fixes#22": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 5.04,
+   "planned": 2,
+   "run": "node addons/fixes/test/route2-scope-tests.js",
+   "startedAt": "2026-11-15T06:56:07.543Z",
+   "finishedAt": "2026-11-15T07:01:09.794Z"
   }
  },
  "startedAt": "2026-11-15T04:57:54.581Z",
