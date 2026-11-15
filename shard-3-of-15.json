@@ -68,6 +68,20 @@
    "run": "node test/webaim-email-tests.js",
    "startedAt": "2026-11-15T05:00:34.327Z",
    "finishedAt": "2026-11-15T05:00:34.441Z"
+  },
+  "realsitegate[webkit]#6:timing": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 98.99,
+   "planned": 100,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "timing",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit",
+    "A11Y_GATE_PART": "timing"
+   },
+   "startedAt": "2026-11-15T05:00:35.605Z",
+   "finishedAt": "2026-11-15T06:39:35.195Z"
   }
  },
  "startedAt": "2026-11-15T04:55:59.437Z",
