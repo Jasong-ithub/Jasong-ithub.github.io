@@ -130,6 +130,15 @@
    "run": "node addons/fixes/test/fresh-copy-tests.js",
    "startedAt": "2026-11-15T06:01:49.269Z",
    "finishedAt": "2026-11-15T06:01:49.314Z"
+  },
+  "everypage#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.39,
+   "planned": 0.45,
+   "run": "node test/browser-launch-tests.js",
+   "startedAt": "2026-11-15T06:01:50.773Z",
+   "finishedAt": "2026-11-15T06:02:14.271Z"
   }
  },
  "startedAt": "2026-11-15T04:22:35.285Z",
