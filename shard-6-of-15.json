@@ -22,6 +22,15 @@
    "run": "node test/agency-finder-tests.js",
    "startedAt": "2026-11-15T19:56:21.274Z",
    "finishedAt": "2026-11-15T19:56:36.367Z"
+  },
+  "quick#29": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.07,
+   "planned": 0.07,
+   "run": "node test/i18n-tests.js",
+   "startedAt": "2026-11-15T19:56:37.559Z",
+   "finishedAt": "2026-11-15T19:56:41.898Z"
   }
  },
  "startedAt": "2026-11-15T19:55:24.189Z",
