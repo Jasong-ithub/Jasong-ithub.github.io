@@ -31,6 +31,15 @@
    "run": "node test/sending-sim-tests.js",
    "startedAt": "2026-11-15T18:44:26.819Z",
    "finishedAt": "2026-11-15T18:46:13.528Z"
+  },
+  "quick#54": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.55,
+   "planned": 2,
+   "run": "node test/parity-tests.js",
+   "startedAt": "2026-11-15T18:46:14.683Z",
+   "finishedAt": "2026-11-15T18:46:47.804Z"
   }
  },
  "startedAt": "2026-11-15T18:43:05.500Z",
