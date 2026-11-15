@@ -13,6 +13,15 @@
    "run": "node test/check-imports-tests.js",
    "startedAt": "2026-11-15T18:44:08.707Z",
    "finishedAt": "2026-11-15T18:44:09.501Z"
+  },
+  "docs#24": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.05,
+   "planned": 0.1,
+   "run": "node test/catalogue-tests.js",
+   "startedAt": "2026-11-15T18:44:10.579Z",
+   "finishedAt": "2026-11-15T18:44:13.369Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.885Z",
