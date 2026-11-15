@@ -32,6 +32,15 @@
    "run": "node test/lead-email-tests.js",
    "startedAt": "2026-11-15T04:47:41.491Z",
    "finishedAt": "2026-11-15T04:47:42.083Z"
+  },
+  "quick#26": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 2,
+   "run": "node test/us-case-list-tests.js",
+   "startedAt": "2026-11-15T04:47:43.129Z",
+   "finishedAt": "2026-11-15T04:47:44.804Z"
   }
  },
  "startedAt": "2026-11-15T04:45:41.941Z",
