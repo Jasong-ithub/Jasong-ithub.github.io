@@ -31,6 +31,15 @@
    "run": "node test/fixes-starter-tests.js",
    "startedAt": "2026-11-15T20:11:23.757Z",
    "finishedAt": "2026-11-15T20:11:27.457Z"
+  },
+  "quick#17": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 0.05,
+   "run": "node test/lead-batch-cap-tests.js",
+   "startedAt": "2026-11-15T20:11:28.476Z",
+   "finishedAt": "2026-11-15T20:11:28.569Z"
   }
  },
  "startedAt": "2026-11-15T20:09:55.064Z",
