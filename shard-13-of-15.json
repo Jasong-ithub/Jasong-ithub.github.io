@@ -22,6 +22,15 @@
    "run": "node test/fixes-starter-tests.js",
    "startedAt": "2026-11-15T18:44:18.827Z",
    "finishedAt": "2026-11-15T18:44:23.677Z"
+  },
+  "quick#12": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/governors-tests.js",
+   "startedAt": "2026-11-15T18:44:24.892Z",
+   "finishedAt": "2026-11-15T18:44:25.593Z"
   }
  },
  "startedAt": "2026-11-15T18:42:58.102Z",
