@@ -145,6 +145,15 @@
    },
    "startedAt": "2026-11-15T20:56:18.690Z",
    "finishedAt": "2026-11-15T21:01:10.324Z"
+  },
+  "addons#12": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.29,
+   "planned": 2,
+   "run": "node addons/judgement/test/run-tests.js",
+   "startedAt": "2026-11-15T21:01:11.519Z",
+   "finishedAt": "2026-11-15T21:01:28.718Z"
   }
  },
  "startedAt": "2026-11-15T20:16:18.654Z",
