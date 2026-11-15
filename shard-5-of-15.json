@@ -40,6 +40,15 @@
    "run": "node test/parity-tests.js",
    "startedAt": "2026-11-15T18:46:14.683Z",
    "finishedAt": "2026-11-15T18:46:47.804Z"
+  },
+  "quick#69": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node addons/screenreader/test/judge-remote-tests.js",
+   "startedAt": "2026-11-15T18:46:48.805Z",
+   "finishedAt": "2026-11-15T18:46:48.992Z"
   }
  },
  "startedAt": "2026-11-15T18:43:05.500Z",
