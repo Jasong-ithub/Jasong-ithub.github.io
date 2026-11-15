@@ -85,6 +85,20 @@
    "run": "node test/benchmark-unmatched-targets-tests.js",
    "startedAt": "2026-11-15T20:05:20.502Z",
    "finishedAt": "2026-11-15T20:05:23.561Z"
+  },
+  "realsitegate[firefox]#6:timing": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 96.06,
+   "planned": 100,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "timing",
+   "env": {
+    "A11Y_GATE_RUNS": "firefox",
+    "A11Y_GATE_PART": "timing"
+   },
+   "startedAt": "2026-11-15T20:05:24.820Z",
+   "finishedAt": "2026-11-15T21:41:28.531Z"
   }
  },
  "startedAt": "2026-11-15T20:03:14.358Z",
