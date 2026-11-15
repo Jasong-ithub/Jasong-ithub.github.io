@@ -4,7 +4,17 @@
  "gateCore": 3,
  "commit": "21aade9b5c53e6d5786173967143f136927924e0",
  "plannedMinutes": 116,
- "items": {},
+ "items": {
+  "docs#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.11,
+   "planned": 0.18,
+   "run": "node test/coordination-log-tests.js",
+   "startedAt": "2026-11-15T20:11:10.708Z",
+   "finishedAt": "2026-11-15T20:11:17.549Z"
+  }
+ },
  "startedAt": "2026-11-15T20:09:51.723Z",
  "finished": false,
  "setupMinutes": 1.3
