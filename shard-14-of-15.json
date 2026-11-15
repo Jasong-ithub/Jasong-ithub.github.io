@@ -108,6 +108,20 @@
    },
    "startedAt": "2026-11-15T18:57:33.685Z",
    "finishedAt": "2026-11-15T19:06:45.650Z"
+  },
+  "realsitegate[chromium]#6:keyboard": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 52.59,
+   "planned": 15,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "keyboard",
+   "env": {
+    "A11Y_GATE_RUNS": "chromium",
+    "A11Y_GATE_PART": "keyboard"
+   },
+   "startedAt": "2026-11-15T19:06:46.698Z",
+   "finishedAt": "2026-11-15T19:59:22.216Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.381Z",
