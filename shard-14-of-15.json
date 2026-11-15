@@ -13,6 +13,15 @@
    "run": "node test/check-tests-listed-tests.js",
    "startedAt": "2026-11-15T20:31:50.896Z",
    "finishedAt": "2026-11-15T20:31:51.158Z"
+  },
+  "quick#11": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 0.05,
+   "run": "node test/example-report-tests.js",
+   "startedAt": "2026-11-15T20:31:52.308Z",
+   "finishedAt": "2026-11-15T20:31:52.445Z"
   }
  },
  "startedAt": "2026-11-15T20:30:32.935Z",
