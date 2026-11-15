@@ -58,6 +58,15 @@
    "run": "node test/finder-safety-tests.js",
    "startedAt": "2026-11-15T18:44:32.579Z",
    "finishedAt": "2026-11-15T18:44:37.829Z"
+  },
+  "quick#60": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.13,
+   "planned": 2,
+   "run": "node addons/screenreader/test/remote-tests.js",
+   "startedAt": "2026-11-15T18:44:38.910Z",
+   "finishedAt": "2026-11-15T18:44:46.979Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.381Z",
