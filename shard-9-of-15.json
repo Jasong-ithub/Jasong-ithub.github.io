@@ -167,6 +167,15 @@
    "run": "node addons/keyboard/test/run-tests.js",
    "startedAt": "2026-11-15T06:40:29.682Z",
    "finishedAt": "2026-11-15T06:47:32.631Z"
+  },
+  "overlayonoff#9": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 2,
+   "run": "node test/overlay-page-choice-tests.js",
+   "startedAt": "2026-11-15T06:47:33.704Z",
+   "finishedAt": "2026-11-15T06:47:35.600Z"
   }
  },
  "startedAt": "2026-11-15T04:56:38.253Z",
