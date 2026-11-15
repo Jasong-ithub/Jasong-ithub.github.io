@@ -184,6 +184,9 @@
   }
  },
  "startedAt": "2026-11-15T20:20:04.424Z",
- "finished": false,
- "setupMinutes": 1.2
+ "finished": true,
+ "setupMinutes": 1.2,
+ "ok": true,
+ "failed": [],
+ "finishedAt": "2026-11-15T22:22:47.428Z"
 }
