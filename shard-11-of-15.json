@@ -192,6 +192,15 @@
    "run": "node addons/display/test/run-tests.js",
    "startedAt": "2026-11-15T05:53:24.427Z",
    "finishedAt": "2026-11-15T05:53:41.813Z"
+  },
+  "gaps#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.73,
+   "planned": 2.78,
+   "run": "node addons/content/test/batch3-tests.js",
+   "startedAt": "2026-11-15T05:53:43.009Z",
+   "finishedAt": "2026-11-15T05:56:26.627Z"
   }
  },
  "startedAt": "2026-11-15T04:22:33.930Z",
