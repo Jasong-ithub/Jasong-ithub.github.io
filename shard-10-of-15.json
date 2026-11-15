@@ -22,6 +22,15 @@
    "run": "node test/check-safety-crlf-tests.js",
    "startedAt": "2026-11-15T20:21:19.545Z",
    "finishedAt": "2026-11-15T20:21:47.316Z"
+  },
+  "quick#9": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/lead-email-tests.js",
+   "startedAt": "2026-11-15T20:21:48.531Z",
+   "finishedAt": "2026-11-15T20:21:49.234Z"
   }
  },
  "startedAt": "2026-11-15T20:20:04.424Z",
