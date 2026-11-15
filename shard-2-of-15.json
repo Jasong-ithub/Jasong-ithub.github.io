@@ -67,6 +67,15 @@
    "run": "node test/job-watch-tests.js",
    "startedAt": "2026-11-15T20:05:18.089Z",
    "finishedAt": "2026-11-15T20:05:18.122Z"
+  },
+  "quick#96": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/security-signs-tests.js",
+   "startedAt": "2026-11-15T20:05:19.224Z",
+   "finishedAt": "2026-11-15T20:05:19.333Z"
   }
  },
  "startedAt": "2026-11-15T20:03:14.358Z",
