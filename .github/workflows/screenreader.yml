@@ -18,8 +18,9 @@
 # that is on the default branch, so this file must stay on it.
 # Client data (review finding S11, 28 October 2026): the page addresses are never printed in the run log, every
 # artifact is kept 1 day at most, the full audit deletes its runs (logs and artifacts) through the API as soon as it
-# has the results, and src/handover.js delete removes any left for the client. The audit refuses to start a run when
-# the repository is public (A11Y_SR_ALLOW_PUBLIC=1 overrides, on the owner's say only).
+# has the results, and src/handover.js delete removes any left for the client. On a public repository, or one whose
+# visibility cannot be read, the audit starts a run only for our own test pages: a client's pages are refused, with no
+# override (D521A, 11 November 2026; publicRepoRefusal in src/util/own-test-sites.js).
 # The free audit (D330, src/free-audit.js) asks for readers "nvda" only: the Windows job runs, the Mac job is skipped,
 # and the merge job still runs on NVDA's results alone, so a Mac route that is down never stops a free audit. Paid
 # audits and samples ask for both readers.

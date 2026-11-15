@@ -152,6 +152,10 @@ jobs:
           cache: npm
       # needs no packages: Node's own modules and git only
       - run: node tools/check-tests-listed.mjs
+      # no import() or --import of a plain path (Windows loads modules only from file:// addresses, ND-A125), and its
+      # test, which plants each pattern in a temporary folder
+      - run: node tools/check-imports.mjs
+      - run: node test/check-imports-tests.js
       # S17's behaviour test needs the packages, Chromium, Firefox and WebKit (the full audit's three browsers)
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
@@ -201,14 +205,27 @@ jobs:
         with:
           node-version: 22
       # the checks need no packages: Node's own modules, git and bash only
+      # no key or password in any tracked file, nor in the lines this push's (or pull request's) commits add
+      # (ND-A124C, docs/INCIDENTS.txt section 6): it prints the key's name, place and fingerprint, never its value
+      - run: node tools/check-keys.mjs --ci
+        env:
+          KEY_SCAN_BEFORE: ${{ github.event.before }}
       - run: node tools/check-docs.mjs
       # the candidate lists for the owner's one-click approval (round 1 review of the candidate lists)
       - run: node tools/check-candidates.mjs
       - run: node test/check-docs-tests.js
       # the coordination log's times against their commits (git blame: needs this job's whole history)
       - run: node test/coordination-log-tests.js
+      - run: node test/merge-order-tests.js
       # the check that every test file is run, on altered copies of this workflow (the media test's ffmpeg, 9 November 2026)
       - run: node test/check-tests-listed-tests.js
+      # the key register (G3-8.3, ND-A143C): every secret setting the code reads has a row in docs/KEY-REGISTER.txt
+      # (names only, never values) and every row is still read; its tests use made-up sources
+      - run: node tools/check-key-register.mjs
+      - run: node test/key-register-tests.js
+      # the safety check's word rules give the same result on a Windows (CRLF) checkout as on a plain one, and a real
+      # S19 fault still fails on both (gap merge follow-up, 11 November 2026); git and Node's own modules only
+      - run: node test/check-safety-crlf-tests.js
       # the tests below load the tool's own modules (the Upwork test reaches src/report/register.js, which needs exceljs)
       - run: npm ci
       # the Upwork proposal draft and the skill (Upwork proposal review, round 1): approved lines word for word, real
@@ -220,6 +237,9 @@ jobs:
       # our own audit on the benchmark shop (D351): the converter, the missed-faults classifier and the ratchet, and
       # the committed docs/benchmark/ours/ files checked so a fault our audit found before can never be lost
       - run: node test/benchmark-ours-tests.js
+      - run: node test/benchmark-routes-tests.js
+      # D532C: the real-site gate's per-browser resume (saved runs reused only with the same code and settings)
+      - run: node test/realsite-gate-resume-tests.js
       # D496A: no review-only tier anywhere; every candidate settled as a failure or a pass, and no output (settled
       # folder, criteria, issue matrix, client report, score, misses report) carries the tier's words
       - run: node test/no-review-tier-tests.js
@@ -231,6 +251,7 @@ jobs:
       # the fix-learning loop (D419): kinds a to e, task briefs, the fix ratchet, and the committed record of the first overlay site made again
       - run: node test/fixes-misses-tests.js
       - run: node test/fixes-starter-tests.js
+      - run: node test/fixes-starter-drop-tests.js
       # real-site learning into the catalogue (D420): matched ways and candidate new ways, the committed record made again
       - run: node test/catalogue-realsite-tests.js
 
@@ -247,6 +268,9 @@ jobs:
           ref: ${{ needs.changed.outputs.sha }}
           token: ${{ secrets.TOOL_READ_TOKEN }}
           persist-credentials: false
+      # the site builder's branch, so test/sending-tests.js can compare its pinned copies (brief.js, the release rules)
+      # with the builder's files (follow-up L4); the test fails in CI when it has nothing to compare with
+      - run: git fetch --no-tags --depth=1 origin +refs/heads/claude/accessible-site-builder:refs/remotes/origin/claude/accessible-site-builder || echo "the builder's branch is not on origin"
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -260,19 +284,33 @@ jobs:
       # the opt-out tests also check the Python agency finder
       - run: pip install requests beautifulsoup4 openpyxl
       - run: node test/lead-email-tests.js
+      - run: node test/uk-server-tests.js
+      - run: node test/example-report-tests.js
       - run: node test/governors-tests.js
       - run: node test/lead-compare-tests.js
       - run: node test/gias-download-tests.js
+      # the owner's daily summary and urgent file (src/summary.js, map 2.7, ND-A42), on example records only
+      - run: node test/daily-summary-tests.js
       - run: node test/lead-robots-tests.js
+      # G3-10.1 the lead batch cap and the one table of spending limits (docs/SPENDING-LIMITS.txt) against the code
+      # (stand-in costs: no AI, no spending)
+      - run: node test/lead-batch-cap-tests.js
       # the overlay coverage tables, report, stop rule and searcher (D372), on stand-in runs, search and scans; it starts
       # Chromium, so it runs here, where the browser is installed (it failed in the docs job, 9 November 2026)
       - run: node test/overlay-coverage-tests.js
       - run: node test/preflight-tests.js
+      - run: node test/request-limit-tests.js
+      # the bot protection fallbacks (D305, ND-A103) on stand-in check pages served in the job; step 4 opens a visible
+      # browser, so it runs on the virtual screen
+      - run: xvfb-run -a node test/blocked-fallbacks-tests.js
       - run: node test/agency-tests.js
       # the agency finder's refresh step and its Companies House step, on stand-ins (D473)
       - run: node test/agency-finder-tests.js
+      # the business records reminders (MAP 3.45, ND-A70): due dates on example dates only
+      - run: node test/business-records-tests.js
       # US lawsuit leads (D434): matching, the cost refusal, the email check, the call sheet; stand-ins only
       - run: node test/us-leads-tests.js
+      - run: node test/us-case-list-tests.js
       - run: node test/standard-law-tests.js
       # the translated client documents: catalogues complete, English unchanged, A4, the "not checked" hold
       - run: node test/i18n-tests.js
@@ -280,6 +318,8 @@ jobs:
       - run: node test/pricing-tests.js
       # the round 1 review fixes: report wording, prices, VAT, Upwork pricing, the law (no browser)
       - run: node test/report-fixes-tests.js
+      # the before-live report faults the gate's AI review found (ND-A10): totals, WCAG titles, AAA advice (no browser)
+      - run: node test/prelive-report-fixes-tests.js
       # the client's own list against our audit (D211, D212)
       - run: node test/client-list-tests.js
       # every sample's figures worked out again from pricing.js; every sample page fits its sheet (pdftotext)
@@ -293,6 +333,11 @@ jobs:
       # each site's demo on its own sample.delivery sub-domain (D499A, D500A): publish, the login, restart safety, the
       # day 10 reminder through the gate, the day 14 deletion checked by fetching, paid kept; a stand-in cPanel, no network
       - run: node test/demo-host-tests.js
+      # the reply agent (ND-A47, MAP 3.4): drafts only, through the gate, for the owner's signed click; fixtures only
+      - run: node test/reply-agent-tests.js
+      # client approvals only through a one-use signed link (ND-A69, ND-A16): monitoring, R108 wording, the terms;
+      # an email "I approve" or a typed name never counts; a test approval key in a marked folder only
+      - run: node test/client-approvals-tests.js
       # the public sector lead list: office mailboxes and the contact route, data/leads/ only, lawBasis (D379), the
       # downloader, builder and statement reader with every live-site safeguard (independent review, 9 Nov 2026)
       - run: node test/public-sector-tests.js
@@ -309,6 +354,8 @@ jobs:
       # in docs/comparison/published/2026-10-28/site-reports recomputed from its raw data (about 1 minute)
       - run: node test/site-reports-tests.js
       - run: node test/onboard-tests.js
+      # ND-A53: the Getting started pack from the recorded payment, once per job (example jobs and payments, gate machine checks only)
+      - run: A11Y_GATE_AI=off node test/payment-pack-tests.js
       - run: node test/handover-tests.js
       - run: node test/lang-tests.js
       - run: node test/dawn-like-tests.js
@@ -323,11 +370,18 @@ jobs:
       - run: node test/overlay-evidence-tests.js
       - run: node addons/emails/test/views-tests.js
       - run: node addons/screenreader/test/remote-tests.js
+      # GitHub runs that could not be deleted: recorded, retried at the hand-over and by the sweep, alerted (ND-A142C)
+      - run: node test/run-deletions-tests.js
       # TalkBack, the optional third screen reader (stand-in adb, log and Chrome; off by default until proved)
       - run: node addons/screenreader/test/talkback-tests.js
       # the round 1 safety fixes S2 to S15, and S1: the live checkout is viewed only (D208)
       - run: node test/safety-fixes-tests.js
       - run: node test/ai-budget-d277-tests.js
+      # ND-A61: the model names in one setting (src/util/models.js): same models as before, the overrides, an unpriced
+      # model refused at start, check-safety rule S25
+      - run: node test/models-tests.js
+      # the paid-work queue (ND-A45, D508C): paid work first, payment held (D325), unpaid within the day's budget
+      - run: node test/work-queue-tests.js
       # D365, D366 the AI route switch: paid audits on the API key; our own tests on the included API credits, then
       # Claude Code on the subscription (stand-ins only, nothing spent)
       - run: node test/ai-route-tests.js
@@ -354,9 +408,17 @@ jobs:
       - run: node test/paid-limit-d325-tests.js
       - run: node test/cost-review-d327-tests.js
       - run: node test/github-minutes-tests.js
+      # ND-A60 backups of what may be kept (D179) and the restore test (temporary folders, no network)
+      - run: node test/backup-tests.js
+      # ND-A43 the timetable and the watch that each timed job ran (example run records; no network)
+      - run: node test/job-watch-tests.js
+      # ND-A65 the exchange-rate warning (stand-in rate files, no network)
+      - run: node test/fx-check-tests.js
       # D353, D354, D355 the split full audit on a stand-in GitHub: the plan, the funds check, a split audit equal to a
       # single-machine one, a failed part resumed alone (no network, no browser, no AI)
       - run: node test/audit-split-tests.js
+      # D521A: a client's pages never go to a public repository; every path that sends to GitHub asks the one rule
+      - run: node test/public-repo-rule-tests.js
       - run: node test/live-checkout-tests.js
       - run: node addons/monitor/test/billing-tests.js
       - run: node addons/monitor/test/statements-tests.js
@@ -367,6 +429,20 @@ jobs:
       - run: node test/gate-tests.js
       - run: node test/gate-send-tests.js
       - run: node test/gate-signed-tests.js
+      # the approved comparison list runner (ND-A104): the owner's signed click on the list, one site at a time, list B's
+      # backups, the daily summary lines and restarts; stand-in lists and runners only (no browser, no network, no AI)
+      - run: node test/run-approved-tests.js
+      # the incident finder (ND-A122C, docs/INCIDENTS.txt section 3): sent documents carrying a wrong check or figure
+      - run: node test/incident-affected-tests.js
+      # the key and password scan (ND-A124C, docs/INCIDENTS.txt section 6): made-up keys in text, a commit, a push,
+      # a folder of logs, a gated document and an email; the urgent alert names the key, never its value
+      - run: node test/key-scan-tests.js
+      # signs of a security problem (ND-A120C, docs/INCIDENTS.txt section 1): providers' security emails proved by
+      # their verified domain and wording (look-alike senders never count), and keys used from a machine not seen before
+      - run: node test/security-signs-tests.js
+      - run: node test/check-agents-tests.js
+      # the delivery date estimate from measured run times and the gate check on delivery dates (ND-A64)
+      - run: node test/delivery-estimate-tests.js
       # the draft WebAIM invitation email: tool list, wording rules and owner decisions (round 4 review, D215, D239)
       - run: node test/webaim-email-tests.js
       # the draft heads of terms for the solicitor: style, numbering, section 8, replaced wording (D249 to D259)
@@ -381,7 +457,7 @@ jobs:
   benchmark:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
@@ -446,7 +522,7 @@ jobs:
     needs: changed
     # not on a push: on a pull request or by hand (Actions tab, Run workflow), D315 and D350; the public copy of the
     # suite runs it free (D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     # one job per browser run of the full audit, together every run (R227); each about 90 minutes since the keyboard
@@ -512,7 +588,7 @@ jobs:
   monitor:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     # monitor run-tests alone took 17.5 minutes on a busy machine
     timeout-minutes: 60
@@ -535,6 +611,7 @@ jobs:
       - run: node addons/monitor/test/run-tests.js
       - run: node addons/monitor/test/full-monitoring-tests.js
       - run: node addons/monitor/test/daily-tests.js
+      - run: node addons/monitor/test/health-tests.js
       - run: node addons/designs/test/run-tests.js
       - run: node addons/crosspage/test/run-tests.js
       - run: node addons/process/test/run-tests.js
@@ -545,7 +622,7 @@ jobs:
   addons:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     timeout-minutes: 70
     steps:
@@ -581,7 +658,10 @@ jobs:
       - run: node addons/timing/test/batch2-recipes-tests.js
       - run: node addons/timing/test/batch2-tests.js
       - run: node addons/visual/test/run-tests.js
+      # the picture reader is never closed under a reading still going on (found by the D496A ratchet run, 13 Nov 2026)
+      - run: node test/ocr-close-race-tests.js
       - run: node addons/visual/test/recipes-tests.js
+      - run: node addons/visual/test/not-tested-tests.js
       - run: node addons/keyboard/test/run-tests.js
       - run: node addons/keyboard/test/batch2-tests.js
       - run: node addons/screenreader/test/run-tests.js
@@ -602,7 +682,7 @@ jobs:
   overlayonoff:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     steps:
@@ -631,7 +711,7 @@ jobs:
   gaps:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     # not timed on their own in the reports; the timing gap tests watch each page for 30 seconds and more
     timeout-minutes: 45
@@ -660,7 +740,7 @@ jobs:
   fixes:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     # 35 minutes on a busy machine, with the four files it runs as their own processes
     timeout-minutes: 110
@@ -697,6 +777,8 @@ jobs:
       - run: node addons/fixes/test/final-check-journal-tests.js
       # proofs side by side, a page that will not load, no second try when declined, prompt caching, excerpts (7 November 2026)
       - run: node addons/fixes/test/speed-tests.js
+      # theme updates after our fixes (ND-A96): the fixes re-applied to a maker's new version and checked, fixture theme in three versions
+      - run: node addons/fixes/test/theme-update-tests.js
       # the proof page tests on GitHub's free machines (--proof-remote github): only our own test site, saved at once,
       # runs deleted once read (stand-in GitHub; one real page test on the runner's side)
       - run: node addons/fixes/test/proof-remote-tests.js
@@ -705,7 +787,7 @@ jobs:
   prelive:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     # 13 minutes on a quiet machine, 22.5 on a busy one
     timeout-minutes: 45
@@ -730,7 +812,7 @@ jobs:
   everypage:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     # the two stages took about 5 minutes on a quiet machine; every page uses stand-ins apart from one real keyboard run
     timeout-minutes: 40
@@ -787,7 +869,7 @@ jobs:
   signedin:
     needs: changed
     # not on a push: the full set runs on a pull request, by hand, or in the public copy after each push (D315, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name != 'push')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     # 45 minutes on a busy machine (most of it the full audit behind the sign-in in three browsers)
     timeout-minutes: 90
@@ -812,7 +894,7 @@ jobs:
     needs: changed
     # here by hand or on a pull request only: it repeats the other jobs' tests (D315); the public copy also runs it on
     # each scheduled run there that tests a commit (each new commit, and weekly; free, D358)
-    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request')
+    if: needs.changed.outputs.run == 'true' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-24.04
     # npm test took 45 to 49 minutes on a busy 4-core machine (most of it the broken shop's journey videos and the
     # full audit)
