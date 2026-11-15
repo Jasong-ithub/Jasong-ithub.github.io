@@ -42,6 +42,15 @@
    "run": "node test/realsite-gate-measure-tests.js",
    "startedAt": "2026-11-15T05:16:31.602Z",
    "finishedAt": "2026-11-15T05:16:31.702Z"
+  },
+  "quick#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.17,
+   "planned": 0.1,
+   "run": "node test/lead-compare-tests.js",
+   "startedAt": "2026-11-15T05:16:33.037Z",
+   "finishedAt": "2026-11-15T05:16:43.404Z"
   }
  },
  "startedAt": "2026-11-15T04:56:55.550Z",
