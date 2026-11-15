@@ -90,6 +90,20 @@
    },
    "startedAt": "2026-11-15T18:44:52.607Z",
    "finishedAt": "2026-11-15T19:09:19.106Z"
+  },
+  "realsitegate[firefox]#6:core:3/3": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 12.46,
+   "planned": 23.33,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "core:3/3",
+   "env": {
+    "A11Y_GATE_RUNS": "firefox",
+    "A11Y_GATE_PART": "core:3/3"
+   },
+   "startedAt": "2026-11-15T19:09:20.274Z",
+   "finishedAt": "2026-11-15T19:21:47.575Z"
   }
  },
  "startedAt": "2026-11-15T18:43:06.643Z",
