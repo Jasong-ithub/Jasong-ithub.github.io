@@ -114,6 +114,20 @@
    },
    "startedAt": "2026-11-15T05:07:47.501Z",
    "finishedAt": "2026-11-15T05:17:07.172Z"
+  },
+  "realsitegate[webkit-tablet]#6:keyboard": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 56.81,
+   "planned": 15,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "keyboard",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-tablet",
+    "A11Y_GATE_PART": "keyboard"
+   },
+   "startedAt": "2026-11-15T05:17:08.283Z",
+   "finishedAt": "2026-11-15T06:13:56.659Z"
   }
  },
  "startedAt": "2026-11-15T04:45:41.941Z",
