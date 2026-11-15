@@ -76,6 +76,15 @@
    "run": "node test/security-signs-tests.js",
    "startedAt": "2026-11-15T18:44:33.664Z",
    "finishedAt": "2026-11-15T18:44:33.787Z"
+  },
+  "benchmark#16": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.05,
+   "planned": 2,
+   "run": "node test/benchmark-unmatched-targets-tests.js",
+   "startedAt": "2026-11-15T18:44:35.050Z",
+   "finishedAt": "2026-11-15T18:44:38.282Z"
   }
  },
  "startedAt": "2026-11-15T18:42:56.784Z",
