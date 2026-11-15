@@ -173,6 +173,15 @@
    "run": "node addons/visual/test/recipes-tests.js",
    "startedAt": "2026-11-15T20:09:50.938Z",
    "finishedAt": "2026-11-15T20:09:51.055Z"
+  },
+  "overlayonoff#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 8.68,
+   "planned": 2,
+   "run": "node test/overlay-onoff-resume-tests.js",
+   "startedAt": "2026-11-15T20:09:52.446Z",
+   "finishedAt": "2026-11-15T20:18:33.068Z"
   }
  },
  "startedAt": "2026-11-15T18:42:58.102Z",
