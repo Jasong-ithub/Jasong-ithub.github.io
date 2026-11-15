@@ -22,6 +22,15 @@
    "run": "node test/preflight-tests.js",
    "startedAt": "2026-11-15T20:00:53.672Z",
    "finishedAt": "2026-11-15T20:00:57.684Z"
+  },
+  "quick#37": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.2,
+   "planned": 2,
+   "run": "node test/suppression-tests.js",
+   "startedAt": "2026-11-15T20:00:59.100Z",
+   "finishedAt": "2026-11-15T20:01:11.315Z"
   }
  },
  "startedAt": "2026-11-15T19:59:24.757Z",
