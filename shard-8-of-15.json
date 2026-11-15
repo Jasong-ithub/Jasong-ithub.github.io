@@ -185,6 +185,15 @@
    "run": "node addons/fixes/test/final-check-journal-tests.js",
    "startedAt": "2026-11-15T07:37:16.080Z",
    "finishedAt": "2026-11-15T07:40:12.904Z"
+  },
+  "fixes#21": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.83,
+   "planned": 2,
+   "run": "node addons/fixes/test/rule-scope-tests.js",
+   "startedAt": "2026-11-15T07:40:14.058Z",
+   "finishedAt": "2026-11-15T07:41:04.071Z"
   }
  },
  "startedAt": "2026-11-15T04:56:55.550Z",
