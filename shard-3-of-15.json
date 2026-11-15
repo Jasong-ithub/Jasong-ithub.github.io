@@ -13,6 +13,15 @@
    "run": "node test/testshop-site-tests.js",
    "startedAt": "2026-11-15T18:44:21.884Z",
    "finishedAt": "2026-11-15T18:44:23.229Z"
+  },
+  "quick#20": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 0.05,
+   "run": "node test/request-limit-tests.js",
+   "startedAt": "2026-11-15T18:44:24.293Z",
+   "finishedAt": "2026-11-15T18:44:24.987Z"
   }
  },
  "startedAt": "2026-11-15T18:43:03.166Z",
