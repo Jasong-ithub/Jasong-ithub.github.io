@@ -100,6 +100,15 @@
    "startedAt": "2026-11-15T18:46:46.733Z",
    "finishedAt": "2026-11-15T20:22:24.789Z",
    "tail": "PASS  saas-product-overview.html: no definite failure (none)\nPASS  separate-letters.html: no definite failure (none)\nPASS  serial-chapter-page.html: no definite failure (none)\nPASS  shop-forms.html: no definite failure (none)\nPASS  shop-widgets.html: no definite failure (none)\nPASS  sign-in-with-provider.html: no definite failure (none)\nPASS  sign-up-captcha.html: no definite failure (none)\nPASS  single-page-link-list.html: no definite failure (none)\nPASS  slick-carousel.html: no definite failure (none)\nPASS  software-product-section.html: no definite failure (none)\nPASS  stats-row.html: no definite failure (none)\nPASS  swiper-carousel.html: no definite failure (none)\nPASS  tabindex-forms.html: no definite failure (none)\nPASS  target-size-exceptions.html: no definite failure (none)\nPASS  testimonials.html: no definite failure (none)\nPASS  ticker-carousel.html: no definite failure (none)\nPASS  title-article-prefix.html: no definite failure (none)\nPASS  title-index-page.html: no definite failure (none)\nPASS  title-products-listing.html: no definite failure (none)\nPASS  urgency-beside-live.html: no definite failure (none)\nReal-site gate (D391): FAILS for its part timing only (results: /tmp/realsite-gate-test-10845.json). 61 pages in webkit-phone; definite failures 1; pages that could not be tested in full 0.\n  FALSE ALARM live-data.html: tm-moving-after-action (2.2.2, webkit-phone timing) on the page: Content (\"Example Auctions Lot 42: Victorian...\") keeps moving for more than 5 seconds once it is scrolled into view (after scrolling down 1 screen), with no pa\n\n1 FAILED\n"
+  },
+  "benchmarktools#5": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.04,
+   "planned": 2,
+   "run": "node test/benchmark-scorer-fixes-tests.js",
+   "startedAt": "2026-11-15T20:22:25.945Z",
+   "finishedAt": "2026-11-15T20:22:28.416Z"
   }
  },
  "startedAt": "2026-11-15T18:43:07.320Z",
