@@ -85,6 +85,15 @@
    "run": "node test/incident-affected-tests.js",
    "startedAt": "2026-11-15T18:45:16.240Z",
    "finishedAt": "2026-11-15T18:45:16.409Z"
+  },
+  "benchmark#14": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 10.02,
+   "planned": 2,
+   "run": "node test/d496a-faults-tests.js",
+   "startedAt": "2026-11-15T18:45:17.498Z",
+   "finishedAt": "2026-11-15T18:55:18.732Z"
   }
  },
  "startedAt": "2026-11-15T18:43:03.725Z",
