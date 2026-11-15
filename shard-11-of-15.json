@@ -200,6 +200,15 @@
    "run": "node addons/content/test/batch3-tests.js",
    "startedAt": "2026-11-15T21:13:34.553Z",
    "finishedAt": "2026-11-15T21:16:18.365Z"
+  },
+  "everypage#12": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.54,
+   "planned": 2.25,
+   "run": "node test/comparison-fixes-tests.js",
+   "startedAt": "2026-11-15T21:16:19.414Z",
+   "finishedAt": "2026-11-15T21:18:51.835Z"
   }
  },
  "startedAt": "2026-11-15T20:09:55.064Z",
