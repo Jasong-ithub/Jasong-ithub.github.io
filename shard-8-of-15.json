@@ -40,6 +40,15 @@
    "run": "node test/preflight-tests.js",
    "startedAt": "2026-11-15T18:59:38.593Z",
    "finishedAt": "2026-11-15T18:59:43.735Z"
+  },
+  "quick#41": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 2,
+   "run": "node test/reply-agent-tests.js",
+   "startedAt": "2026-11-15T18:59:44.770Z",
+   "finishedAt": "2026-11-15T18:59:45.931Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.322Z",
