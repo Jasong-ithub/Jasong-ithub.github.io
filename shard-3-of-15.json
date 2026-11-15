@@ -31,6 +31,15 @@
    "run": "node test/suppression-tests.js",
    "startedAt": "2026-11-15T20:00:59.100Z",
    "finishedAt": "2026-11-15T20:01:11.315Z"
+  },
+  "quick#52": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 3.31,
+   "planned": 2,
+   "run": "node test/lang-tests.js",
+   "startedAt": "2026-11-15T20:01:12.300Z",
+   "finishedAt": "2026-11-15T20:04:31.186Z"
   }
  },
  "startedAt": "2026-11-15T19:59:24.757Z",
