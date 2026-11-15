@@ -31,6 +31,15 @@
    "run": "node test/agency-tests.js",
    "startedAt": "2026-11-15T18:33:32.023Z",
    "finishedAt": "2026-11-15T18:33:39.440Z"
+  },
+  "quick#34": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/client-list-tests.js",
+   "startedAt": "2026-11-15T18:33:40.652Z",
+   "finishedAt": "2026-11-15T18:33:41.220Z"
   }
  },
  "startedAt": "2026-11-15T18:31:44.903Z",
