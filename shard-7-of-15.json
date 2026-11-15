@@ -31,6 +31,15 @@
    "run": "node test/benchmark-unmatched-tests.js",
    "startedAt": "2026-11-15T18:48:36.479Z",
    "finishedAt": "2026-11-15T18:48:40.787Z"
+  },
+  "docs#27": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.04,
+   "planned": 0.05,
+   "run": "node test/fixes-starter-drop-tests.js",
+   "startedAt": "2026-11-15T18:48:41.895Z",
+   "finishedAt": "2026-11-15T18:48:44.127Z"
   }
  },
  "startedAt": "2026-11-15T18:46:55.824Z",
