@@ -91,6 +91,15 @@
    "startedAt": "2026-11-15T20:22:54.605Z",
    "finishedAt": "2026-11-15T20:23:03.460Z",
    "tail": "PASS  new problems from every source (content:Page language missing | documents:PDF \"new.pdf\" | future-check:Found by an add-on added later | journeys:Find the contact details or form | scan:Target too small)\nPASS  fixed since the full audit: documents:PDF \"guide.pdf\" | scan:Image with no text | visual:Text contrast too low\nPASS  the content problem the audit found is still there (random element ids aside): not new\nPASS  per criterion: 5 WCAG 2.2 AA criteria with new or returned problems, 4 of them also in WCAG 2.1 AA; 3 WCAG 2.2 AA criteria with problems fixed, all 3 also in WCAG 2.1 AA\nPASS  every new or changed page gets the core page tests in every browser, whatever Chrome found (/a had nothing new)\nPASS  core findings joined across browsers: a problem in Chrome and Safari listed once with both named; one only Safari at phone width found is kept and marked\nPASS  the all-browser results are kept in the month's results file\nPASS  the results page shows new, returned and fixed problems per criterion, the 2.1 column and the broken journey\nPASS  the record keeps this month's documents and journey steps\nPASS  the client record shows the month's new, returned and fixed problems with the 2.2 and 2.1 counts\nPASS  month 2: /a and /b to test, no document changed (got /a, /b)\nPASS  problems that came back after being fixed: scan:Image with no text | visual:Text contrast too low\nPASS  the journey step works again: its problem is fixed\nPASS  per criterion: 2 WCAG 2.2 AA criteria with new or returned problems, both also in WCAG 2.1 AA; 1 WCAG 2.2 AA criterion with problems fixed, also in WCAG 2.1 AA (2.1.1, 1.1.1, 1.4.3: listed most serious first, D377)\nPASS  judgement switched off for a run, and no documents to test: both recorded as not run, with the reason\nPASS  the results page lists the problems that came back\nPASS  month 3: no page changed, monthly fee only\nPASS  with no page changed, the journeys still run and catch a step that broke underneath\nPASS  no page add-on runs when no page changed\nPASS  the monthly test runs the real screen reader pass on GitHub for the new and changed public pages; a local site cannot be reached there, so it is recorded as not available (screen reader run not available: every page is on a private address the screen reader machines on GitHub cannot reach)\nPASS  month 4: the edited page to test\nFAIL  a journey failure that does not repeat on the second run needs a decision and is not counted; the step that works again is fixed\nPASS  without an AI key the judgement is recorded as not run; the other add-ons run\n1 failed\n"
+  },
+  "monitor#9": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.71,
+   "planned": 2,
+   "run": "node addons/monitor/test/health-tests.js",
+   "startedAt": "2026-11-15T20:23:04.642Z",
+   "finishedAt": "2026-11-15T20:24:47.330Z"
   }
  },
  "startedAt": "2026-11-15T18:43:05.500Z",
