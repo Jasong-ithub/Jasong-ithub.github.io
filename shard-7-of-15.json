@@ -58,6 +58,15 @@
    "run": "node addons/monitor/test/billing-tests.js",
    "startedAt": "2026-11-15T20:34:50.571Z",
    "finishedAt": "2026-11-15T20:35:56.466Z"
+  },
+  "benchmark#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 14.47,
+   "planned": 2,
+   "run": "node test/learn-pass1-tests.js",
+   "startedAt": "2026-11-15T20:35:57.626Z",
+   "finishedAt": "2026-11-15T20:50:25.914Z"
   }
  },
  "startedAt": "2026-11-15T20:25:53.905Z",
