@@ -201,6 +201,15 @@
    "run": "node addons/timing/test/gaps-tests.js",
    "startedAt": "2026-11-15T21:02:28.348Z",
    "finishedAt": "2026-11-15T21:08:33.231Z"
+  },
+  "fixes#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.02,
+   "planned": 0.05,
+   "run": "node addons/fixes/test/speed-tests.js",
+   "startedAt": "2026-11-15T21:08:34.323Z",
+   "finishedAt": "2026-11-15T21:08:35.791Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.381Z",
