@@ -67,6 +67,15 @@
    "run": "node test/ai-route-round7-tests.js",
    "startedAt": "2026-11-15T18:44:47.896Z",
    "finishedAt": "2026-11-15T18:44:48.572Z"
+  },
+  "quick#88": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.05,
+   "planned": 2,
+   "run": "node addons/monitor/test/statements-tests.js",
+   "startedAt": "2026-11-15T18:44:49.662Z",
+   "finishedAt": "2026-11-15T18:44:52.686Z"
   }
  },
  "startedAt": "2026-11-15T18:43:04.313Z",
