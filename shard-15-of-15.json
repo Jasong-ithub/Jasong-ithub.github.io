@@ -40,6 +40,15 @@
    "run": "node test/gias-download-tests.js",
    "startedAt": "2026-11-15T18:44:38.532Z",
    "finishedAt": "2026-11-15T18:44:38.832Z"
+  },
+  "quick#43": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.08,
+   "planned": 2,
+   "run": "node test/public-sector-tests.js",
+   "startedAt": "2026-11-15T18:44:39.972Z",
+   "finishedAt": "2026-11-15T18:44:44.875Z"
   }
  },
  "startedAt": "2026-11-15T18:43:04.313Z",
