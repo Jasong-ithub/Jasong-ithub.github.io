@@ -67,6 +67,16 @@
    "run": "node test/key-scan-tests.js",
    "startedAt": "2026-11-15T18:32:52.899Z",
    "finishedAt": "2026-11-15T18:33:03.781Z"
+  },
+  "benchmark#15": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 0.04,
+   "planned": 2,
+   "run": "node test/category-tests.js",
+   "startedAt": "2026-11-15T18:33:05.147Z",
+   "finishedAt": "2026-11-15T18:33:07.464Z",
+   "tail": "PASS  findings with no category (every other tool) are scored as before\nPASS  a block found with the category stops is found\nPASS  a block found with a lower category counts as a miss, and is listed as a wrong category\nPASS  a wrong category on a barrier is listed, but the fault stays found (only blocks count as missed)\nPASS  an Advice finding is never counted as a fault or in a score\nPASS  the report says categories are given and names the block given a lower category\nPASS  the report gives no overall percentage, only per category\nPASS  scores are in order of category, blocks first\nPASS  the misses report says a block was found but given a lower category\nPASS  the owner's misses text gives the misses by category, blocks first, and the catalogue's gaps\nPASS  the misses file carries the catalogue's gaps for the learning loop, and a brief to fix the category rule\nPASS  our audit's findings are converted with their category\nPASS  issues.xlsx: until the owner approves the reasons' wording, the category is shown without its reason (AUTOMATION-MAP 3.47)\nPASS  issues.xlsx: the category and why are the second and third columns\nPASS  issues.xlsx: rows in order of category, blocks first, each with its reason (Stops people using the site, Makes the site hard to use, Code and markup issues, Advice)\nPASS  issues.xlsx: the buy button with no name is the first row, a block, with its reason\nPASS  issues.xlsx summary: counts by category, Advice not counted (Stops people using the site=1; Makes the site hard to use=1; Code and markup issues=1; Advice (not counted as an issue)=1)\nPASS  the page scan decides each finding's category once, with what was round it (decideFindings)\nPASS  the combine step keeps each problem's category, though it drops the details (axe:meta-refresh stops, axe:button-name stops)\nPASS  the reports made from the combined problems show the decided category (the page reloading itself and the buy button with no name are blocks)\nPASS  the criterion rows (statements, the conformance report) carry the decided category\nPASS  the pre-live report keeps the decided category of the pay button with no name (stops, stops)\nPASS  the monitoring record keeps the category decided from the finding itself\nPASS  statements: the criteria not met are listed blocks first, then barriers, then code and markup (D377)\n"
   }
  },
  "startedAt": "2026-11-15T18:31:34.328Z",
