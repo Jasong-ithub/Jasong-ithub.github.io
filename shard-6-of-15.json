@@ -163,6 +163,16 @@
    "run": "node addons/fixes/test/rules-states-tests.js",
    "startedAt": "2026-11-15T05:13:59.549Z",
    "finishedAt": "2026-11-15T05:14:00.248Z"
+  },
+  "everypage#6": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 0.73,
+   "planned": 0.87,
+   "run": "node test/everypage-tests.js",
+   "startedAt": "2026-11-15T05:14:01.408Z",
+   "finishedAt": "2026-11-15T05:14:45.444Z",
+   "tail": "PASS  a result with no page-load record (from before it existed) is run again; a page blocked or not answering is not finished\nPASS  every caller of the full audit handles \"not finished\" (src/audit.js, src/free-audit.js, tools/published-compare/site-audit.mjs)\n[time] audit.units: 0.2s\n[time] total: 0.2s\nPASS  pages heard only in part or by one reader: NOT finished, exit code 3 (3 of 4 pages not heard in full (VoiceOver did not hear it in full: the headings step failed (VoiceOver could not find the web content of the page.)))\nPASS  the reason names the reader and the step that failed; the log never says \"Audit done\"\nPASS  the log line counts only the pages both readers heard in full (Screen reader: 1 of 4 pages heard in full with NVDA and VoiceOver in 2 runs (3 more heard only in part or by one reader: sent again on a resume), 0 findings; 0 billable minutes on a private plan (0 runner minutes, about USD 0.00).)\n[time] audit.units: 0.0s\n[time] total: 0.2s\nFAIL  resumed: only the 3 pages not heard in full are sent again, in the cheaper single run (both: https://shop.example/about https://shop.example/products/a https://shop.example/products/b)\nPASS  once every page is heard in full by both readers: \"Audit done\", exit code 0 (nvda+voiceover, nvda+voiceover, nvda+voiceover, nvda+voiceover)\nPASS  a page VoiceOver did not hear in full (older file, read from its own file): sent again with VoiceOver only; NVDA's result kept, VoiceOver's partial result dropped (nothing counted twice)\n3. Browsers (real engines, no server)\nPASS  WebKit at phone width: a computer-width page opens as an iPhone (390px, touch), a page opened narrow on purpose keeps its width (320px)\nPASS  WebKit at tablet width: a computer-width page opens as an iPad (768 by 1024px, touch, coarse pointer), a page opened narrow on purpose keeps its width (320px)\nPASS  Firefox: an add-on asking for a phone identity still runs (Firefox cannot imitate one; the size and touch are kept)\n4. The real keyboard add-on in Firefox and WebKit\nPASS  Chromium: every keyboard test available (2.5.3 Not met)\nPASS  Firefox and WebKit: the Chrome-only parts recorded as not available in this browser (labelname: label in name (2.5.3); pointer: real swipes and pinches (2.5.1); pointer: touch press and hold (2.5.2); targets: Chrome's listener list (2.5.8))\nPASS  Firefox: label in name left untested there (no silent pass), the target size test still runs, no CDP errors\nPASS  real add-ons: the process exits promptly when they are done (0.0 s after)\nPASS  WebKit as a tablet: the keyboard add-on runs, records the same tests as not available in this browser (4), and the target size test still runs\nPASS  joined: 2.5.3 keeps the Chromium result, and the 8 not-available records (4 tests x 2 browsers) are kept\n1 failed, 72 passed\n"
   }
  },
  "startedAt": "2026-11-15T04:22:36.381Z",
