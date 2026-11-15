@@ -13,6 +13,15 @@
    "run": "if git grep -nE '^(<<<<<<<|\\|\\|\\|\\|\\|\\|\\||>>>>>>>)( |$)|^=======$'; then\n  echo \"Leftover merge conflict markers above: finish the merge in those files.\"\n  exit 1\nfi\necho \"No conflict markers in tracked files.\"",
    "startedAt": "2026-11-15T18:48:33.802Z",
    "finishedAt": "2026-11-15T18:48:33.898Z"
+  },
+  "docs#21": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/realsite-gate-measure-tests.js",
+   "startedAt": "2026-11-15T18:48:34.966Z",
+   "finishedAt": "2026-11-15T18:48:35.035Z"
   }
  },
  "startedAt": "2026-11-15T18:46:55.824Z",
