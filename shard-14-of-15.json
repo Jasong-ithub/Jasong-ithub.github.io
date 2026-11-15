@@ -174,6 +174,15 @@
    "run": "node addons/interaction/test/gaps-tests.js",
    "startedAt": "2026-11-15T06:59:35.740Z",
    "finishedAt": "2026-11-15T07:00:15.396Z"
+  },
+  "gaps#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 6.05,
+   "planned": 7.55,
+   "run": "node addons/timing/test/gaps-tests.js",
+   "startedAt": "2026-11-15T07:00:16.566Z",
+   "finishedAt": "2026-11-15T07:06:19.711Z"
   }
  },
  "startedAt": "2026-11-15T04:22:34.993Z",
