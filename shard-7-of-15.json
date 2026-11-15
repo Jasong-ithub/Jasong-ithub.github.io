@@ -119,6 +119,15 @@
    "run": "node addons/content/test/run-tests.js",
    "startedAt": "2026-11-15T22:11:29.414Z",
    "finishedAt": "2026-11-15T22:12:45.025Z"
+  },
+  "addons#28": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.78,
+   "planned": 2,
+   "run": "node addons/cognitive/test/run-tests.js",
+   "startedAt": "2026-11-15T22:12:46.127Z",
+   "finishedAt": "2026-11-15T22:13:33.007Z"
   }
  },
  "startedAt": "2026-11-15T20:25:53.905Z",
