@@ -31,6 +31,15 @@
    "run": "node test/prelive-report-fixes-tests.js",
    "startedAt": "2026-11-15T20:24:57.275Z",
    "finishedAt": "2026-11-15T20:24:58.179Z"
+  },
+  "quick#49": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.11,
+   "planned": 2,
+   "run": "node test/onboard-tests.js",
+   "startedAt": "2026-11-15T20:24:59.381Z",
+   "finishedAt": "2026-11-15T20:25:05.689Z"
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
