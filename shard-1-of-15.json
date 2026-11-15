@@ -119,6 +119,15 @@
    "startedAt": "2026-11-15T20:10:58.696Z",
    "finishedAt": "2026-11-15T20:17:13.356Z",
    "tail": "PASS  2.5.7 price slider with no role that only drags found\nPASS  2.5.7 drag-and-drop list with no buttons found\nPASS  2.5.7 one finding per widget (not one per list item)\nPASS  2.5.8 tiny script-click icons found (addEventListener and onclick property)\nPASS  2.5.8 tiny buttons inside an iframe found\nPASS  clean pages: no findings (none)\nPASS  clean pages: all 13 criteria \"Partial check: no problems found\", never Met (all clean)\nPASS  thirteen criteria reported\nPASS  clean dialogs page: the three panels were really opened and re-tested\nPASS  clean widgets page: all eight widgets really operated (8 widget(s) operated with mouse and keyboard)\nPASS  clean pointer page: gestures and drags really happened and the alternatives worked\nPASS  a page answering 500 and a refused connection: no criterion written clean, each test's error recorded (the page did not load: the site answered 500 | the page did not load: the site answered 500 | the page did not load: the || the page did not load: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:41287/ | the page did not load: net::ERR_CONNECTI)\nPASS  Firefox on a page with an unknown certificate issuer: the error page is not tested, nothing written clean (the page did not load: SSL_ERROR_UNKNOWN)\nfile:///home/runner/work/Jasong-ithub.github.io/Jasong-ithub.github.io/src/util/page-load.js:20\n  if (err) throw new PageNotLoaded(`the page did not load: ${short(err.message)}`);\n                 ^\n\nPageNotLoaded: the page did not load: Navigation to \"http://127.0.0.1:40071/good-widgets.html\" is interrupted by another navigation to \"http://127.0.0.1:40071/good-widgets.html\"\n    at loadChecked (file:///home/runner/work/Jasong-ithub.github.io/Jasong-ithub.github.io/src/util/page-load.js:20:18)\n    at async file:///home/runner/work/Jasong-ithub.github.io/Jasong-ithub.github.io/addons/keyboard/test/run-tests.js:147:22 {\n  pageNotLoaded: true\n}\n\nNode.js v22.23.4\n"
+  },
+  "overlayonoff#9": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 2,
+   "run": "node test/overlay-page-choice-tests.js",
+   "startedAt": "2026-11-15T20:17:15.161Z",
+   "finishedAt": "2026-11-15T20:17:17.043Z"
   }
  },
  "startedAt": "2026-11-15T18:31:44.903Z",
