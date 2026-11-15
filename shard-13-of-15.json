@@ -117,6 +117,20 @@
    },
    "startedAt": "2026-11-15T20:31:15.005Z",
    "finishedAt": "2026-11-15T20:54:26.296Z"
+  },
+  "realsitegate[chromium]#6:interaction": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 7.54,
+   "planned": 10,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "interaction",
+   "env": {
+    "A11Y_GATE_RUNS": "chromium",
+    "A11Y_GATE_PART": "interaction"
+   },
+   "startedAt": "2026-11-15T20:54:27.410Z",
+   "finishedAt": "2026-11-15T21:02:00.017Z"
   }
  },
  "startedAt": "2026-11-15T20:09:51.723Z",
