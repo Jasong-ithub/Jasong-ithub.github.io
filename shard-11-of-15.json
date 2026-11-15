@@ -86,6 +86,20 @@
    "startedAt": "2026-11-15T04:38:01.833Z",
    "finishedAt": "2026-11-15T04:41:02.927Z",
    "tail": "PASS  process: no finding names a marker the test added (every selector is on the page as served)\nPASS  FAULT-110: #delete-account is a definite 3.3.4 failure (pr-final-first-press #delete-account failure)\nPASS  FAULT-110 clean: no definite 3.3.4 failure on the gate's delete button with a dialog, its delete form that opens an \"Are you sure?\" page, or \"Book now\" (pr-one-press-purchase #book pass; pr-final-first-press-review #close pass)\nPASS  FAULT-110: a delete button that opens another page is looked at and settled as a pass (D496A), not a failure\nPASS  FAULT-110 and FAULT-143: plain \"Book a room\" and \"Donate now\" links give nothing (they only open pages)\nPASS  FAULT-143: #buy-now-giftcard is a definite 3.3.4 failure (D496A: pressed on our own pages only, test/settle-d496a-tests.js) (pr-final-first-press #buy-now-giftcard failure)\nPASS  content add-on: an unnamed fieldset and an unnamed role=\"group\" with a question are still found, a fieldset named by aria-labelledby and a radiogroup named by its title are not (ct-group-unnamed #survey > fieldset:nth-of-type(1) > label:nth-of-type(1) > input failure; ct-group-unnamed #survey > div:nth-of-type(1) > label:nth-of-type(1) > input failure)\nPASS  FAULT-108 clean: an error summary of links to the fields (G139) is not a colour-only error, even with a message that shares no word with its label, and a link to \"#save-50%\" does not stop the test (none)\nPASS  FAULT-124 clean: a required field marked with a * in its placeholder is not \"nothing says so\" (none)\nPASS  safety: no request carried a typed value (none; 32 requests in all)\nPASS  safety: the process add-on ran without errors ([[]])\nPASS  safety: the small forms were still sent in the page (pr-form-sent-silent #j-msg failure)\nPASS  our own pages: our test sites and loopback only, never a client site, a private network address or a look-alike host\nPASS  the small-form send does nothing at all on a client site\nPASS  sent words in other languages count only as whole words (\"merci\", not \"commercial\")\nPASS  FAULT-098: the time-out is a definite 2.2.1 failure in the category \"stops\" (failure stops)\nPASS  FAULT-098 clean: checkout-details.html (TWIN-041) gives no definite time-limit failure (none)\nPASS  FAULT-074: a field that grows with its text is not reported\nPASS  FAULT-074: a fixed pixel height that does not hide its overflow (Magento's phone field) is settled as a pass, never a definite failure (vis-textonly-control-fixed-review #en-phone pass)\nPASS  FAULT-074: #engrave is a definite 1.4.4 failure (vis-textonly-control-fixed #engrave failure)\nPASS  FAULT-074 clean: index.html (TWIN-008) and the gate's forms give nothing (none)\nPASS  FAULT-074: the layout tests ran without errors ([])\n\n1 FAILED\n"
+  },
+  "realsitegate[chromium]#6:core:1/3": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 24.1,
+   "planned": 23.33,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "core:1/3",
+   "env": {
+    "A11Y_GATE_RUNS": "chromium",
+    "A11Y_GATE_PART": "core:1/3"
+   },
+   "startedAt": "2026-11-15T04:41:04.118Z",
+   "finishedAt": "2026-11-15T05:05:10.088Z"
   }
  },
  "startedAt": "2026-11-15T04:22:33.930Z",
