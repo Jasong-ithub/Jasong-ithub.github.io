@@ -31,6 +31,16 @@
    "run": "node test/suppression-tests.js",
    "startedAt": "2026-11-15T04:15:05.230Z",
    "finishedAt": "2026-11-15T04:15:16.771Z"
+  },
+  "quick#51": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 3.44,
+   "planned": 2,
+   "run": "node test/lang-tests.js",
+   "startedAt": "2026-11-15T04:15:18.022Z",
+   "finishedAt": "2026-11-15T04:18:44.380Z",
+   "tail": "PASS  a field marked \"Pflichtfeld\" only in its label is found (Required field is marked \"Pflichtfeld\" in its label only, not announced to screen readers)\nPASS  the \"Datenschutzerklärung\" link counts as the privacy policy link\nSpanish page\nPASS  \"Haz clic aquí\" and \"Leer más\" found (Link text \"Haz clic aquí\" does not say where it goes; Link text \"Leer más\" does not say where it goes)\nPASS  alt text \"imagen\" found\nPASS  the Spanish form's silent, unlinked errors (\"Este campo es obligatorio\") are found, not \"no error\" (form-error-not-associated, form-error-not-announced)\nFrench page\nPASS  \"Cliquez ici\" and \"Lire la suite\" found (Link text \"Cliquez ici\" does not say where it goes; Link text \"Lire la suite\" does not say where it goes)\nPASS  alt text \"icône\" found\nPASS  two fields marked \"(obligatoire)\" only in their labels are found\nItalian page (no word list)\nFAIL  short links listed for review, not passed (none)\nPASS  nothing reported as a failure from a list that does not cover Italian\nSpanish shop: keyboard journeys\nPASS  recognised as a shop\nPASS  cookie banner with \"Rechazar todas\" found (pass)\nPASS  \"Añadir al carrito\" found and pressed (pass)\nPASS  \"Carrito\" opened (pass)\nPASS  \"Finalizar compra\" reached (pass)\nPASS  the journey never sends the checkout, so it reports no checkout error messages (D208) (none)\nPASS  on our copy, the checkout's Spanish error messages are found unlinked and silent (form-error-not-associated, form-error-not-announced)\nPASS  the checkout's fields and \"Continuar al pago\" are reached by keyboard, with nothing typed, nothing sent and the payment page left alone (D208) (checkout-step-1 pass, reach-payment skipped)\n  steps: cookie-banner=pass, find-products=pass, open-product=pass, choose-options=pass, add-to-basket=pass, open-basket=pass, basket-correct=pass, basket-quantity=pass, go-to-checkout=pass, checkout-step-1=pass, reach-payment=skipped, find-contact=skipped\n1 failed\n"
   }
  },
  "startedAt": "2026-11-15T04:14:04.830Z",
