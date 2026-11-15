@@ -92,7 +92,7 @@
   "realsitegate[webkit-phone]#6:timing": {
    "status": "failed",
    "code": 1,
-   "minutes": 96.2,
+   "minutes": 95.47,
    "planned": 100,
    "run": "node test/realsite-gate-tests.js",
    "gatePart": "timing",
@@ -100,9 +100,9 @@
     "A11Y_GATE_RUNS": "webkit-phone",
     "A11Y_GATE_PART": "timing"
    },
-   "startedAt": "2026-11-15T04:24:08.224Z",
-   "finishedAt": "2026-11-15T06:00:20.241Z",
-   "tail": "PASS  saas-product-overview.html: no definite failure (none)\nPASS  separate-letters.html: no definite failure (none)\nPASS  serial-chapter-page.html: no definite failure (none)\nPASS  shop-forms.html: no definite failure (none)\nPASS  shop-widgets.html: no definite failure (none)\nPASS  sign-in-with-provider.html: no definite failure (none)\nPASS  sign-up-captcha.html: no definite failure (none)\nPASS  single-page-link-list.html: no definite failure (none)\nPASS  slick-carousel.html: no definite failure (none)\nPASS  software-product-section.html: no definite failure (none)\nPASS  stats-row.html: no definite failure (none)\nPASS  swiper-carousel.html: no definite failure (none)\nPASS  tabindex-forms.html: no definite failure (none)\nPASS  target-size-exceptions.html: no definite failure (none)\nPASS  testimonials.html: no definite failure (none)\nPASS  ticker-carousel.html: no definite failure (none)\nPASS  title-article-prefix.html: no definite failure (none)\nPASS  title-index-page.html: no definite failure (none)\nPASS  title-products-listing.html: no definite failure (none)\nPASS  urgency-beside-live.html: no definite failure (none)\nReal-site gate (D391): FAILS for its part timing only (results: /tmp/realsite-gate-test-7129.json). 61 pages in webkit-phone; definite failures 1; pages that could not be tested in full 0.\n  FALSE ALARM live-data.html: tm-moving-after-action (2.2.2, webkit-phone timing) on the page: Content (\"Example Auctions Lot 42: Victorian...\") keeps moving for more than 5 seconds once it is scrolled into view (after scrolling down 1 screen), with no pa\n\n1 FAILED\n"
+   "startedAt": "2026-11-15T08:08:43.006Z",
+   "finishedAt": "2026-11-15T09:44:10.978Z",
+   "tail": "PASS  saas-product-overview.html: no definite failure (none)\nPASS  separate-letters.html: no definite failure (none)\nPASS  serial-chapter-page.html: no definite failure (none)\nPASS  shop-forms.html: no definite failure (none)\nPASS  shop-widgets.html: no definite failure (none)\nPASS  sign-in-with-provider.html: no definite failure (none)\nPASS  sign-up-captcha.html: no definite failure (none)\nPASS  single-page-link-list.html: no definite failure (none)\nPASS  slick-carousel.html: no definite failure (none)\nPASS  software-product-section.html: no definite failure (none)\nPASS  stats-row.html: no definite failure (none)\nPASS  swiper-carousel.html: no definite failure (none)\nPASS  tabindex-forms.html: no definite failure (none)\nPASS  target-size-exceptions.html: no definite failure (none)\nPASS  testimonials.html: no definite failure (none)\nPASS  ticker-carousel.html: no definite failure (none)\nPASS  title-article-prefix.html: no definite failure (none)\nPASS  title-index-page.html: no definite failure (none)\nPASS  title-products-listing.html: no definite failure (none)\nPASS  urgency-beside-live.html: no definite failure (none)\nReal-site gate (D391): FAILS for its part timing only (results: /tmp/realsite-gate-test-6737.json). 61 pages in webkit-phone; definite failures 1; pages that could not be tested in full 0.\n  FALSE ALARM live-data.html: tm-moving-after-action (2.2.2, webkit-phone timing) on the page: Content (\"Example Auctions Lot 42: Victorian...\") keeps moving for more than 5 seconds once it is scrolled into view (after scrolling down 1 screen), with no pa\n\n1 FAILED\n"
   },
   "addons#12": {
    "status": "passed",
