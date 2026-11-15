@@ -214,7 +214,7 @@
  },
  "startedAt": "2026-11-15T04:55:57.170Z",
  "finished": true,
- "setupMinutes": 0.98,
+ "setupMinutes": 1.33,
  "ok": false,
  "failed": [
   "quick#21"
