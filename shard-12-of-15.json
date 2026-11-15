@@ -40,6 +40,15 @@
    "run": "node test/onboard-tests.js",
    "startedAt": "2026-11-15T20:24:59.381Z",
    "finishedAt": "2026-11-15T20:25:05.689Z"
+  },
+  "quick#64": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/ai-budget-d277-tests.js",
+   "startedAt": "2026-11-15T20:25:07.009Z",
+   "finishedAt": "2026-11-15T20:25:07.071Z"
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
