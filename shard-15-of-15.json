@@ -183,6 +183,15 @@
    "run": "node test/overlay-onoff-tests.js",
    "startedAt": "2026-11-15T21:24:32.540Z",
    "finishedAt": "2026-11-15T21:31:28.828Z"
+  },
+  "fixes#11": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.25,
+   "planned": 0.27,
+   "run": "node addons/fixes/test/focused-proof-tests.js",
+   "startedAt": "2026-11-15T21:31:30.031Z",
+   "finishedAt": "2026-11-15T21:31:44.908Z"
   }
  },
  "startedAt": "2026-11-15T20:12:06.917Z",
