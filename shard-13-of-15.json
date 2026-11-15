@@ -76,6 +76,15 @@
    "run": "node test/safety-fixes-tests.js",
    "startedAt": "2026-11-15T20:21:04.563Z",
    "finishedAt": "2026-11-15T20:21:11.482Z"
+  },
+  "quick#78": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/cost-review-d327-tests.js",
+   "startedAt": "2026-11-15T20:21:12.676Z",
+   "finishedAt": "2026-11-15T20:21:12.717Z"
   }
  },
  "startedAt": "2026-11-15T20:09:51.723Z",
