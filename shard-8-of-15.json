@@ -13,6 +13,15 @@
    "run": "node tools/check-safety.mjs",
    "startedAt": "2026-11-15T18:44:20.221Z",
    "finishedAt": "2026-11-15T18:59:34.566Z"
+  },
+  "docs#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node test/publish-board-tests.js",
+   "startedAt": "2026-11-15T18:59:35.991Z",
+   "finishedAt": "2026-11-15T18:59:36.564Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.322Z",
