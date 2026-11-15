@@ -85,6 +85,16 @@
    "run": "node test/gate-signed-tests.js",
    "startedAt": "2026-11-15T20:17:51.552Z",
    "finishedAt": "2026-11-15T20:17:51.993Z"
+  },
+  "benchmark#6": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 22.36,
+   "planned": 32.47,
+   "run": "node test/benchmark-shop-tests.js",
+   "startedAt": "2026-11-15T20:17:53.074Z",
+   "finishedAt": "2026-11-15T20:40:14.919Z",
+   "tail": "$ CI=true GITHUB_ACTIONS=true A11Y_UNDER_TEST=1 node test/benchmark-shop-tests.js\n--- the committed files match the build\n--- W3C coverage\n--- key entries\n--- pages\n--- readable key order\n--- scorer\n--- round 4 review\n--- round 5 review\n--- round 6 review\n--- in Chromium\nFAIL  FAULT-187 chromium: at 1366 by 900 on a first visit the outline shows nowhere, as the key says ({\"width\":3,\"seen\":820}) (D446)\nFAIL  FAULT-187 webkit: at 1366 by 900 on a first visit the outline shows nowhere, as the key says ({\"width\":3,\"seen\":820}) (D446)\nround 16, finding 1: 1330 presses of controls that write to #status; 0 lost, 0 cut short, 0 over the focused control\nround 17, finding 1: 65 presses of controls that write to #status; 65 messages gone after their time, 0 with their information lost\n--- flash check\n2 failed, 16234 passed\n"
   }
  },
  "startedAt": "2026-11-15T20:09:48.323Z",
