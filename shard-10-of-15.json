@@ -86,6 +86,20 @@
    "run": "node test/d496a-faults-tests.js",
    "startedAt": "2026-11-15T04:48:02.156Z",
    "finishedAt": "2026-11-15T04:58:09.140Z"
+  },
+  "realsitegate[webkit-phone]#6:core:2/3": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 9.6,
+   "planned": 23.33,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "core:2/3",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "core:2/3"
+   },
+   "startedAt": "2026-11-15T04:58:10.287Z",
+   "finishedAt": "2026-11-15T05:07:46.347Z"
   }
  },
  "startedAt": "2026-11-15T04:45:41.941Z",
