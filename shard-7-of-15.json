@@ -58,6 +58,15 @@
    "run": "node addons/fixes/test/recipes-interaction-tests.js",
    "startedAt": "2026-11-15T04:59:39.070Z",
    "finishedAt": "2026-11-15T04:59:39.148Z"
+  },
+  "benchmark#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 12.94,
+   "planned": 2,
+   "run": "node test/learn-pass2-group-a-tests.js",
+   "startedAt": "2026-11-15T04:59:40.243Z",
+   "finishedAt": "2026-11-15T05:12:36.586Z"
   }
  },
  "startedAt": "2026-11-15T04:57:54.581Z",
