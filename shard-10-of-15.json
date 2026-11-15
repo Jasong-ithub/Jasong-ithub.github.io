@@ -76,6 +76,15 @@
    "run": "node test/gate-send-tests.js",
    "startedAt": "2026-11-15T20:22:31.203Z",
    "finishedAt": "2026-11-15T20:22:33.288Z"
+  },
+  "benchmark#11": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.76,
+   "planned": 2,
+   "run": "node test/learn-pass2-group-d-tests.js",
+   "startedAt": "2026-11-15T20:22:34.506Z",
+   "finishedAt": "2026-11-15T20:23:20.210Z"
   }
  },
  "startedAt": "2026-11-15T20:20:04.424Z",
