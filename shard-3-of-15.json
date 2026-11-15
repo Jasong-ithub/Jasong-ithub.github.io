@@ -31,6 +31,16 @@
    "run": "node test/sending-sim-tests.js",
    "startedAt": "2026-11-15T04:57:24.428Z",
    "finishedAt": "2026-11-15T04:59:54.744Z"
+  },
+  "quick#53": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 0.57,
+   "planned": 2,
+   "run": "node test/parity-tests.js",
+   "startedAt": "2026-11-15T04:59:55.910Z",
+   "finishedAt": "2026-11-15T05:00:30.252Z",
+   "tail": "PASS  visual: forced-colours-button found on its fault \nPASS  visual: forced-colours-border found on its fault \nPASS  visual: forced-colours-focus found on its fault \nPASS  hover contrast is a confirmed 1.4.3 failure (7.21 at rest, 1.67 on hover)\nPASS  text in viewport units at 200% zoom: confirmed 1.4.4 failure (F94)\nPASS  forced colours findings are needs-review warnings (IBM marks the check manual)\nPASS  form fields that stay small with the browser text-size setting: needs-review 1.4.4 (F80)\nPASS  clean page /parity/clean.html: no parity rule reports anything \nPASS  clean page /good.html: no parity rule reports anything \nPASS  /parity/contrast-target.html: our contrast check finds all 9 axe color-contrast failures (we find 9)\nPASS  /parity/contrast-target.html: our target size check finds all 3 axe target-size failures (we find 3)\nPASS  contrast fixture: every planted contrast failure found by our check (#c1, #c2, #c3, #c4, #c5, #c6, #c7, #c8, #c9)\nPASS  contrast fixture: we find at least as many as axe (9 against 9)\nPASS  target fixture: crowded 16px targets found, well-spaced 18px targets pass (spacing exception, as axe)\nPASS  /bad.html: our contrast check finds all 3 axe color-contrast failures (we find 4)\nPASS  /bad.html: our target size check finds all 3 axe target-size failures (we find 6)\nPASS  /parity/markup-bad.html: our contrast check finds all 1 axe color-contrast failures (we find 1)\nPASS  /parity/markup-bad.html: our target size check finds all 0 axe target-size failures (we find 0)\nPASS  /parity/visual-bad.html: our contrast check finds all 0 axe color-contrast failures (we find 0)\nPASS  /parity/visual-bad.html: our target size check finds all 0 axe target-size failures (we find 0)\nPASS  /parity/aaa-bad.html: our contrast check finds all 0 axe color-contrast failures (we find 0)\nPASS  /parity/aaa-bad.html: our target size check finds all 0 axe target-size failures (we find 0)\n\n1 test(s) failed\n"
   }
  },
  "startedAt": "2026-11-15T04:55:59.437Z",
