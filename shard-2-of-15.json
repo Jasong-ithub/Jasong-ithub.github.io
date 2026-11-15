@@ -31,6 +31,15 @@
    "run": "node test/i18n-tests.js",
    "startedAt": "2026-11-15T20:04:55.044Z",
    "finishedAt": "2026-11-15T20:04:59.309Z"
+  },
+  "quick#36": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.03,
+   "planned": 2,
+   "run": "node test/sample-figures-tests.js",
+   "startedAt": "2026-11-15T20:05:00.756Z",
+   "finishedAt": "2026-11-15T20:05:02.323Z"
   }
  },
  "startedAt": "2026-11-15T20:03:14.358Z",
