@@ -163,6 +163,15 @@
    "run": "node test/everypage-tests.js",
    "startedAt": "2026-11-15T20:50:43.749Z",
    "finishedAt": "2026-11-15T20:51:26.991Z"
+  },
+  "everypage#14": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 2.64,
+   "planned": 2.47,
+   "run": "node test/consent-modal-tests.js",
+   "startedAt": "2026-11-15T20:51:28.109Z",
+   "finishedAt": "2026-11-15T20:54:06.373Z"
   }
  },
  "startedAt": "2026-11-15T20:10:03.979Z",
