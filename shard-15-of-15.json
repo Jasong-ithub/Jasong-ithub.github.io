@@ -207,7 +207,7 @@
  },
  "startedAt": "2026-11-15T04:22:48.916Z",
  "finished": true,
- "setupMinutes": 1.48,
+ "setupMinutes": 1.25,
  "ok": false,
  "failed": [
   "addons#32",
