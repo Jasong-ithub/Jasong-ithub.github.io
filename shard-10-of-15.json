@@ -145,6 +145,15 @@
    "run": "node addons/monitor/test/run-tests.js",
    "startedAt": "2026-11-15T19:53:49.531Z",
    "finishedAt": "2026-11-15T20:17:11.320Z"
+  },
+  "monitor#10": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.11,
+   "planned": 0.27,
+   "run": "node addons/designs/test/run-tests.js",
+   "startedAt": "2026-11-15T20:17:12.456Z",
+   "finishedAt": "2026-11-15T20:18:19.302Z"
   }
  },
  "startedAt": "2026-11-15T18:42:57.885Z",
