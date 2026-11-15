@@ -13,6 +13,15 @@
    "run": "node test/lead-batch-cap-tests.js",
    "startedAt": "2026-11-15T19:56:19.909Z",
    "finishedAt": "2026-11-15T19:56:20.012Z"
+  },
+  "quick#23": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.25,
+   "planned": 2,
+   "run": "node test/agency-finder-tests.js",
+   "startedAt": "2026-11-15T19:56:21.274Z",
+   "finishedAt": "2026-11-15T19:56:36.367Z"
   }
  },
  "startedAt": "2026-11-15T19:55:24.189Z",
