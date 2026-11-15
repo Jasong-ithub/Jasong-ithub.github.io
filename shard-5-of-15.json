@@ -109,6 +109,15 @@
    "run": "node addons/statements/test/run-tests.js",
    "startedAt": "2026-11-15T20:24:48.388Z",
    "finishedAt": "2026-11-15T20:25:06.613Z"
+  },
+  "everypage#7": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.35,
+   "planned": 0.45,
+   "run": "node test/browser-launch-tests.js",
+   "startedAt": "2026-11-15T20:25:07.652Z",
+   "finishedAt": "2026-11-15T20:25:28.355Z"
   }
  },
  "startedAt": "2026-11-15T18:43:05.500Z",
