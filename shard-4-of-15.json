@@ -40,6 +40,16 @@
    "run": "node test/overlay-coverage-tests.js",
    "startedAt": "2026-11-15T04:23:51.062Z",
    "finishedAt": "2026-11-15T04:23:53.148Z"
+  },
+  "quick#39": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 0.07,
+   "planned": 2,
+   "run": "node test/demo-host-tests.js",
+   "startedAt": "2026-11-15T04:23:54.543Z",
+   "finishedAt": "2026-11-15T04:23:58.593Z",
+   "tail": "$ CI=true GITHUB_ACTIONS=true A11Y_UNDER_TEST=1 node test/demo-host-tests.js\nFAIL L10: unpaid, the renamed reminder passes, and other items too\nFAIL L10: paid, the renamed reminder is held (view-3mp8gwg3d6)\ndemo-host-tests: 113 passed, 2 failed\n"
   }
  },
  "startedAt": "2026-11-15T04:22:35.285Z",
