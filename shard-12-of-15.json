@@ -76,6 +76,21 @@
    "run": "node test/d496a-faults-tests.js",
    "startedAt": "2026-11-15T20:25:10.785Z",
    "finishedAt": "2026-11-15T20:35:16.490Z"
+  },
+  "realsitegate[chromium]#6:core:2/3": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 18.62,
+   "planned": 23.33,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "core:2/3",
+   "env": {
+    "A11Y_GATE_RUNS": "chromium",
+    "A11Y_GATE_PART": "core:2/3"
+   },
+   "startedAt": "2026-11-15T20:35:17.563Z",
+   "finishedAt": "2026-11-15T20:53:54.755Z",
+   "tail": "PASS  apg-carousel.html: no definite failure (none)\nPASS  closed-dialogs.html: no definite failure (none)\nPASS  complex-tables.html: no definite failure (none)\nPASS  email-layout-table.html: no definite failure (none)\nFAIL  figure-diagram.html: no definite failure (reflow-320 1.4.10 body > main > figure > img)\nPASS  frames.html: no definite failure (none)\nPASS  heading-patterns.html: no definite failure (none)\nPASS  image-replacement.html: no definite failure (none)\nPASS  listbox.html: no definite failure (none)\nPASS  maths.html: no definite failure (none)\nPASS  multilingual.html: no definite failure (none)\nPASS  numbered-chapters-and-clauses.html: no definite failure (none)\nPASS  product-card.html: no definite failure (none)\nPASS  rich-text-spacing.html: no definite failure (none)\nPASS  serial-chapter-page.html: no definite failure (none)\nPASS  sign-in-with-provider.html: no definite failure (none)\nPASS  slick-carousel.html: no definite failure (none)\nPASS  swiper-carousel.html: no definite failure (none)\nPASS  testimonials.html: no definite failure (none)\nPASS  title-index-page.html: no definite failure (none)\nReal-site gate (D391): FAILS for its part core:2/3 only (results: /tmp/realsite-gate-test-8812.json). 20 pages in chromium; definite failures 1; pages that could not be tested in full 0.\n  FALSE ALARM figure-diagram.html: reflow-320 (1.4.10, chromium core) on body > main > figure > img: Content needs sideways scrolling when zoomed to 400% (528px wide at 320px)\n\n1 FAILED\n"
   }
  },
  "startedAt": "2026-11-15T20:23:25.116Z",
