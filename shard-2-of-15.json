@@ -58,6 +58,15 @@
    "run": "node test/work-queue-tests.js",
    "startedAt": "2026-11-15T20:05:15.178Z",
    "finishedAt": "2026-11-15T20:05:16.876Z"
+  },
+  "quick#81": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0,
+   "planned": 2,
+   "run": "node test/job-watch-tests.js",
+   "startedAt": "2026-11-15T20:05:18.089Z",
+   "finishedAt": "2026-11-15T20:05:18.122Z"
   }
  },
  "startedAt": "2026-11-15T20:03:14.358Z",
