@@ -137,6 +137,15 @@
    "run": "node addons/monitor/test/daily-tests.js",
    "startedAt": "2026-11-15T20:32:40.994Z",
    "finishedAt": "2026-11-15T20:32:42.622Z"
+  },
+  "addons#13": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 1.26,
+   "planned": 2,
+   "run": "node addons/content/test/run-tests.js",
+   "startedAt": "2026-11-15T20:32:43.595Z",
+   "finishedAt": "2026-11-15T20:33:59.278Z"
   }
  },
  "startedAt": "2026-11-15T18:46:55.824Z",
