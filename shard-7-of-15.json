@@ -178,7 +178,7 @@
  },
  "startedAt": "2026-11-15T04:57:54.581Z",
  "finished": true,
- "setupMinutes": 1.42,
+ "setupMinutes": 1.19,
  "ok": false,
  "failed": [
   "realsitegate[firefox]#6:keyboard",
