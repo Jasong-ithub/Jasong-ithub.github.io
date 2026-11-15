@@ -176,6 +176,15 @@
    "run": "node test/overlay-page-choice-tests.js",
    "startedAt": "2026-11-15T06:47:33.704Z",
    "finishedAt": "2026-11-15T06:47:35.600Z"
+  },
+  "fixes#27": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.01,
+   "planned": 2,
+   "run": "node addons/fixes/test/wp-child-tests.js",
+   "startedAt": "2026-11-15T06:47:37.215Z",
+   "finishedAt": "2026-11-15T06:47:37.892Z"
   }
  },
  "startedAt": "2026-11-15T04:56:38.253Z",
