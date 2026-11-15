@@ -13,6 +13,15 @@
    "run": "node test/check-tests-listed-tests.js",
    "startedAt": "2026-11-15T18:44:17.280Z",
    "finishedAt": "2026-11-15T18:44:17.612Z"
+  },
+  "docs#26": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.08,
+   "planned": 0.08,
+   "run": "node test/fixes-starter-tests.js",
+   "startedAt": "2026-11-15T18:44:18.827Z",
+   "finishedAt": "2026-11-15T18:44:23.677Z"
   }
  },
  "startedAt": "2026-11-15T18:42:58.102Z",
