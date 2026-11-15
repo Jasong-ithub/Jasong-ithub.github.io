@@ -85,6 +85,21 @@
    "run": "node test/delivery-estimate-tests.js",
    "startedAt": "2026-11-15T18:46:45.546Z",
    "finishedAt": "2026-11-15T18:46:45.651Z"
+  },
+  "realsitegate[webkit-phone]#6:timing": {
+   "status": "failed",
+   "code": 1,
+   "minutes": 95.63,
+   "planned": 100,
+   "run": "node test/realsite-gate-tests.js",
+   "gatePart": "timing",
+   "env": {
+    "A11Y_GATE_RUNS": "webkit-phone",
+    "A11Y_GATE_PART": "timing"
+   },
+   "startedAt": "2026-11-15T18:46:46.733Z",
+   "finishedAt": "2026-11-15T20:22:24.789Z",
+   "tail": "PASS  saas-product-overview.html: no definite failure (none)\nPASS  separate-letters.html: no definite failure (none)\nPASS  serial-chapter-page.html: no definite failure (none)\nPASS  shop-forms.html: no definite failure (none)\nPASS  shop-widgets.html: no definite failure (none)\nPASS  sign-in-with-provider.html: no definite failure (none)\nPASS  sign-up-captcha.html: no definite failure (none)\nPASS  single-page-link-list.html: no definite failure (none)\nPASS  slick-carousel.html: no definite failure (none)\nPASS  software-product-section.html: no definite failure (none)\nPASS  stats-row.html: no definite failure (none)\nPASS  swiper-carousel.html: no definite failure (none)\nPASS  tabindex-forms.html: no definite failure (none)\nPASS  target-size-exceptions.html: no definite failure (none)\nPASS  testimonials.html: no definite failure (none)\nPASS  ticker-carousel.html: no definite failure (none)\nPASS  title-article-prefix.html: no definite failure (none)\nPASS  title-index-page.html: no definite failure (none)\nPASS  title-products-listing.html: no definite failure (none)\nPASS  urgency-beside-live.html: no definite failure (none)\nReal-site gate (D391): FAILS for its part timing only (results: /tmp/realsite-gate-test-10845.json). 61 pages in webkit-phone; definite failures 1; pages that could not be tested in full 0.\n  FALSE ALARM live-data.html: tm-moving-after-action (2.2.2, webkit-phone timing) on the page: Content (\"Example Auctions Lot 42: Victorian...\") keeps moving for more than 5 seconds once it is scrolled into view (after scrolling down 1 screen), with no pa\n\n1 FAILED\n"
   }
  },
  "startedAt": "2026-11-15T18:43:07.320Z",
