@@ -58,6 +58,15 @@
    "run": "node test/dawn-like-tests.js",
    "startedAt": "2026-11-15T18:45:01.286Z",
    "finishedAt": "2026-11-15T18:46:31.723Z"
+  },
+  "quick#68": {
+   "status": "passed",
+   "code": 0,
+   "minutes": 0.09,
+   "planned": 2,
+   "run": "node test/ai-site-named-tests.js",
+   "startedAt": "2026-11-15T18:46:32.915Z",
+   "finishedAt": "2026-11-15T18:46:38.176Z"
   }
  },
  "startedAt": "2026-11-15T18:43:07.320Z",
