@@ -52,9 +52,11 @@ name: Tests
 on:
   # every hour: every job, only when the tool's branch has a commit not tested here yet (so after every push, D358);
   # weekly (Sunday 02:17 UTC) and by hand: every job, always; free here
-  schedule:
-    - cron: '41 * * * *'
-    - cron: '17 2 * * 0'
+  # PAUSED 16 Nov 2026 00:27 UTC by control on the owner's words ("yes pause all the tests until what needs to be
+  # finished is finished", kit ledger 2026-11-16-002-6a3ef7). Put these three lines back to resume:
+  # schedule:
+  #   - cron: '41 * * * *'
+  #   - cron: '17 2 * * 0'
   workflow_dispatch:
 
 # Here a run waits for one still going (never cancels it), and by-hand, hourly and weekly runs queue apart; the tool's
